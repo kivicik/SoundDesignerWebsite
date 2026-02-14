@@ -652,6 +652,89 @@ section h3.section-subheading {
     margin-top: 0;
 }
 
+#team {
+    background: #f7f7f7;
+    padding: 95px 0 90px;
+}
+
+#team .team-feature-row {
+    display: flex;
+    align-items: center;
+}
+
+#team .team-feature-photo {
+    width: 210px;
+    height: 210px;
+    object-fit: cover;
+    margin: 0 auto 22px;
+    border: 6px solid rgba(255,255,255,.75);
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+}
+
+#team .team-feature-copy {
+    text-align: left;
+}
+
+#team .section-heading {
+    margin: 0 0 18px;
+}
+
+#team .team-feature-copy h4 {
+    margin: 0 0 6px;
+    text-transform: none;
+    font-size: 40px;
+}
+
+#team .team-feature-role {
+    margin: 0 0 18px;
+    letter-spacing: .5px;
+    color: #666;
+    font-weight: 600;
+}
+
+#team .team-feature-description {
+    max-width: 640px;
+    margin: 0;
+    line-height: 1.7;
+}
+
+#team ul.social-buttons {
+    margin-top: 6px;
+}
+
+#team ul.social-buttons li a {
+    background-color: #1d2733;
+}
+
+#team ul.social-buttons li a:hover,
+#team ul.social-buttons li a:focus,
+#team ul.social-buttons li a:active {
+    background-color: #f0ad00;
+}
+
+@media(max-width:991px) {
+    #team {
+        padding: 80px 0 75px;
+    }
+
+    #team .team-feature-row {
+        display: block;
+        text-align: center;
+    }
+
+    #team .team-feature-copy {
+        text-align: center;
+    }
+
+    #team .team-feature-copy h4 {
+        font-size: 34px;
+    }
+
+    #team .team-feature-description {
+        margin: 0 auto;
+    }
+}
+
 aside.clients img {
     margin: 50px auto;
 }
@@ -733,16 +816,47 @@ header {
     background-size: cover;
     -o-background-size: cover;
 }
+footer {
+    padding: 28px 0;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-top: 1px solid rgba(34,34,34,.08);
+}
+
+footer .row {
+    display: flex;
+    align-items: center;
+}
+
+footer span.copyright {
+    line-height: 40px;
+    font-family: {{ site.data.template.font.primary }};
+    text-transform: none;
+}
+
 footer ul.quicklinks {
     margin-bottom: 0;
-    text-transform: uppercase;
-    text-transform: none;
     font-family: {{ site.data.template.font.primary }};
     line-height: 40px;
 }
 
+footer ul.quicklinks li a {
+    color: #222;
+}
+
+footer ul.quicklinks li a:hover,
+footer ul.quicklinks li a:focus,
+footer ul.quicklinks li a:active {
+    color: #000;
+}
+
 ul.social-buttons {
     margin-bottom: 0;
+    margin-top: 0;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 ul.social-buttons li a {
@@ -764,6 +878,12 @@ ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
     background-color: #{{ site.data.template.color.primary }};
+}
+
+@media(max-width:991px) {
+    footer .row {
+        display: block;
+    }
 }
 
 .btn:focus,
@@ -909,5 +1029,9 @@ body {
     top: -2px !important;
     transform: none !important;
 }
+
+
+
+
 
 
