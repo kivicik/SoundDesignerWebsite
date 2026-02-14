@@ -890,17 +890,24 @@ body {
     top: 15%;
 }
 
-.middleware-icon-options {
-    margin-top: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.music-icon-balance {
+    position: relative;
+    left: -2px !important;
+    top: -2px !important;
+    transform: none !important;
 }
 
-.middleware-option {
-    display: inline-block;
-    margin: 0 8px;
-    color: #7d7d7d;
-    font-size: 14px;
-}
 
-.middleware-option i {
-    margin-right: 4px;
-}

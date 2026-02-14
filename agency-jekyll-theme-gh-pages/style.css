@@ -1,3 +1,21 @@
 ---
 layout: style
 ---
+
+
+
+
+
+
+
+
+
+
+.music-icon-balance {
+    position: relative;
+    left: -2px !important;
+    top: -2px !important;
+    transform: none !important;
+}
+
+

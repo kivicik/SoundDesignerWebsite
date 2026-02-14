@@ -35,3 +35,14 @@ $('div.modal').on('show.bs.modal', function() {
 		}
 	}
 });
+// Remove legacy middleware option row (A B C) if present in cached/generated pages
+$(function() {
+    $('#services .col-md-4').filter(function() {
+        return $(this).find('h4.service-heading').first().text().trim() === 'Middleware Integration';
+    }).each(function() {
+        $(this).find('.middleware-icon-options, .middleware-option').remove();
+        $(this).find('div, p, span').filter(function() {
+            return $(this).text().replace(/\s+/g, ' ').trim() === 'A B C';
+        }).remove();
+    });
+});
