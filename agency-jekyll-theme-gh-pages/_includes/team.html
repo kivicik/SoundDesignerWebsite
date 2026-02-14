@@ -2,21 +2,16 @@
     <section id="team" class="bg-light-gray">
         {% assign featured = site.people | first %}
         <div class="container">
+            <div class="row team-feature-header">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">About</h2>
+                </div>
+            </div>
             <div class="row team-feature-row">
                 <div class="col-md-4 text-center">
-                    <img src="img/team/{{ featured.pic }}.jpg" class="img-responsive img-circle team-feature-photo" alt="{{ featured.name }}">
-                    <ul class="list-inline social-buttons">
-                        {% for network in featured.social %}
-                            <li>
-                                <a href="{{ network.url }}">
-                                    <i class="fa fa-{{ network.title }}"></i>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <img src="img/team/{{ featured.pic }}.jpg" class="img-responsive img-circle team-feature-photo" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='{{ site.baseurl }}/img/team/{{ featured.pic }}.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/team/{{ featured.pic }}.jpg';return;}this.onerror=null;this.alt='';">
                 </div>
                 <div class="col-md-8 team-feature-copy">
-                    <h2 class="section-heading">About</h2>
                     <h4>{{ featured.name }}</h4>
                     <p class="team-feature-role">{{ featured.position }}</p>
                     <p class="team-feature-description text-muted">Focused on cinematic game audio, implementation, and polished interactive sound experiences.</p>
@@ -24,3 +19,6 @@
             </div>
         </div>
     </section>
+
+
+

@@ -654,21 +654,25 @@ section h3.section-subheading {
 
 #team {
     background: #f7f7f7;
-    padding: 95px 0 90px;
+    padding: 92px 0;
 }
 
 #team .team-feature-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #team .team-feature-photo {
     width: 210px;
     height: 210px;
     object-fit: cover;
-    margin: 0 auto 22px;
+    margin: 0 auto;
     border: 6px solid rgba(255,255,255,.75);
     box-shadow: 0 6px 14px rgba(0,0,0,.08);
+}
+
+#team .team-feature-header .section-heading {
+    margin: 0 0 42px;
 }
 
 #team .team-feature-copy {
@@ -676,13 +680,20 @@ section h3.section-subheading {
 }
 
 #team .section-heading {
-    margin: 0 0 18px;
+    margin: 0 0 14px;
+    font-size: 40px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #27364a;
 }
 
 #team .team-feature-copy h4 {
-    margin: 0 0 6px;
+    margin: 0 0 10px;
     text-transform: none;
-    font-size: 40px;
+    font-size: 30px;
+    line-height: 1.15;
+    color: #2c3e50;
 }
 
 #team .team-feature-role {
@@ -714,7 +725,11 @@ section h3.section-subheading {
 
 @media(max-width:991px) {
     #team {
-        padding: 80px 0 75px;
+        padding: 74px 0;
+    }
+
+    #team .team-feature-header .section-heading {
+        margin: 0 0 30px;
     }
 
     #team .team-feature-row {
@@ -722,12 +737,16 @@ section h3.section-subheading {
         text-align: center;
     }
 
+    #team .team-feature-photo {
+        margin: 0 auto 24px;
+    }
+
     #team .team-feature-copy {
         text-align: center;
     }
 
     #team .team-feature-copy h4 {
-        font-size: 34px;
+        font-size: 28px;
     }
 
     #team .team-feature-description {
@@ -1029,6 +1048,13 @@ body {
     top: -2px !important;
     transform: none !important;
 }
+
+
+
+
+
+
+
 
 
 
