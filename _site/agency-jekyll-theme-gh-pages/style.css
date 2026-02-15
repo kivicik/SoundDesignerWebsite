@@ -1026,6 +1026,18 @@ body {
     object-position: center;
 }
 
+#portfolio .portfolio-item .portfolio-caption-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+#portfolio .portfolio-item .portfolio-caption-link:hover,
+#portfolio .portfolio-item .portfolio-caption-link:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
 .waveform-icon {
     stroke: #fff;
     stroke-width: 3;

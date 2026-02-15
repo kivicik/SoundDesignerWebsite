@@ -19,8 +19,10 @@
                         <img src="img/portfolio/{{ post.thumbnail }}" class="img-responsive img-centered" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>{{ post.title }}</h4>
-                        <p class="text-muted">{{ post.subtitle }}</p>
+                        <a href="#portfolioModal{{ post.modal-id }}" class="portfolio-caption-link" data-toggle="modal">
+                            <h4>{{ post.title }}</h4>
+                            <p class="text-muted">{{ post.subtitle }}</p>
+                        </a>
                     </div>
                 </div>
             {% endfor %}

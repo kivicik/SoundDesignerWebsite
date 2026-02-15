@@ -62,7 +62,7 @@
 
         // Force Team a bit earlier once its section enters the lower viewport.
         var teamSection = document.querySelector('#team');
-        if (teamSection && teamSection.getBoundingClientRect().top <= window.innerHeight * 0.66) {
+        if (teamSection && teamSection.getBoundingClientRect().top <= window.innerHeight * 0.60) {
             var teamLink = links.find(function(link) { return link.getAttribute('href') === '#team'; });
             if (teamLink) activeLink = teamLink;
         }
