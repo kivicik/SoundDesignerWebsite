@@ -33,19 +33,46 @@
     }
 
     function updateActiveNav() {
-        var triggerY = navHeight() + Math.max(80, window.innerHeight * 0.22);
         var activeLink = links[0] || null;
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
+        var bandTop = window.innerHeight * 0.30;
+        var bandBottom = window.innerHeight * 0.70;
+        var bestOverlap = -1;
 
         links.forEach(function(link) {
             var href = link.getAttribute('href');
             if (!href || href.charAt(0) !== '#') return;
             var section = document.querySelector(href);
             if (!section) return;
-            if (section.getBoundingClientRect().top <= triggerY) {
+
+            var rect = section.getBoundingClientRect();
+            var localBandTop = bandTop;
+            var localBandBottom = bandBottom;
+            // Trigger Team a bit earlier by moving its detection band upward.
+            if (href === '#team') {
+                localBandTop -= 240;
+                localBandBottom -= 240;
+            }
+            var overlap = Math.max(0, Math.min(rect.bottom, localBandBottom) - Math.max(rect.top, localBandTop));
+            if (overlap > bestOverlap) {
+                bestOverlap = overlap;
                 activeLink = link;
             }
         });
+
+        // Force Team a bit earlier once its section enters the lower viewport.
+        var teamSection = document.querySelector('#team');
+        if (teamSection && teamSection.getBoundingClientRect().top <= window.innerHeight * 0.66) {
+            var teamLink = links.find(function(link) { return link.getAttribute('href') === '#team'; });
+            if (teamLink) activeLink = teamLink;
+        }
+
+        // Force Contact a bit earlier once its section enters the lower viewport.
+        var contactSection = document.querySelector('#contact');
+        if (contactSection && contactSection.getBoundingClientRect().top <= window.innerHeight * 0.58) {
+            var contactLink = links.find(function(link) { return link.getAttribute('href') === '#contact'; });
+            if (contactLink) activeLink = contactLink;
+        }
 
         if (nearBottom) {
             var lastLink = links[links.length - 1];
