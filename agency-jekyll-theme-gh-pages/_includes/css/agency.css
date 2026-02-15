@@ -238,7 +238,7 @@ fieldset[disabled] .btn-xl.active {
     .navbar-default {
         padding: 25px 0;
         border: 0;
-        background-color: transparent;
+        background-color: rgba(34, 34, 34, 0.96);
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -269,7 +269,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/img/header-bg.jpg');
+    background-image: url('img/header-bg.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -654,12 +654,12 @@ section h3.section-subheading {
 
 #team {
     background: #f7f7f7;
-    padding: 92px 0;
+    padding: 72px 0 64px;
 }
 
 #team .team-feature-row {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 #team .team-feature-photo {
@@ -672,7 +672,7 @@ section h3.section-subheading {
 }
 
 #team .team-feature-header .section-heading {
-    margin: 0 0 42px;
+    margin: 0 0 30px;
 }
 
 #team .team-feature-copy {
@@ -704,7 +704,7 @@ section h3.section-subheading {
 }
 
 #team .team-feature-description {
-    max-width: 640px;
+    max-width: 600px;
     margin: 0;
     line-height: 1.7;
 }
@@ -725,11 +725,11 @@ section h3.section-subheading {
 
 @media(max-width:991px) {
     #team {
-        padding: 74px 0;
+        padding: 58px 0 54px;
     }
 
     #team .team-feature-header .section-heading {
-        margin: 0 0 30px;
+        margin: 0 0 24px;
     }
 
     #team .team-feature-row {
@@ -760,7 +760,7 @@ aside.clients img {
 
 section#contact {
     background-color: #222;
-    background-image: url('{{ site.baseurl }}/img/map-image.png');
+    background-image: url('img/map-image.png');
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -827,7 +827,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('{{ site.baseurl }}/img/website%20new%20header.png');
+    background-image: url('img/website%20new%20header.png');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -1061,3 +1061,46 @@ body {
 
 
 
+
+
+
+
+/* Keep hero text static (no zoom/fade animation) */
+header .intro-text,
+header .intro-text .intro-lead-in,
+header .intro-text .intro-heading,
+header .intro-text .btn {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Remove default navbar gap under top bar */
+.navbar {
+    margin-bottom: 0;
+}
+
+/* Slim sticky navbar */
+.navbar-default {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+@media (min-width: 768px) {
+    .navbar-default {
+        padding: 12px 0;
+    }
+
+    .navbar-default .navbar-brand {
+        font-size: 1.75em;
+        line-height: 1.1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar-default .nav > li > a {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+}

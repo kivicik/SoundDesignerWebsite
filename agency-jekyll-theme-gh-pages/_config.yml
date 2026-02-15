@@ -1,5 +1,5 @@
 url: https://y7kim.github.io
-baseurl: /agency-jekyll-theme/
+baseurl: /agency-jekyll-theme-gh-pages
 
 # Site settings
 title: Kivanc Nadir - Sound Designer & Composer
@@ -9,9 +9,9 @@ description: "Write an awesome description for your new site here. You can edit 
 
 # Team names, titles and social links
 people:
-- name: Kay Garland
-  pic: 1
-  position: Lead Designer
+- name: Kivanc Nadir
+  pic: kivanc
+  position: Sound Designer
   social:
     - title: twitter
       url: #
@@ -63,3 +63,7 @@ address:
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+
+
+
