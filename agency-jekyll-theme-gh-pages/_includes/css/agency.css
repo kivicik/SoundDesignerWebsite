@@ -1211,3 +1211,44 @@ select,
     user-select: text;
 }
 
+/* Scroll reveal animation */
+header .intro-text .intro-lead-in,
+header .intro-text .intro-heading,
+header .intro-text .btn,
+section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button) {
+    opacity: 0;
+}
+
+body.has-reveal .reveal-on-scroll {
+    opacity: 0;
+    transform: none;
+    transition: none;
+    will-change: opacity;
+}
+
+body.has-reveal .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+body.has-reveal.reveal-ready .reveal-on-scroll {
+    transition: opacity 0.9s ease-out !important;
+}
+
+#contact input,
+#contact textarea,
+#contact select {
+    opacity: 1 !important;
+    color: #555 !important;
+    caret-color: #333 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.has-reveal .reveal-on-scroll,
+    body.has-reveal .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+

@@ -5,9 +5,20 @@
  */
 
 (function() {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.navbar-default .nav li a.page-scroll'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.navbar-default .nav li:not(.hidden) a.page-scroll'));
     var nav = document.querySelector('.navbar-default');
     if (!links.length || !nav) return;
+    var CENTER_BAND_TOP_RATIO = 0.35;
+    var CENTER_BAND_BOTTOM_RATIO = 0.65;
+    var headerSection = document.querySelector('header');
+    var homeLink = links.find(function(link) { return link.getAttribute('href') === '#page-top'; }) || null;
+    var sectionLinks = links.map(function(link) {
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) !== '#' || href === '#page-top') return null;
+        var section = document.querySelector(href);
+        if (!section) return null;
+        return { link: link, section: section };
+    }).filter(Boolean);
 
     function navHeight() {
         return nav.getBoundingClientRect().height || 0;
@@ -32,50 +43,35 @@
         link.style.borderRadius = '3px';
     }
 
+    function overlapLength(rect, top, bottom) {
+        return Math.max(0, Math.min(rect.bottom, bottom) - Math.max(rect.top, top));
+    }
+
     function updateActiveNav() {
-        var activeLink = links[0] || null;
+        var activeLink = homeLink || links[0] || null;
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
-        var bandTop = window.innerHeight * 0.30;
-        var bandBottom = window.innerHeight * 0.70;
+        var bandTop = window.innerHeight * CENTER_BAND_TOP_RATIO;
+        var bandBottom = window.innerHeight * CENTER_BAND_BOTTOM_RATIO;
         var bestOverlap = -1;
 
-        links.forEach(function(link) {
-            var href = link.getAttribute('href');
-            if (!href || href.charAt(0) !== '#') return;
-            var section = document.querySelector(href);
-            if (!section) return;
-
-            var rect = section.getBoundingClientRect();
-            var localBandTop = bandTop;
-            var localBandBottom = bandBottom;
-            // Trigger Team a bit earlier by moving its detection band upward.
-            if (href === '#team') {
-                localBandTop -= 240;
-                localBandBottom -= 240;
+        if (homeLink && headerSection) {
+            var headerOverlap = overlapLength(headerSection.getBoundingClientRect(), bandTop, bandBottom);
+            if (headerOverlap > bestOverlap) {
+                bestOverlap = headerOverlap;
+                activeLink = homeLink;
             }
-            var overlap = Math.max(0, Math.min(rect.bottom, localBandBottom) - Math.max(rect.top, localBandTop));
-            if (overlap > bestOverlap) {
-                bestOverlap = overlap;
-                activeLink = link;
+        }
+
+        sectionLinks.forEach(function(item) {
+            var sectionOverlap = overlapLength(item.section.getBoundingClientRect(), bandTop, bandBottom);
+            if (sectionOverlap >= bestOverlap) {
+                bestOverlap = sectionOverlap;
+                activeLink = item.link;
             }
         });
 
-        // Force Team a bit earlier once its section enters the lower viewport.
-        var teamSection = document.querySelector('#team');
-        if (teamSection && teamSection.getBoundingClientRect().top <= window.innerHeight * 0.60) {
-            var teamLink = links.find(function(link) { return link.getAttribute('href') === '#team'; });
-            if (teamLink) activeLink = teamLink;
-        }
-
-        // Force Contact a bit earlier once its section enters the lower viewport.
-        var contactSection = document.querySelector('#contact');
-        if (contactSection && contactSection.getBoundingClientRect().top <= window.innerHeight * 0.58) {
-            var contactLink = links.find(function(link) { return link.getAttribute('href') === '#contact'; });
-            if (contactLink) activeLink = contactLink;
-        }
-
         if (nearBottom) {
-            var lastLink = links[links.length - 1];
+            var lastLink = (sectionLinks.length ? sectionLinks[sectionLinks.length - 1].link : links[links.length - 1]);
             if (lastLink) activeLink = lastLink;
         }
 
@@ -130,4 +126,54 @@ if (window.jQuery) {
         });
     });
 }
+
+(function() {
+    var targets = Array.prototype.slice.call(
+        document.querySelectorAll(
+            'header .intro-text .intro-lead-in, header .intro-text .intro-heading, header .intro-text .btn, section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
+        )
+    );
+    if (!targets.length) return;
+
+    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        targets.forEach(function(el) { el.classList.add('is-visible'); });
+        return;
+    }
+
+    document.body.classList.add('has-reveal');
+
+    targets.forEach(function(el, index) {
+        el.classList.add('reveal-on-scroll');
+        el.style.transitionDelay = '0ms';
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -8% 0px'
+    });
+
+    window.requestAnimationFrame(function() {
+        document.body.classList.add('reveal-ready');
+        window.requestAnimationFrame(function() {
+            targets.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                var isInitiallyVisible = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+                if (isInitiallyVisible) {
+                    window.setTimeout(function() {
+                        el.classList.add('is-visible');
+                    }, 180);
+                    return;
+                }
+                observer.observe(el);
+            });
+        });
+    });
+})();
 
