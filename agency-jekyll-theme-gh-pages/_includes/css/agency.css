@@ -1155,3 +1155,18 @@ header .intro-text .btn {
     border-radius: 3px;
 }
 
+/* Remove corner artifacts on sticky navbar */
+.navbar-default,
+.navbar,
+.navbar-fixed-top,
+.navbar-static-top {
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.navbar-default .navbar-collapse {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
