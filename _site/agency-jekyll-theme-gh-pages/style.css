@@ -1018,12 +1018,26 @@ body {
     overflow: hidden;
 }
 
+#about .showreel-embed {
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
 #portfolio .portfolio-item .portfolio-link img {
     display: block;
     width: 100%;
     aspect-ratio: 400 / 289;
     object-fit: cover;
     object-position: center;
+}
+
+/* Nudge this thumbnail left so the right-side logo is fully visible */
+#portfolio .portfolio-item .portfolio-link img[src*="garden-design.jpg"] {
+    object-position: 93% center;
+}
+
+#portfolio .portfolio-item .portfolio-link img[src*="christmas-design.jpg"] {
+    object-position: 90% center;
 }
 
 #portfolio .portfolio-item .portfolio-caption-link {
