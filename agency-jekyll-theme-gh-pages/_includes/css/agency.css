@@ -1170,3 +1170,44 @@ header .intro-text .btn {
     box-shadow: none !important;
 }
 
+/* Hide accidental caret browsing cursor on static page content */
+* {
+    caret-color: transparent !important;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+select {
+    caret-color: auto !important;
+}
+
+/* Disable text selection on static content to avoid accidental caret/selection UI */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Re-enable selection on real text-bearing elements */
+h1, h2, h3, h4, h5, h6,
+p, span, small, strong, em, b, i,
+a, label, li, dt, dd, blockquote, cite,
+figcaption, code, pre, td, th {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+input,
+textarea,
+select,
+[contenteditable="true"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
