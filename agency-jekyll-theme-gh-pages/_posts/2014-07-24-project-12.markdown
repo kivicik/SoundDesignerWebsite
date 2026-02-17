@@ -4,8 +4,8 @@ subtitle: Website Design
 layout: default
 modal-id: 12
 date: 2014-07-24
-img: xxm8un.jpg
-thumbnail: xxm8un.jpg
+img: photocula.png
+thumbnail: photocula.png
 alt: image-alt
 project-date: April 2014
 client: Start Bootstrap
