@@ -768,19 +768,29 @@ section#contact {
     background-image: url('img/map-image.png');
     background-position: center;
     background-repeat: no-repeat;
+    padding: 100px 0;
 }
 
 section#contact .section-heading {
     color: #fff;
+    margin-bottom: 34px;
+}
+
+section#contact .container {
+    max-width: 1080px;
+}
+
+section#contact .section-subheading {
+    margin-bottom: 40px;
 }
 
 section#contact .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 14px;
 }
 
 section#contact .form-group input,
 section#contact .form-group textarea {
-    padding: 20px;
+    padding: 14px;
 }
 
 section#contact .form-group input.form-control {
@@ -788,7 +798,26 @@ section#contact .form-group input.form-control {
 }
 
 section#contact .form-group textarea.form-control {
-    height: 236px;
+    height: 185px;
+}
+
+section#contact .help-block {
+    margin: 4px 0 0;
+    min-height: 0;
+}
+
+section#contact #success {
+    margin-bottom: 8px;
+}
+
+section#contact .btn-xl {
+    margin-top: 6px;
+}
+
+@media(min-width:768px) {
+    section#contact {
+        padding: 150px 0;
+    }
 }
 
 section#contact .form-control:focus {
