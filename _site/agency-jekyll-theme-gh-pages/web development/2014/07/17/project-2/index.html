@@ -401,31 +401,38 @@
             <div class="col-md-8 col-md-offset-2">
                 <form id="contactForm" class="contact-form" novalidate>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="contact-field-label" for="name">Name</label>
-                                <input id="name" name="name" type="text" class="form-control" maxlength="1000" placeholder="First and last name" autocomplete="name" required>
+                                <input id="name" name="name" type="text" class="form-control" maxlength="1000" placeholder="Jane Doe" autocomplete="name" required data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="contact-field-label" for="email">Email</label>
-                                <input id="email" name="email" type="email" class="form-control" maxlength="1000" placeholder="you@example.com" autocomplete="email" required>
+                                <input id="email" name="email" type="email" class="form-control" maxlength="1000" placeholder="name@domain.com" autocomplete="email" required data-validation-required-message="Please enter your email address." data-validation-email-message="Please enter a valid email address.">
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="contact-field-label" for="phone">Phone</label>
-                                <input id="phone" name="phone" type="tel" class="form-control" maxlength="1000" placeholder="+1 000 000 0000" autocomplete="tel">
+                                <input id="phone" name="phone" type="tel" class="form-control" maxlength="1000" placeholder="+1 555 123 4567" autocomplete="tel">
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="contact-field-label" for="message">Message</label>
-                                <textarea id="message" name="message" class="form-control" maxlength="1000" placeholder="Tell me about your project..." required></textarea>
+                                <div class="textarea-wrap">
+                                    <textarea id="message" name="message" class="form-control" maxlength="2000" placeholder="Briefly describe your project scope, style, and timeline." required data-validation-required-message="Please enter your message." data-validation-maxlength-message="Message can be maximum 2000 characters."></textarea>
+                                    <span class="char-counter textarea-counter" data-for="message">0/2000</span>
+                                </div>
+                                <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="col-lg-12 text-center">
+                        <div class="col-lg-12 contact-actions">
                             <div id="success"></div>
                             <button type="submit" class="btn btn-xl contact-submit">Submit</button>
                         </div>
@@ -489,21 +496,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>XXM8UN</h2>
+                            <h2 contenteditable="true">XXM8UN</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/photocula.png" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -527,21 +534,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Triple Farm</h2>
+                            <h2 contenteditable="true">Triple Farm</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/triple-farm.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -565,21 +572,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Treehouse II</h2>
+                            <h2 contenteditable="true">Treehouse II</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/royaldecor.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -603,21 +610,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Golden II</h2>
+                            <h2 contenteditable="true">Golden II</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/match3d-box.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -641,21 +648,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Escape II</h2>
+                            <h2 contenteditable="true">Escape II</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/match-land.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -679,21 +686,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Dreams ASD II</h2>
+                            <h2 contenteditable="true">Dreams ASD II</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/match-3d-mania.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -717,21 +724,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Dreams ASD</h2>
+                            <h2 contenteditable="true">Dreams ASD</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/beatpunk.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -755,21 +762,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Escape</h2>
+                            <h2 contenteditable="true">Escape</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/christmas-3d.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -793,21 +800,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Golden</h2>
+                            <h2 contenteditable="true">Golden</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/christmas-design.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -831,21 +838,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Treehouse</h2>
+                            <h2 contenteditable="true">Treehouse</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/dream-design.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -869,21 +876,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Round Icons</h2>
+                            <h2 contenteditable="true">Round Icons</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/garden-design.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -907,21 +914,21 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Startup Framework</h2>
+                            <h2 contenteditable="true">Startup Framework</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/friendsmatch.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p>Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <p contenteditable="true">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Start Bootstrap</a>
                                     </strong>
                                 </li>
                                 <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">April 2014</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true">Web Development</a>
                                     </strong>
                                 </li>
                             </ul>
