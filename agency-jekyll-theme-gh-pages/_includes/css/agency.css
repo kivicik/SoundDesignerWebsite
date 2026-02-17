@@ -10,6 +10,11 @@ body {
     color: #{{ site.data.template.color.secondary-dark }};
 }
 
+:root {
+    --section-space-mobile: 100px;
+    --section-space-desktop: 150px;
+}
+
 .text-muted {
     color: #{{ site.data.template.color.muted }};
 }
@@ -330,7 +335,15 @@ header .intro-text .intro-heading {
 }
 
 section {
-    padding: 100px 0;
+    padding: var(--section-space-mobile) 0;
+}
+
+section > .container > .row:first-child {
+    margin-top: 0;
+}
+
+section > .container > .row:last-child {
+    margin-bottom: 0;
 }
 
 section h2.section-heading {
@@ -350,7 +363,7 @@ section h3.section-subheading {
 
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: var(--section-space-desktop) 0;
     }
 }
 
@@ -844,28 +857,6 @@ section#contact .btn-xl.contact-submit {
     min-width: 150px;
     font-size: 16px;
     text-transform: none;
-}
-
-#about {
-    padding: 100px 0;
-    min-height: auto;
-}
-
-#services {
-    padding: 100px 0;
-    min-height: auto;
-}
-
-@media(min-width:768px) {
-    #about {
-        padding: 150px 0;
-        min-height: auto;
-    }
-
-    #services {
-        padding: 150px 0;
-        min-height: auto;
-    }
 }
 
 section#contact .form-control:focus {
