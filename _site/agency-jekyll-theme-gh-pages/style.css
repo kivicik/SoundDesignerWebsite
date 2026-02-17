@@ -184,8 +184,13 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .navbar-default .navbar-brand {
-    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    font-family: Montserrat, "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fed136;
+    letter-spacing: 0 !important;
+    word-spacing: 0 !important;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    text-rendering: geometricPrecision;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -1139,6 +1144,62 @@ header .intro-text .btn {
     }
 }
 
+@media (min-width: 768px) {
+    .navbar-default .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .navbar-default .navbar-header {
+        float: none;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .navbar-default .navbar-collapse {
+        float: none !important;
+        clear: none !important;
+        flex: 0 0 auto;
+        margin-left: auto;
+        width: auto;
+        border-top: 0;
+        box-shadow: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-default .navbar-nav {
+        float: none !important;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    .navbar-default .navbar-nav > li {
+        float: left;
+    }
+
+    .navbar-default .navbar-brand {
+        font-size: 1.55em;
+        max-width: 44vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: 0 !important;
+        word-spacing: 0 !important;
+        font-kerning: normal;
+        font-feature-settings: "kern" 1;
+    }
+
+    .navbar-default .nav > li > a {
+        padding-left: 12px;
+        padding-right: 12px;
+        font-size: 14px;
+        letter-spacing: 0.4px;
+    }
+}
+
 /* Keep nav active state visible and disable brand "zoom" transitions */
 .navbar-default,
 .navbar-default .navbar-brand,
@@ -1192,6 +1253,7 @@ select {
 
 /* Disable text selection on static content to avoid accidental caret/selection UI */
 body {
+    zoom: 110%;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -1259,6 +1321,39 @@ body.has-reveal.reveal-ready .reveal-on-scroll {
         transition: none;
     }
 }
+
+.navbar-default .navbar-brand .brand-wide-so {
+    letter-spacing: 0.27px;
+}
+
+.navbar-default .navbar-brand .brand-wide-des {
+    letter-spacing: 0.25px;
+}
+
+.navbar-default .navbar-brand .brand-wide-ose {
+    letter-spacing: 0.29px;
+}
+
+.navbar-default .navbar-brand .brand-wide-pose {
+    letter-spacing: 0.4px;
+}
+
+.navbar-default .navbar-brand .brand-tight-ou {
+    letter-spacing: -0.18px;
+}
+
+.navbar-default .navbar-brand .brand-tight-gn {
+    letter-spacing: -0.26px;
+}
+
+.navbar-default .navbar-brand .brand-tight-er {
+    letter-spacing: -0.31px;
+}
+
+.navbar-default .navbar-brand .brand-tight-ir {
+    letter-spacing: -0.31px;
+}
+
 
 
 .music-icon-balance {
