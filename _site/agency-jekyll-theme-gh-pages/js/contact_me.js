@@ -69,18 +69,18 @@ $(function () {
 
         var $name = $("#name");
         var $email = $("#email");
-        var $phone = $("#phone");
+        var $subject = $("#subject");
         var $message = $("#message");
 
         var name = ($name.val() || "").trim();
         var email = ($email.val() || "").trim();
-        var phone = ($phone.val() || "").trim();
+        var subject = ($subject.val() || "").trim();
         var message = ($message.val() || "").trim();
 
         var hasError = false;
         clearFieldError($name);
         clearFieldError($email);
-        clearFieldError($phone);
+        clearFieldError($subject);
         clearFieldError($message);
 
         if (!name) {
@@ -99,8 +99,8 @@ $(function () {
         if (!message) {
             setFieldError($message, "Please enter your message.");
             hasError = true;
-        } else if (message.length > 2000) {
-            setFieldError($message, "Message can be maximum 2000 characters.");
+        } else if (message.length > 4000) {
+            setFieldError($message, "Message can be maximum 4000 characters.");
             hasError = true;
         }
 
@@ -114,7 +114,7 @@ $(function () {
                 data: {
                     name: name,
                     email: email,
-                    phone: phone,
+                    subject: subject,
                     message: message
                 }
             });
@@ -130,7 +130,7 @@ $(function () {
             data: {
                 name: name,
                 email: email,
-                phone: phone,
+                subject: subject,
                 message: message
             }
         }).done(function (response) {

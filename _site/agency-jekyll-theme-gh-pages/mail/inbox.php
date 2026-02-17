@@ -26,6 +26,20 @@ function preview_text(?string $value, int $limit = 64): string
     return substr($text, 0, $limit) . '...';
 }
 
+function fmt_date(?string $value): string
+{
+    if ($value === null || trim($value) === '') {
+        return '';
+    }
+    try {
+        $dt = new DateTime($value, new DateTimeZone('UTC'));
+        $dt->setTimezone(new DateTimeZone('America/New_York'));
+        return $dt->format('d M Y, h:i A (T)');
+    } catch (Throwable $e) {
+        return (string)$value;
+    }
+}
+
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 50;
 if ($limit < 1) {
     $limit = 50;
@@ -275,9 +289,9 @@ try {
                                 <th class="col-id">#</th>
                                 <th>Name</th>
                                 <th class="col-email">Email</th>
-                                <th>Phone</th>
+                                <th>Subject</th>
                                 <th>Message</th>
-                                <th class="col-date">Created (UTC)</th>
+                            <th class="col-date">Created</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -291,7 +305,7 @@ try {
                                         <td data-label="#"><?php echo (int)$row['id']; ?></td>
                                         <td data-label="Name"><?php echo h($row['name']); ?></td>
                                         <td data-label="Email"><?php echo h($row['email']); ?></td>
-                                        <td data-label="Phone"><?php echo h($row['phone']); ?></td>
+                                        <td data-label="Subject"><?php echo h($row['phone']); ?></td>
                                         <td data-label="Message">
                                             <div class="msg-preview"><?php echo h(preview_text($row['message'])); ?></div>
                                             <details class="msg-full">
@@ -299,7 +313,7 @@ try {
                                                 <div class="msg"><?php echo h($row['message']); ?></div>
                                             </details>
                                         </td>
-                                        <td data-label="Created"><?php echo h($row['created_at']); ?></td>
+                                        <td data-label="Created"><?php echo h(fmt_date($row['created_at'])); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
@@ -316,9 +330,9 @@ try {
                                     <th class="col-id">#</th>
                                     <th>Name</th>
                                     <th class="col-email">Email</th>
-                                    <th>Phone</th>
+                                    <th>Subject</th>
                                     <th>Error / Message</th>
-                                    <th class="col-date">Created (UTC)</th>
+                                    <th class="col-date">Created</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -332,7 +346,7 @@ try {
                                             <td data-label="#"><?php echo (int)$row['id']; ?></td>
                                             <td data-label="Name"><?php echo h($row['name']); ?></td>
                                             <td data-label="Email"><?php echo h($row['email']); ?></td>
-                                            <td data-label="Phone"><?php echo h($row['phone']); ?></td>
+                                            <td data-label="Subject"><?php echo h($row['phone']); ?></td>
                                             <td data-label="Error / Message">
                                                 <div class="reason-badge"><?php echo h($row['error_reason']); ?></div>
                                                 <div class="msg-preview"><?php echo h(preview_text($row['message'])); ?></div>
@@ -341,7 +355,7 @@ try {
                                                     <div class="msg"><?php echo h($row['message']); ?></div>
                                                 </details>
                                             </td>
-                                            <td data-label="Created"><?php echo h($row['created_at']); ?></td>
+                                            <td data-label="Created"><?php echo h(fmt_date($row['created_at'])); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>

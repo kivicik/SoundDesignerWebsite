@@ -205,3 +205,91 @@ if (window.jQuery) {
     });
 })();
 
+// Save/load editable portfolio modal content in localStorage.
+(function() {
+    var modals = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal'));
+    if (!modals.length || !window.localStorage) return;
+
+    function keyFor(modalId) {
+        return 'portfolioModalContent:' + modalId;
+    }
+
+    function getFields(modal) {
+        return Array.prototype.slice.call(modal.querySelectorAll('[data-edit-field]'));
+    }
+
+    function cleanStoredText(value) {
+        if (typeof value !== 'string') return '';
+        return value
+            .replace(/`r`n/g, ' ')
+            .replace(/\\r\\n|\\n|\\r/g, ' ')
+            .replace(/\r\n|\n|\r/g, ' ')
+            .replace(/\s{2,}/g, ' ')
+            .trim();
+    }
+
+    function applySaved(modal) {
+        if (!modal.id) return;
+        var raw = localStorage.getItem(keyFor(modal.id));
+        if (!raw) return;
+        var data;
+        try {
+            data = JSON.parse(raw);
+        } catch (e) {
+            return;
+        }
+        var mutated = false;
+        getFields(modal).forEach(function(el) {
+            var field = el.getAttribute('data-edit-field');
+            if (!field || typeof data[field] !== 'string') return;
+            var cleaned = cleanStoredText(data[field]);
+            if (cleaned !== data[field]) {
+                data[field] = cleaned;
+                mutated = true;
+            }
+            el.textContent = cleaned;
+        });
+        if (mutated) {
+            localStorage.setItem(keyFor(modal.id), JSON.stringify(data));
+        }
+    }
+
+    function saveModal(modal) {
+        if (!modal.id) return false;
+        var payload = {};
+        getFields(modal).forEach(function(el) {
+            var field = el.getAttribute('data-edit-field');
+            if (!field) return;
+            payload[field] = cleanStoredText(el.textContent || '');
+        });
+        localStorage.setItem(keyFor(modal.id), JSON.stringify(payload));
+        return true;
+    }
+
+    modals.forEach(function(modal) {
+        applySaved(modal);
+
+        // Prevent accidental navigation while editing contenteditable links.
+        Array.prototype.slice.call(modal.querySelectorAll('[data-edit-field][contenteditable="true"]')).forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (link.tagName && link.tagName.toLowerCase() === 'a') {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        var saveBtn = modal.querySelector('.modal-save-btn');
+        if (!saveBtn) return;
+
+        saveBtn.addEventListener('click', function() {
+            var ok = saveModal(modal);
+            if (!ok) return;
+            var original = saveBtn.textContent;
+            saveBtn.textContent = 'Saved';
+            window.setTimeout(function() {
+                saveBtn.textContent = original;
+            }, 900);
+        });
+    });
+})();
+

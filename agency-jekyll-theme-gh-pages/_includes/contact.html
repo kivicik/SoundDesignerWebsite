@@ -10,34 +10,36 @@
         <div class="row contact-layout">
             <div class="col-md-8 col-md-offset-2">
                 <form id="contactForm" class="contact-form" novalidate>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="contact-field-label" for="name">Name</label>
-                                <input id="name" name="name" type="text" class="form-control" maxlength="1000" placeholder="Jane Doe" autocomplete="name" required data-validation-required-message="Please enter your name.">
-                                <p class="help-block text-danger"></p>
+                    <div class="row contact-split">
+                        <div class="col-md-12 contact-stack">
+                            <div class="row contact-mini-row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="contact-field-label" for="name">Name</label>
+                                        <input id="name" name="name" type="text" class="form-control" maxlength="1000" placeholder="Jane Doe" autocomplete="name" required data-validation-required-message="Please enter your name.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="contact-field-label" for="email">Email</label>
+                                        <input id="email" name="email" type="email" class="form-control" maxlength="1000" placeholder="name@domain.com" autocomplete="email" required data-validation-required-message="Please enter your email address." data-validation-email-message="Please enter a valid email address.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="contact-field-label" for="email">Email</label>
-                                <input id="email" name="email" type="email" class="form-control" maxlength="1000" placeholder="name@domain.com" autocomplete="email" required data-validation-required-message="Please enter your email address." data-validation-email-message="Please enter a valid email address.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="contact-field-label" for="phone">Phone</label>
-                                <input id="phone" name="phone" type="tel" class="form-control" maxlength="1000" placeholder="+1 555 123 4567" autocomplete="tel">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-12 contact-message-col">
                             <div class="form-group">
                                 <label class="contact-field-label" for="message">Message</label>
-                                <div class="textarea-wrap">
-                                    <textarea id="message" name="message" class="form-control" maxlength="2000" placeholder="Briefly describe your project scope, style, and timeline." required data-validation-required-message="Please enter your message." data-validation-maxlength-message="Message can be maximum 2000 characters."></textarea>
-                                    <span class="char-counter textarea-counter" data-for="message">0/2000</span>
+                                <div class="message-box">
+                                    <div class="subject-inline">
+                                        <input id="subject" name="subject" type="text" class="form-control subject-inline-input" maxlength="1000" placeholder="Subject" autocomplete="off">
+                                    </div>
+                                    <div class="textarea-wrap">
+                                        <textarea id="message" name="message" class="form-control message-inline-textarea" maxlength="4000" placeholder="Briefly describe your project scope, style, and timeline." required data-validation-required-message="Please enter your message." data-validation-maxlength-message="Message can be maximum 4000 characters."></textarea>
+                                        <span class="char-counter textarea-counter" data-for="message">0/4000</span>
+                                    </div>
                                 </div>
                                 <p class="help-block text-danger"></p>
                             </div>

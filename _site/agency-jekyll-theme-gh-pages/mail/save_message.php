@@ -53,13 +53,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $rawName = raw_value('name');
 $rawEmail = raw_value('email');
+$rawSubject = raw_value('subject');
 $rawPhone = raw_value('phone');
 $rawMessage = raw_value('message');
 
 $name = clip_value($rawName, 1000);
 $email = clip_value($rawEmail, 1000);
-$phone = clip_value($rawPhone, 1000);
-$message = clip_value($rawMessage, 2000);
+$subject = $rawSubject !== '' ? $rawSubject : $rawPhone;
+$phone = clip_value($subject, 1000);
+$message = clip_value($rawMessage, 4000);
 $pdo = null;
 
 try {
@@ -74,7 +76,7 @@ try {
 }
 
 if ($name === '' || $email === '' || $message === '') {
-    insert_errored($pdo, $rawName, $rawEmail, $rawPhone, $rawMessage, 'Missing required fields');
+    insert_errored($pdo, $rawName, $rawEmail, $subject, $rawMessage, 'Missing required fields');
     http_response_code(422);
     echo json_encode([
         'ok' => false,
@@ -84,7 +86,7 @@ if ($name === '' || $email === '' || $message === '') {
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    insert_errored($pdo, $rawName, $rawEmail, $rawPhone, $rawMessage, 'Invalid email address');
+    insert_errored($pdo, $rawName, $rawEmail, $subject, $rawMessage, 'Invalid email address');
     http_response_code(422);
     echo json_encode([
         'ok' => false,
@@ -94,12 +96,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $messageLength = value_length($rawMessage);
-if ($messageLength > 2000) {
-    insert_errored($pdo, $rawName, $rawEmail, $rawPhone, $rawMessage, 'Message length exceeds 2000 characters');
+if ($messageLength > 4000) {
+    insert_errored($pdo, $rawName, $rawEmail, $subject, $rawMessage, 'Message length exceeds 4000 characters');
     http_response_code(422);
     echo json_encode([
         'ok' => false,
-        'error' => 'Message can be maximum 2000 characters.',
+        'error' => 'Message can be maximum 4000 characters.',
     ]);
     exit;
 }

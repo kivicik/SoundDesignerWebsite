@@ -12,25 +12,28 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2 contenteditable="true">{{ post.title }}</h2>
+                            <h2 contenteditable="true" data-edit-field="title">{{ post.title }}</h2>
                             <hr class="star-primary">
                             <img src="img/portfolio/{{ post.img }}" class="img-responsive img-centered" alt="{{ post.alt }}">
-                            <p contenteditable="true">{{ post.description }}</p>
+                            <p contenteditable="true" data-edit-field="description">{{ post.description }}</p>
                             <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com" contenteditable="true">{{ post.client }}</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com" contenteditable="true">{{ post.project-date }}</a>
+                                <li>Developer:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">{{ post.client }}</a>
                                     </strong>
                                 </li>
                                 <li>Service:
-                                    <strong><a href="http://startbootstrap.com" contenteditable="true">{{ post.category }}</a>
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="service">{{ post.category }}</a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="date">{{ post.project-date }}</a>
                                     </strong>
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <div class="modal-action-row">
+                                <button type="button" class="btn btn-primary modal-save-btn">Save</button>
+                                <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
