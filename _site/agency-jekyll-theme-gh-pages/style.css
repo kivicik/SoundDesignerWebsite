@@ -372,6 +372,7 @@ section h3.section-subheading {
     margin: 0 0 15px;
 }
 
+
 #portfolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
@@ -674,7 +675,6 @@ section h3.section-subheading {
 
 #team {
     background: #f7f7f7;
-    padding: 100px 0;
 }
 
 #team .team-feature-row {
@@ -744,10 +744,6 @@ section h3.section-subheading {
 }
 
 @media(max-width:991px) {
-    #team {
-        padding: 100px 0;
-    }
-
     #team .team-feature-header .section-heading {
         margin: 0 0 75px;
     }
@@ -781,7 +777,6 @@ aside.clients img {
 section#contact {
     background-color: #232427;
     background-image: none;
-    padding: 100px 0;
 }
 
 section#contact .section-heading {
@@ -859,13 +854,25 @@ section#contact .btn-xl.contact-submit {
     text-transform: none;
 }
 
+#about {
+    padding: 100px 0;
+    min-height: auto;
+}
+
+#services {
+    padding: 100px 0;
+    min-height: auto;
+}
+
 @media(min-width:768px) {
-    #team {
+    #about {
         padding: 150px 0;
+        min-height: auto;
     }
 
-    section#contact {
+    #services {
         padding: 150px 0;
+        min-height: auto;
     }
 }
 
@@ -1085,6 +1092,10 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: #fed136;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /* Keep all portfolio thumbnails in a consistent frame */

@@ -86,7 +86,16 @@
             var target = document.querySelector(href);
             if (!target) return;
             e.preventDefault();
-            window.scrollTo({ top: target.offsetTop - navHeight(), behavior: 'auto' });
+            var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
+            if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
+                window.jQuery('html, body').stop(true).animate(
+                    { scrollTop: top },
+                    650,
+                    'swing'
+                );
+            } else {
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
             clearActive();
             setActive(link);
 
