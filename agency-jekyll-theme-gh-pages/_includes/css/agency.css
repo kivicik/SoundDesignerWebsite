@@ -780,83 +780,60 @@ aside.clients img {
 }
 
 section#contact {
-    background-color: #232427;
-    background-image: none;
-}
-
-section#contact .section-heading {
-    color: #f3f3f3;
-    margin: 0 0 75px;
-    text-align: center;
+    background: #232427;
+    color: #f1f1f1;
 }
 
 section#contact .container {
     max-width: 1170px;
 }
 
-section#contact .contact-layout {
-    margin-left: -15px;
-    margin-right: -15px;
+section#contact .section-heading {
+    color: #f4f4f4;
+    margin: 0 0 70px;
+    text-align: center;
 }
 
 section#contact .contact-intro {
     max-width: 760px;
-    margin: 0 auto 36px;
-    color: #bdbdbd;
+    margin: 0 auto 40px;
+    color: #c5c5c5;
     font-size: 17px;
-    line-height: 1.65;
+    line-height: 1.6;
+    text-align: center;
 }
 
-section#contact .form-group {
+section#contact .contact-layout {
+    margin: 0;
+}
+
+section#contact .contact-form .form-group {
     margin-bottom: 18px;
-}
-
-section#contact .form-group input,
-section#contact .form-group textarea {
-    padding: 12px 14px;
-    border: 1px solid #707379;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    color: #f0f0f0;
-}
-
-section#contact .form-group input.form-control {
-    height: 44px;
-}
-
-section#contact .form-group textarea.form-control {
-    height: 130px;
-    resize: vertical;
 }
 
 section#contact .contact-field-label {
     display: block;
-    margin: 0 0 6px;
-    color: #f2f2f2;
-    font-size: 17px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #f3f3f3;
+    font-weight: 600;
 }
 
-section#contact .help-block {
-    margin: 5px 0 0;
-    min-height: 0;
-}
-
-section#contact #success {
-    margin-bottom: 12px;
-}
-
-section#contact .btn-xl.contact-submit {
-    margin-top: 4px;
-    background: #0f0f10;
-    border-color: #0f0f10;
-    color: #fff;
+section#contact .form-control {
+    border: 1px solid #666b73;
     border-radius: 0;
-    padding: 14px 30px;
-    min-width: 150px;
-    font-size: 16px;
-    text-transform: none;
+    background: transparent;
+    color: #f0f0f0;
+    box-shadow: none;
+    padding: 12px 14px;
+    height: 46px;
+}
+
+section#contact textarea.form-control {
+    min-height: 150px;
+    height: 150px;
+    resize: vertical;
 }
 
 section#contact .form-control:focus {
@@ -864,35 +841,39 @@ section#contact .form-control:focus {
     box-shadow: none;
 }
 
-section#contact .form-control::-webkit-input-placeholder {
-    color: #adadad;
-    text-transform: none;
+section#contact .form-control::placeholder {
+    color: #b1b1b1;
 }
 
-section#contact .form-control:-moz-placeholder {
-    color: #adadad;
+section#contact .contact-submit {
+    margin-top: 8px;
+    background: #0f0f10;
+    border-color: #0f0f10;
+    color: #fff;
+    border-radius: 0;
+    min-width: 150px;
+    padding: 14px 30px;
     text-transform: none;
+    font-size: 16px;
 }
 
-section#contact .form-control::-moz-placeholder {
-    color: #adadad;
-    text-transform: none;
-}
-
-section#contact .form-control:-ms-input-placeholder {
-    color: #adadad;
-    text-transform: none;
+section#contact .contact-submit:hover,
+section#contact .contact-submit:focus,
+section#contact .contact-submit:active {
+    background: #18191b;
+    border-color: #18191b;
+    color: #fff;
 }
 
 @media(max-width:991px) {
-    section#contact .contact-intro {
-        font-size: 17px;
-        margin-bottom: 28px;
+    section#contact .section-heading {
+        margin-bottom: 56px;
     }
-}
 
-section#contact .text-danger {
-    color: #e74c3c;
+    section#contact .contact-intro {
+        margin-bottom: 32px;
+        font-size: 16px;
+    }
 }
 
 header {
