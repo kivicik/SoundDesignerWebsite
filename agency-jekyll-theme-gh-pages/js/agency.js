@@ -111,6 +111,25 @@
     updateActiveNav();
 })();
 
+// Force-enable contact form fields in case global styles/plugins lock interaction.
+(function() {
+    function unlockContactFields() {
+        var fields = document.querySelectorAll('#contact input, #contact textarea, #contact select');
+        if (!fields.length) return;
+        fields.forEach(function(field) {
+            field.removeAttribute('readonly');
+            field.removeAttribute('disabled');
+            field.style.pointerEvents = 'auto';
+            field.style.caretColor = '#f0f0f0';
+            field.style.userSelect = 'text';
+            field.setAttribute('tabindex', '0');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', unlockContactFields);
+    window.addEventListener('load', unlockContactFields);
+})();
+
 if (window.jQuery) {
     window.jQuery('div.modal').on('show.bs.modal', function() {
         var modal = this;
