@@ -218,7 +218,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .nav li a {
     text-transform: uppercase;
     font-family: {{ site.data.template.font.primary }};
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: 1px;
     color: #fff;
     -webkit-transition: all ease .35s;
@@ -679,12 +679,20 @@ section h3.section-subheading {
 }
 
 #team {
+    background: #232427;
+    color: #f1f1f1;
+    padding-top: 72px;
+}
+
+#about {
     background: #f7f7f7;
+    color: inherit;
 }
 
 #team .team-feature-row {
     display: flex;
     align-items: center;
+    gap: 46px;
 }
 
 #team .team-feature-photo {
@@ -697,7 +705,7 @@ section h3.section-subheading {
 }
 
 #team .team-feature-header .section-heading {
-    margin: 0 0 75px;
+    margin: 0 0 44px;
 }
 
 #team .team-feature-copy {
@@ -705,12 +713,12 @@ section h3.section-subheading {
 }
 
 #team .section-heading {
-    margin: 0 0 75px;
+    margin: 0 0 44px;
     font-size: 40px;
     letter-spacing: 2.2px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #27364a;
+    color: #f4f4f4;
 }
 
 #team .team-feature-copy h4 {
@@ -718,20 +726,25 @@ section h3.section-subheading {
     text-transform: none;
     font-size: 30px;
     line-height: 1.15;
-    color: #2c3e50;
+    color: #f4f4f4;
 }
 
 #team .team-feature-role {
     margin: 0 0 18px;
     letter-spacing: .5px;
-    color: #666;
+    color: #c5c5c5;
     font-weight: 600;
 }
 
 #team .team-feature-description {
     max-width: 600px;
-    margin: 0;
+    margin: 0 0 14px;
     line-height: 1.7;
+    color: #c5c5c5;
+}
+
+#team .team-feature-description:last-child {
+    margin-bottom: 0;
 }
 
 #team ul.social-buttons {
@@ -756,6 +769,7 @@ section h3.section-subheading {
     #team .team-feature-row {
         display: block;
         text-align: center;
+        gap: 0;
     }
 
     #team .team-feature-photo {
@@ -1064,7 +1078,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url('img/website%20new%20header.png');
+    background-image: url('img/tapeheader2.jpg');
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -1402,16 +1416,6 @@ html {
 
 
 
-/* Keep hero text static (no zoom/fade animation) */
-header .intro-text,
-header .intro-text .intro-lead-in,
-header .intro-text .intro-heading,
-header .intro-text .btn {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-}
-
 /* Remove default navbar gap under top bar */
 .navbar {
     margin-bottom: 0;
@@ -1422,6 +1426,7 @@ header .intro-text .btn {
     position: sticky;
     top: 0;
     z-index: 1030;
+    background-color: #30343b;
 }
 
 @media (min-width: 768px) {
@@ -1444,28 +1449,20 @@ header .intro-text .btn {
 
 @media (min-width: 768px) {
     .navbar-default .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: nowrap;
+        display: block;
     }
 
     .navbar-default .navbar-header {
-        display: flex;
-        align-items: center;
-        float: none;
-        flex: 1 1 auto;
-        min-width: 0;
+        display: none;
     }
 
     .navbar-default .navbar-collapse {
         display: flex !important;
-        align-items: center;
+        align-items: stretch;
         float: none !important;
         clear: none !important;
-        flex: 0 0 auto;
-        margin-left: auto;
-        width: auto;
+        margin-left: 0;
+        width: 100%;
         border-top: 0;
         box-shadow: none;
         padding-left: 0;
@@ -1473,36 +1470,29 @@ header .intro-text .btn {
     }
 
     .navbar-default .navbar-nav {
+        display: flex;
         float: none !important;
         margin: 0;
-        white-space: nowrap;
+        width: 100%;
+        white-space: normal;
     }
 
     .navbar-default .navbar-nav > li {
-        float: left;
+        float: none;
+        flex: 1 1 0;
+        text-align: center;
     }
 
     .navbar-default .navbar-brand {
-        display: inline-flex;
-        align-items: center;
-        font-size: 1.55em;
-        max-width: 44vw;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-top: 0;
-        padding-bottom: 0;
-        letter-spacing: 0 !important;
-        word-spacing: 0 !important;
-        font-kerning: normal;
-        font-feature-settings: "kern" 1;
+        display: none;
     }
 
     .navbar-default .nav > li > a {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         min-height: 42px;
+        width: 100%;
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 12px;
@@ -1561,14 +1551,20 @@ body {
     caret-color: transparent !important;
 }
 
-/* Scroll reveal animation */
-header .intro-text .intro-lead-in,
-header .intro-text .intro-heading,
-header .intro-text .btn,
-section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button) {
+html.reveal-preload body {
+    opacity: 0 !important;
+}
+
+body.has-reveal {
     opacity: 0;
 }
 
+body.has-reveal.reveal-ready {
+    opacity: 1;
+    transition: opacity 0.18s linear;
+}
+
+/* Scroll reveal animation */
 body.has-reveal .reveal-on-scroll {
     opacity: 0;
     transform: none;
@@ -1576,12 +1572,26 @@ body.has-reveal .reveal-on-scroll {
     will-change: opacity;
 }
 
+body.has-reveal header.reveal-on-scroll {
+    opacity: 0;
+}
+
 body.has-reveal .reveal-on-scroll.is-visible {
     opacity: 1;
     transform: none;
 }
 
+body.has-reveal header.reveal-on-scroll.is-visible {
+    opacity: 1;
+}
+
 body.has-reveal.reveal-ready .reveal-on-scroll {
+    transition: opacity 0.9s ease-out !important;
+}
+
+body.has-reveal.reveal-ready .navbar-default.reveal-on-scroll,
+body.has-reveal.reveal-ready .navbar-default .navbar-brand.reveal-on-scroll,
+body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
     transition: opacity 0.9s ease-out !important;
 }
 
@@ -1636,6 +1646,11 @@ body.has-reveal.reveal-ready .reveal-on-scroll {
 
 .navbar-default .navbar-brand .brand-tight-ir {
     letter-spacing: -0.31px;
+}
+
+.navbar-default .navbar-brand .brand-separate-a {
+    display: inline-block;
+    margin-left: 1.2px;
 }
 
 /* Keep contact form always writable/clickable */

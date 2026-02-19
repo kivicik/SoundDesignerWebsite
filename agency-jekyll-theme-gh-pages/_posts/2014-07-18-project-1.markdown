@@ -10,7 +10,15 @@ alt: image-alt
 project-date: April 2014
 client: Start Bootstrap
 category: Web Development
-description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
+description: >-
+  One of my past projects, Beatpunk, explored the intersection of gameplay and
+  music composition. It was a bullet heaven game built around a 4-bar looping
+  synthwave structure, where guitar, synth, drums, and bass were divided into
+  two-beat musical samples written in D minor. As players gained experience,
+  they activated these musical layers in real time - effectively composing the
+  soundtrack through gameplay. Each musical element was tied to abilities, and
+  as the track evolved, the character's attacks evolved with it. The result was
+  a system where music wasn't just background - it was the combat system.
 
 ---
 

@@ -156,50 +156,94 @@ if (window.jQuery) {
 }
 
 (function() {
-    var targets = Array.prototype.slice.call(
+    var priorityTargets = Array.prototype.slice.call(
         document.querySelectorAll(
-            'header .intro-text .intro-lead-in, header .intro-text .intro-heading, header .intro-text .btn, section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
+            '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a, header, header .intro-text .intro-lead-in, header .intro-text .intro-heading, header .intro-text .btn'
         )
     );
+    var contentTargets = Array.prototype.slice.call(
+        document.querySelectorAll(
+            'section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
+        )
+    );
+    var targets = priorityTargets.concat(contentTargets);
     if (!targets.length) return;
+
+    function reveal(el) {
+        window.requestAnimationFrame(function() {
+            el.classList.add('is-visible');
+        });
+    }
 
     var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        document.documentElement.classList.remove('reveal-preload');
         targets.forEach(function(el) { el.classList.add('is-visible'); });
         return;
     }
 
     document.body.classList.add('has-reveal');
+    document.documentElement.classList.remove('reveal-preload');
 
     targets.forEach(function(el, index) {
+        el.classList.remove('reveal-on-scroll');
+        el.classList.remove('is-visible');
         el.classList.add('reveal-on-scroll');
         el.style.transitionDelay = '0ms';
     });
 
-    var observer = new IntersectionObserver(function(entries) {
+    var sectionRevealMap = new Map();
+    var revealedSections = new WeakSet();
+
+    contentTargets.forEach(function(el) {
+        var section = el.closest('section');
+        if (!section) return;
+        var list = sectionRevealMap.get(section) || [];
+        list.push(el);
+        sectionRevealMap.set(section, list);
+    });
+
+    function revealSection(section) {
+        if (!section || revealedSections.has(section)) return;
+        revealedSections.add(section);
+        var list = sectionRevealMap.get(section) || [];
+        list.forEach(function(el) {
+            el.style.transitionDelay = '180ms';
+            reveal(el);
+        });
+    }
+
+    var sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+            if (!entry.isIntersecting || entry.intersectionRatio < 1) return;
+            var section = entry.target.closest('section');
+            revealSection(section);
+            sectionObserver.unobserve(entry.target);
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -8% 0px'
+        threshold: 1,
+        rootMargin: '0px'
     });
 
     window.requestAnimationFrame(function() {
         document.body.classList.add('reveal-ready');
         window.requestAnimationFrame(function() {
-            targets.forEach(function(el) {
-                var rect = el.getBoundingClientRect();
-                var isInitiallyVisible = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
-                if (isInitiallyVisible) {
-                    window.setTimeout(function() {
-                        el.classList.add('is-visible');
-                    }, 180);
+            priorityTargets.forEach(function(el) {
+                var isHeader = el.matches('header') || !!el.closest('header');
+                el.style.transitionDelay = isHeader ? '420ms' : '180ms';
+                reveal(el);
+            });
+
+            sectionRevealMap.forEach(function(_, section) {
+                var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
+                if (!trigger) return;
+                var rect = trigger.getBoundingClientRect();
+                var isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                if (isFullyVisible) {
+                    revealSection(section);
                     return;
                 }
-                observer.observe(el);
+                sectionObserver.observe(trigger);
             });
         });
     });
