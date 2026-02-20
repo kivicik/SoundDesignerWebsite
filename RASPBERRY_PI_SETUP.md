@@ -71,3 +71,27 @@ For public internet access, use one of:
 - Cloudflare Tunnel (no port forwarding, usually easier/safer for home networks).
 
 If you want, I can add a second script for either public option.
+
+## 6) Optional: auto-update from git (every 10 seconds)
+
+If this repo is also cloned on your Pi at `~/SoundDesignerWebsite`, you can auto-deploy whenever new commits appear.
+
+On your Pi:
+
+```bash
+cd ~/SoundDesignerWebsite
+chmod +x scripts/pi/auto-deploy-from-git.sh scripts/pi/install-autodeploy.sh
+INTERVAL=10s BRANCH=main ./scripts/pi/install-autodeploy.sh
+```
+
+Useful checks:
+
+```bash
+systemctl status sounddesigner-autodeploy.timer --no-pager
+journalctl -u sounddesigner-autodeploy.service -n 50 --no-pager
+```
+
+Notes:
+- `INTERVAL=10s` is aggressive and can cause frequent `git fetch` traffic.
+- The script auto-publishes from `agency-jekyll-theme-gh-pages/_site` if present, else `_site/agency-jekyll-theme-gh-pages`.
+- It keeps the latest 5 releases under `/var/www/sounddesigner/releases`.
