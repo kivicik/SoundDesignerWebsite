@@ -22,7 +22,14 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Resolve-Path (Join-Path $scriptDir "..\..")
 
 if ([string]::IsNullOrWhiteSpace($LocalBuildPath)) {
-    $LocalBuildPath = Join-Path $repoRoot "_site\agency-jekyll-theme-gh-pages"
+    $preferredBuild = Join-Path $repoRoot "agency-jekyll-theme-gh-pages\_site"
+    $fallbackBuild = Join-Path $repoRoot "_site\agency-jekyll-theme-gh-pages"
+
+    if (Test-Path (Join-Path $preferredBuild "index.html")) {
+        $LocalBuildPath = $preferredBuild
+    } else {
+        $LocalBuildPath = $fallbackBuild
+    }
 }
 
 $localResolved = (Resolve-Path $LocalBuildPath).Path
