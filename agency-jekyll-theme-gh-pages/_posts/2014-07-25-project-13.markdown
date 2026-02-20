@@ -1,0 +1,14 @@
+---
+title: Farm Match
+subtitle: Game Audio
+layout: default
+modal-id: 13
+date: 2014-07-25
+img: FarmMatch.jpg
+thumbnail: FarmMatch.jpg
+alt: Farm Match
+project-date: 2024
+client: Red Axe Games
+category: Sound Design
+description: Sound design and implementation work for Farm Match.
+---

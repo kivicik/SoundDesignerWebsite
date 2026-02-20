@@ -1,0 +1,14 @@
+---
+title: RollThePattern
+subtitle: Game Audio
+layout: default
+modal-id: 15
+date: 2014-07-27
+img: RollThePattern.jpg
+thumbnail: RollThePattern.jpg
+alt: RollThePattern
+project-date: 2024
+client: Red Axe Games
+category: Sound Design
+description: Sound design and implementation work for RollThePattern.
+---

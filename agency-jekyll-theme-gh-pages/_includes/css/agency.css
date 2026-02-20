@@ -374,15 +374,26 @@ section h3.section-subheading {
 
 #portfolio .portfolio-item {
     right: 0;
-    margin: 0 0 15px;
+    margin: 0 0 9px;
+}
+
+#portfolio .portfolio-grid {
+    margin-left: -4.5px;
+    margin-right: -4.5px;
+}
+
+#portfolio .portfolio-grid .portfolio-item {
+    padding-left: 4.5px;
+    padding-right: 4.5px;
 }
 
 
 #portfolio .portfolio-item .portfolio-link {
     display: block;
     position: relative;
-    margin: 0 auto;
-    max-width: 400px;
+    width: 100%;
+    margin: 0;
+    max-width: none;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
@@ -454,7 +465,7 @@ section h3.section-subheading {
 
 @media(min-width:767px) {
     #portfolio .portfolio-item {
-        margin: 0 0 30px;
+        margin: 0 0 9px;
     }
 }
 
@@ -1303,7 +1314,7 @@ html {
 #portfolio .portfolio-item .portfolio-link img {
     display: block;
     width: 100%;
-    aspect-ratio: 400 / 289;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
     transform: scale(1);

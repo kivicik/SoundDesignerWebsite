@@ -142,6 +142,40 @@ if (window.jQuery) {
         };
     });
 
+    window.jQuery('div.modal').on('hidden.bs.modal', function() {
+        if (window.location.hash !== '#' + this.id) return;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(
+                null,
+                document.title,
+                window.location.pathname + window.location.search + '#portfolio'
+            );
+        } else {
+            window.location.hash = 'portfolio';
+        }
+    });
+
+    window.jQuery(function() {
+        // If the page is loaded with a modal hash, normalize to portfolio section.
+        if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
+        var nav = document.querySelector('.navbar-default');
+        var portfolio = document.querySelector('#portfolio');
+        var offset = nav ? nav.getBoundingClientRect().height : 0;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(
+                null,
+                document.title,
+                window.location.pathname + window.location.search + '#portfolio'
+            );
+        } else {
+            window.location.hash = 'portfolio';
+        }
+        if (portfolio) {
+            var top = Math.max(0, portfolio.getBoundingClientRect().top + window.pageYOffset - offset);
+            window.scrollTo(0, top);
+        }
+    });
+
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
     window.jQuery(function() {
         window.jQuery('#services .col-md-4').filter(function() {

@@ -1,0 +1,14 @@
+---
+title: Reincarnation
+subtitle: Game Audio
+layout: default
+modal-id: 14
+date: 2014-07-26
+img: Reincarnation.jpg
+thumbnail: Reincarnation.jpg
+alt: Reincarnation
+project-date: 2024
+client: Red Axe Games
+category: Sound Design
+description: Sound design and implementation work for Reincarnation.
+---
