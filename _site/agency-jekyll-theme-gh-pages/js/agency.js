@@ -201,6 +201,13 @@ if (window.jQuery) {
                 }
                 observer.observe(el);
             });
+
+            // Failsafe: never leave desktop content hidden if observers miss.
+            window.setTimeout(function() {
+                targets.forEach(function(el) {
+                    el.classList.add('is-visible');
+                });
+            }, 2200);
         });
     });
 })();

@@ -22,13 +22,18 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Resolve-Path (Join-Path $scriptDir "..\..")
 
 if ([string]::IsNullOrWhiteSpace($LocalBuildPath)) {
-    $preferredBuild = Join-Path $repoRoot "agency-jekyll-theme-gh-pages\_site"
-    $fallbackBuild = Join-Path $repoRoot "_site\agency-jekyll-theme-gh-pages"
+    $trackedBuild = Join-Path $repoRoot "_site\agency-jekyll-theme-gh-pages"
+    $legacyLocalBuild = Join-Path $repoRoot "agency-jekyll-theme-gh-pages\_site"
 
-    if (Test-Path (Join-Path $preferredBuild "index.html")) {
-        $LocalBuildPath = $preferredBuild
+    if (Test-Path (Join-Path $trackedBuild "index.html")) {
+        $LocalBuildPath = $trackedBuild
     } else {
-        $LocalBuildPath = $fallbackBuild
+        if (Test-Path (Join-Path $legacyLocalBuild "index.html")) {
+            Write-Host "Using legacy local build path '$legacyLocalBuild' (this can be stale if not regenerated)."
+            $LocalBuildPath = $legacyLocalBuild
+        } else {
+            $LocalBuildPath = $trackedBuild
+        }
     }
 }
 
@@ -68,6 +73,8 @@ tar -xf '$remoteArchive' -C '$remoteRelease'
 rm -f '$remoteArchive'
 # Ensure nginx can always read deployed files.
 chmod -R u=rwX,go=rX '$remoteRelease'
+# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages'.
+ln -sfn . '$remoteRelease/agency-jekyll-theme-gh-pages'
 # If bootstrap created "current" as a real directory, replace it with a symlink.
 if [ -d '$RemoteRoot/current' ] && [ ! -L '$RemoteRoot/current' ]; then
   rm -rf '$RemoteRoot/current'

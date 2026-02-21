@@ -249,14 +249,14 @@ if (window.jQuery) {
 
     var sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-            if (!entry.isIntersecting || entry.intersectionRatio < 1) return;
+            if (!entry.isIntersecting) return;
             var section = entry.target.closest('section');
             revealSection(section);
             sectionObserver.unobserve(entry.target);
         });
     }, {
-        threshold: 1,
-        rootMargin: '0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
     });
 
     window.requestAnimationFrame(function() {
@@ -270,15 +270,27 @@ if (window.jQuery) {
 
             sectionRevealMap.forEach(function(_, section) {
                 var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
-                if (!trigger) return;
+                if (!trigger) {
+                    revealSection(section);
+                    return;
+                }
                 var rect = trigger.getBoundingClientRect();
-                var isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-                if (isFullyVisible) {
+                var nav = document.querySelector('.navbar-default');
+                var navOffset = nav ? nav.getBoundingClientRect().height : 0;
+                var isVisibleEnough = rect.top < window.innerHeight * 0.9 && rect.bottom > (navOffset + 8);
+                if (isVisibleEnough) {
                     revealSection(section);
                     return;
                 }
                 sectionObserver.observe(trigger);
             });
+
+            // Failsafe: never leave desktop sections hidden if an observer condition is missed.
+            window.setTimeout(function() {
+                sectionRevealMap.forEach(function(_, section) {
+                    revealSection(section);
+                });
+            }, 2200);
         });
     });
 })();

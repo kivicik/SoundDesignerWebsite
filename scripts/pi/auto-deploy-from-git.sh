@@ -15,8 +15,8 @@ SITE_CURRENT="${SITE_ROOT}/current"
 SITE_RELEASES="${SITE_ROOT}/releases"
 LOCK_FILE="${SITE_ROOT}/.autodeploy.lock"
 
-PREFERRED_BUILD="${REPO_DIR}/agency-jekyll-theme-gh-pages/_site"
-FALLBACK_BUILD="${REPO_DIR}/_site/agency-jekyll-theme-gh-pages"
+TRACKED_BUILD="${REPO_DIR}/_site/agency-jekyll-theme-gh-pages"
+LEGACY_LOCAL_BUILD="${REPO_DIR}/agency-jekyll-theme-gh-pages/_site"
 
 log() {
   echo "${LOG_PREFIX} $*"
@@ -49,10 +49,11 @@ log "New commit detected: ${LOCAL_REV} -> ${REMOTE_REV}"
 git -C "${REPO_DIR}" checkout -q "${BRANCH}"
 git -C "${REPO_DIR}" reset -q --hard "${REMOTE_NAME}/${BRANCH}"
 
-if [ -f "${PREFERRED_BUILD}/index.html" ]; then
-  BUILD_DIR="${PREFERRED_BUILD}"
-elif [ -f "${FALLBACK_BUILD}/index.html" ]; then
-  BUILD_DIR="${FALLBACK_BUILD}"
+if [ -f "${TRACKED_BUILD}/index.html" ]; then
+  BUILD_DIR="${TRACKED_BUILD}"
+elif [ -f "${LEGACY_LOCAL_BUILD}/index.html" ]; then
+  log "Using legacy local build folder at ${LEGACY_LOCAL_BUILD} (may be stale if not regenerated)."
+  BUILD_DIR="${LEGACY_LOCAL_BUILD}"
 else
   log "No built website found (missing index.html in known build folders)."
   exit 1
@@ -63,6 +64,8 @@ mkdir -p "${RELEASE_DIR}"
 
 tar -C "${BUILD_DIR}" -cf - . | tar -xf - -C "${RELEASE_DIR}"
 chmod -R u=rwX,go=rX "${RELEASE_DIR}"
+# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages'.
+ln -sfn . "${RELEASE_DIR}/agency-jekyll-theme-gh-pages"
 
 if [ -d "${SITE_CURRENT}" ] && [ ! -L "${SITE_CURRENT}" ]; then
   rm -rf "${SITE_CURRENT}"
