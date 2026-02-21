@@ -158,7 +158,7 @@ if (window.jQuery) {
 (function() {
     var targets = Array.prototype.slice.call(
         document.querySelectorAll(
-            'header .intro-text .intro-lead-in, header .intro-text .intro-heading, header .intro-text .btn, section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
+            'section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
         )
     );
     if (!targets.length) return;

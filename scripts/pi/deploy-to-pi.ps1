@@ -73,8 +73,15 @@ tar -xf '$remoteArchive' -C '$remoteRelease'
 rm -f '$remoteArchive'
 # Ensure nginx can always read deployed files.
 chmod -R u=rwX,go=rX '$remoteRelease'
-# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages'.
-ln -sfn . '$remoteRelease/agency-jekyll-theme-gh-pages'
+# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages' without a self-referential symlink.
+compat='$remoteRelease/agency-jekyll-theme-gh-pages'
+rm -rf "`$compat"
+mkdir -p "`$compat"
+for item in '$remoteRelease'/*; do
+  base=`$(basename "`$item")
+  [ "`$base" = 'agency-jekyll-theme-gh-pages' ] && continue
+  ln -sfn "../`$base" "`$compat/`$base"
+done
 # If bootstrap created "current" as a real directory, replace it with a symlink.
 if [ -d '$RemoteRoot/current' ] && [ ! -L '$RemoteRoot/current' ]; then
   rm -rf '$RemoteRoot/current'

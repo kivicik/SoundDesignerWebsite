@@ -1569,12 +1569,16 @@ body {
     caret-color: transparent !important;
 }
 
-/* Scroll reveal animation */
+/* Scroll reveal animation: only hide content after JS opts in with .has-reveal. */
+body.has-reveal section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button) {
+    opacity: 0;
+}
+
+/* Keep hero text/button always visible; reveal animation is for below-the-fold sections. */
 header .intro-text .intro-lead-in,
 header .intro-text .intro-heading,
-header .intro-text .btn,
-section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button) {
-    opacity: 0;
+header .intro-text .btn {
+    opacity: 1 !important;
 }
 
 body.has-reveal .reveal-on-scroll {
@@ -1714,5 +1718,3 @@ body.has-reveal.reveal-ready .reveal-on-scroll {
     top: -2px !important;
     transform: none !important;
 }
-
-

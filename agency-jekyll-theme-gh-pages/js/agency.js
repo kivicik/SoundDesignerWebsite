@@ -192,7 +192,7 @@ if (window.jQuery) {
 (function() {
     var priorityTargets = Array.prototype.slice.call(
         document.querySelectorAll(
-            '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a, header, header .intro-text .intro-lead-in, header .intro-text .intro-heading, header .intro-text .btn'
+            '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a'
         )
     );
     var contentTargets = Array.prototype.slice.call(

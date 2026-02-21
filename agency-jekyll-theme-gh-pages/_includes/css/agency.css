@@ -1584,7 +1584,7 @@ body.has-reveal .reveal-on-scroll {
 }
 
 body.has-reveal header.reveal-on-scroll {
-    opacity: 0;
+    opacity: 1;
 }
 
 body.has-reveal .reveal-on-scroll.is-visible {

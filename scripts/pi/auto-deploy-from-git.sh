@@ -64,8 +64,15 @@ mkdir -p "${RELEASE_DIR}"
 
 tar -C "${BUILD_DIR}" -cf - . | tar -xf - -C "${RELEASE_DIR}"
 chmod -R u=rwX,go=rX "${RELEASE_DIR}"
-# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages'.
-ln -sfn . "${RELEASE_DIR}/agency-jekyll-theme-gh-pages"
+# Keep compatibility with Jekyll baseurl '/agency-jekyll-theme-gh-pages' without a self-referential symlink.
+COMPAT_DIR="${RELEASE_DIR}/agency-jekyll-theme-gh-pages"
+rm -rf "${COMPAT_DIR}"
+mkdir -p "${COMPAT_DIR}"
+for item in "${RELEASE_DIR}"/*; do
+  base="$(basename "${item}")"
+  [ "${base}" = "agency-jekyll-theme-gh-pages" ] && continue
+  ln -sfn "../${base}" "${COMPAT_DIR}/${base}"
+done
 
 if [ -d "${SITE_CURRENT}" ] && [ ! -L "${SITE_CURRENT}" ]; then
   rm -rf "${SITE_CURRENT}"
