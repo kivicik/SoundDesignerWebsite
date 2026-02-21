@@ -1583,18 +1583,18 @@ header .intro-text .btn {
 
 body.has-reveal .reveal-on-scroll {
     opacity: 0;
-    transform: none;
+    transform: translate3d(0, 18px, 0);
     transition: none;
-    will-change: opacity;
+    will-change: opacity, transform;
 }
 
 body.has-reveal .reveal-on-scroll.is-visible {
     opacity: 1;
-    transform: none;
+    transform: translate3d(0, 0, 0);
 }
 
 body.has-reveal.reveal-ready .reveal-on-scroll {
-    transition: opacity 0.9s ease-out !important;
+    transition: opacity 0.75s ease-out, transform 0.75s ease-out !important;
 }
 
 #contact input,

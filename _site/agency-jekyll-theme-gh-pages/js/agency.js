@@ -173,13 +173,15 @@ if (window.jQuery) {
 
     targets.forEach(function(el, index) {
         el.classList.add('reveal-on-scroll');
-        el.style.transitionDelay = '0ms';
+        el.style.transitionDelay = Math.min(index * 18, 260) + 'ms';
     });
 
     var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
+            window.requestAnimationFrame(function() {
+                entry.target.classList.add('is-visible');
+            });
             observer.unobserve(entry.target);
         });
     }, {
@@ -196,7 +198,7 @@ if (window.jQuery) {
                 if (isInitiallyVisible) {
                     window.setTimeout(function() {
                         el.classList.add('is-visible');
-                    }, 180);
+                    }, 120);
                     return;
                 }
                 observer.observe(el);
