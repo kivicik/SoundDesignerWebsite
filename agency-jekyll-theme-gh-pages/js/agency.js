@@ -131,17 +131,6 @@
 })();
 
 if (window.jQuery) {
-    window.jQuery('div.modal').on('show.bs.modal', function() {
-        var modal = this;
-        var hash = modal.id;
-        window.location.hash = hash;
-        window.onhashchange = function() {
-            if (!location.hash) {
-                window.jQuery(modal).modal('hide');
-            }
-        };
-    });
-
     window.jQuery('div.modal').on('hidden.bs.modal', function() {
         if (window.location.hash !== '#' + this.id) return;
         if (window.history && window.history.replaceState) {
