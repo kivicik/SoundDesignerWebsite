@@ -12,14 +12,14 @@
                 {% assign thumb_file = post.thumbnail | uri_escape %}
                 {% assign thumb_asset = '/img/portfolio/' | append: thumb_file %}
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal{{ post.modal-id }}" class="portfolio-link" data-toggle="modal">
+                    <button type="button" class="portfolio-link" data-toggle="modal" data-target="#portfolioModal{{ post.modal-id }}" aria-label="Open {{ post.title }} details">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
                         <img src="{{ thumb_asset | relative_url }}" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ thumb_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ thumb_file }}';return;}this.onerror=null;">
-                    </a>
+                    </button>
                 </div>
             {% endfor %}
             </div>

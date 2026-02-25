@@ -396,6 +396,14 @@ section h3.section-subheading {
     max-width: none;
 }
 
+#portfolio .portfolio-item button.portfolio-link {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: inherit;
+    cursor: pointer;
+}
+
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
     position: absolute;
     width: 100%;
