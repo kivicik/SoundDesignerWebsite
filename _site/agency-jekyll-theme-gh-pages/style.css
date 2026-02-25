@@ -1476,42 +1476,53 @@ html {
 
 @media (min-width: 768px) {
     .navbar-default .container {
-        display: block;
+        display: flex;
+        align-items: center;
     }
 
     .navbar-default .navbar-header {
-        display: none;
+        display: flex;
+        align-items: center;
+        float: none;
+        min-width: 0;
     }
 
     .navbar-default .navbar-collapse {
-        display: flex !important;
-        align-items: stretch;
+        display: block !important;
         float: none !important;
         clear: none !important;
-        margin-left: 0;
-        width: 100%;
+        flex: 1 1 auto;
+        width: auto;
+        min-width: 0;
         border-top: 0;
         box-shadow: none;
-        padding-left: 0;
-        padding-right: 0;
+        margin-left: 20px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     .navbar-default .navbar-nav {
         display: flex;
-        float: none !important;
+        float: right !important;
+        justify-content: flex-end;
         margin: 0;
-        width: 100%;
-        white-space: normal;
+        width: auto;
+        white-space: nowrap;
     }
 
     .navbar-default .navbar-nav > li {
         float: none;
-        flex: 1 1 0;
+        flex: 0 0 auto;
         text-align: center;
     }
 
     .navbar-default .navbar-brand {
-        display: none;
+        display: block;
+        max-width: 44vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 0;
     }
 
     .navbar-default .nav > li > a {
@@ -1519,13 +1530,25 @@ html {
         align-items: center;
         justify-content: center;
         min-height: 42px;
-        width: 100%;
+        width: auto;
         padding-top: 0;
         padding-bottom: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 13px;
+        letter-spacing: 0.4px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .navbar-default .navbar-brand {
+        max-width: 560px;
+    }
+
+    .navbar-default .nav > li > a {
+        font-size: 14px;
         padding-left: 12px;
         padding-right: 12px;
-        font-size: 14px;
-        letter-spacing: 0.4px;
     }
 }
 
@@ -1566,11 +1589,6 @@ html {
 .navbar-default .navbar-collapse {
     border: 0 !important;
     box-shadow: none !important;
-}
-
-/* Global zoom preference */
-body {
-    zoom: 110%;
 }
 
 /* Hide caret everywhere by default */
