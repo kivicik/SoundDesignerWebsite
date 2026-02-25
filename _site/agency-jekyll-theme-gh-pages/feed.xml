@@ -3,19 +3,71 @@
   <channel>
     <title>Kivanc Nadir - Sound Designer &amp; Composer</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
-    <link>http://localhost:4000/agency-jekyll-theme-gh-pages/</link>
-    <atom:link href="http://localhost:4000/agency-jekyll-theme-gh-pages/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 Feb 2026 11:29:52 -0500</pubDate>
-    <lastBuildDate>Tue, 17 Feb 2026 11:29:52 -0500</lastBuildDate>
+    <link>https://kivancnadir.com/</link>
+    <atom:link href="https://kivancnadir.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 24 Feb 2026 20:31:03 -0500</pubDate>
+    <lastBuildDate>Tue, 24 Feb 2026 20:31:03 -0500</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>Pawtion Panic</title>
+        <description>
+</description>
+        <pubDate>Mon, 28 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/sound%20design/2014/07/28/project-16/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/sound%20design/2014/07/28/project-16/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
+    
+      <item>
+        <title>RollThePattern</title>
+        <description>
+</description>
+        <pubDate>Sun, 27 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/sound%20design/2014/07/27/project-15/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/sound%20design/2014/07/27/project-15/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
+    
+      <item>
+        <title>Reincarnation</title>
+        <description>
+</description>
+        <pubDate>Sat, 26 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/sound%20design/2014/07/26/project-14/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/sound%20design/2014/07/26/project-14/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
+    
+      <item>
+        <title>Farm Match</title>
+        <description>
+</description>
+        <pubDate>Fri, 25 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/sound%20design/2014/07/25/project-13/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/sound%20design/2014/07/25/project-13/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
     
       <item>
         <title>XXM8UN</title>
         <description>
 </description>
         <pubDate>Thu, 24 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/24/project-12/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/24/project-12/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/24/project-12/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/24/project-12/</guid>
         
         
         <category>Web Development</category>
@@ -27,8 +79,8 @@
         <description>
 </description>
         <pubDate>Wed, 23 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/23/project-11/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/23/project-11/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/23/project-11/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/23/project-11/</guid>
         
         
         <category>Web Development</category>
@@ -40,8 +92,8 @@
         <description>
 </description>
         <pubDate>Tue, 22 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/22/project-10/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/22/project-10/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/22/project-10/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/22/project-10/</guid>
         
         
         <category>Web Development</category>
@@ -53,8 +105,8 @@
         <description>
 </description>
         <pubDate>Mon, 21 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/21/project-9/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/21/project-9/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/21/project-9/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/21/project-9/</guid>
         
         
         <category>Web Development</category>
@@ -66,8 +118,8 @@
         <description>
 </description>
         <pubDate>Sun, 20 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/20/project-8/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/20/project-8/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/20/project-8/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/20/project-8/</guid>
         
         
         <category>Web Development</category>
@@ -79,60 +131,8 @@
         <description>
 </description>
         <pubDate>Sat, 19 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/19/project-7/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/19/project-7/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Dreams ASD</title>
-        <description>
-</description>
-        <pubDate>Fri, 18 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/18/project-1/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/18/project-1/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Escape</title>
-        <description>
-</description>
-        <pubDate>Thu, 17 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/17/project-2/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/17/project-2/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Golden</title>
-        <description>
-</description>
-        <pubDate>Wed, 16 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/16/project-3/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/16/project-3/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Treehouse</title>
-        <description>
-</description>
-        <pubDate>Tue, 15 Jul 2014 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/15/project-4/</link>
-        <guid isPermaLink="true">http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/15/project-4/</guid>
+        <link>https://kivancnadir.com/web%20development/2014/07/19/project-7/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/web%20development/2014/07/19/project-7/</guid>
         
         
         <category>Web Development</category>

@@ -142,6 +142,40 @@ if (window.jQuery) {
         };
     });
 
+    window.jQuery('div.modal').on('hidden.bs.modal', function() {
+        if (window.location.hash !== '#' + this.id) return;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(
+                null,
+                document.title,
+                window.location.pathname + window.location.search + '#portfolio'
+            );
+        } else {
+            window.location.hash = 'portfolio';
+        }
+    });
+
+    window.jQuery(function() {
+        // If the page is loaded with a modal hash, normalize to portfolio section.
+        if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
+        var nav = document.querySelector('.navbar-default');
+        var portfolio = document.querySelector('#portfolio');
+        var offset = nav ? nav.getBoundingClientRect().height : 0;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(
+                null,
+                document.title,
+                window.location.pathname + window.location.search + '#portfolio'
+            );
+        } else {
+            window.location.hash = 'portfolio';
+        }
+        if (portfolio) {
+            var top = Math.max(0, portfolio.getBoundingClientRect().top + window.pageYOffset - offset);
+            window.scrollTo(0, top);
+        }
+    });
+
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
     window.jQuery(function() {
         window.jQuery('#services .col-md-4').filter(function() {
@@ -156,58 +190,105 @@ if (window.jQuery) {
 }
 
 (function() {
-    var targets = Array.prototype.slice.call(
+    var priorityTargets = Array.prototype.slice.call(
+        document.querySelectorAll(
+            '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a'
+        )
+    );
+    var contentTargets = Array.prototype.slice.call(
         document.querySelectorAll(
             'section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
         )
     );
+    var targets = priorityTargets.concat(contentTargets);
     if (!targets.length) return;
+
+    function reveal(el) {
+        window.requestAnimationFrame(function() {
+            el.classList.add('is-visible');
+        });
+    }
 
     var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        document.documentElement.classList.remove('reveal-preload');
         targets.forEach(function(el) { el.classList.add('is-visible'); });
         return;
     }
 
     document.body.classList.add('has-reveal');
+    document.documentElement.classList.remove('reveal-preload');
 
     targets.forEach(function(el, index) {
+        el.classList.remove('reveal-on-scroll');
+        el.classList.remove('is-visible');
         el.classList.add('reveal-on-scroll');
-        el.style.transitionDelay = Math.min(index * 18, 260) + 'ms';
+        el.style.transitionDelay = '0ms';
     });
 
-    var observer = new IntersectionObserver(function(entries) {
+    var sectionRevealMap = new Map();
+    var revealedSections = new WeakSet();
+
+    contentTargets.forEach(function(el) {
+        var section = el.closest('section');
+        if (!section) return;
+        var list = sectionRevealMap.get(section) || [];
+        list.push(el);
+        sectionRevealMap.set(section, list);
+    });
+
+    function revealSection(section) {
+        if (!section || revealedSections.has(section)) return;
+        revealedSections.add(section);
+        var list = sectionRevealMap.get(section) || [];
+        list.forEach(function(el) {
+            el.style.transitionDelay = '180ms';
+            reveal(el);
+        });
+    }
+
+    var sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;
-            window.requestAnimationFrame(function() {
-                entry.target.classList.add('is-visible');
-            });
-            observer.unobserve(entry.target);
+            var section = entry.target.closest('section');
+            revealSection(section);
+            sectionObserver.unobserve(entry.target);
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -8% 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
     });
 
     window.requestAnimationFrame(function() {
         document.body.classList.add('reveal-ready');
         window.requestAnimationFrame(function() {
-            targets.forEach(function(el) {
-                var rect = el.getBoundingClientRect();
-                var isInitiallyVisible = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
-                if (isInitiallyVisible) {
-                    window.setTimeout(function() {
-                        el.classList.add('is-visible');
-                    }, 120);
-                    return;
-                }
-                observer.observe(el);
+            priorityTargets.forEach(function(el) {
+                var isHeader = el.matches('header') || !!el.closest('header');
+                el.style.transitionDelay = isHeader ? '420ms' : '180ms';
+                reveal(el);
             });
 
-            // Failsafe: never leave desktop content hidden if observers miss.
+            sectionRevealMap.forEach(function(_, section) {
+                var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
+                if (!trigger) {
+                    revealSection(section);
+                    return;
+                }
+                var rect = trigger.getBoundingClientRect();
+                var nav = document.querySelector('.navbar-default');
+                var navOffset = nav ? nav.getBoundingClientRect().height : 0;
+                var isVisibleEnough = rect.top < window.innerHeight * 0.9 && rect.bottom > (navOffset + 8);
+                if (isVisibleEnough) {
+                    revealSection(section);
+                    return;
+                }
+                sectionObserver.observe(trigger);
+            });
+
+            // Failsafe: never leave desktop sections hidden if an observer condition is missed.
             window.setTimeout(function() {
-                targets.forEach(function(el) {
-                    el.classList.add('is-visible');
+                sectionRevealMap.forEach(function(_, section) {
+                    revealSection(section);
                 });
             }, 2200);
         });

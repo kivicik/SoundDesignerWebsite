@@ -1,5 +1,7 @@
  <!-- Portfolio Modals -->
  {% for post in site.posts %}
+    {% assign modal_img_file = post.img | uri_escape %}
+    {% assign modal_img_asset = '/img/portfolio/' | append: modal_img_file %}
     <div class="portfolio-modal modal fade" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -14,7 +16,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">{{ post.title }}</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/{{ post.img }}" class="img-responsive img-centered" alt="{{ post.alt }}">
+                            <img src="{{ modal_img_asset | relative_url }}" class="img-responsive img-centered" alt="{{ post.alt }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ modal_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ modal_img_file }}';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">{{ post.description }}</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:

@@ -7,14 +7,23 @@
     <title>Dreams ASD II</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
-    <link rel="canonical" href="http://localhost:4000/agency-jekyll-theme-gh-pages/web%20development/2014/07/19/project-7/">
+    <script>
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('reveal-preload');
+            window.setTimeout(function () {
+                root.classList.remove('reveal-preload');
+            }, 3000);
+        })();
+    </script>
+    <link rel="canonical" href="https://kivancnadir.com/web%20development/2014/07/19/project-7/">
 
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link rel="stylesheet" href="/agency-jekyll-theme-gh-pages/style.css?v=20260221b" onerror="this.onerror=null;this.href='style.css';">
+    <link rel="stylesheet" href="/style.css" onerror="this.onerror=null;this.href='style.css';">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="/agency-jekyll-theme-gh-pages/css/font-awesome/css/font-awesome.min.css" onerror="this.onerror=null;this.href='css/font-awesome/css/font-awesome.min.css';">
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css" onerror="this.onerror=null;this.href='css/font-awesome/css/font-awesome.min.css';">
     <script>
         (function () {
             if (window.location.protocol !== 'file:') return;
@@ -53,7 +62,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Kivanc Nad<span class="brand-tight-ir">ir</span> - <span class="brand-wide-so">So</span>und <span class="brand-wide-des">Des</span>i<span class="brand-tight-gn">gn</span><span class="brand-tight-er">er</span> & Compos<span class="brand-tight-er">er</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,7 +71,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#page-top">Home</a>
+                        <a class="page-scroll" href="#team">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
@@ -75,9 +83,6 @@
                         <a class="page-scroll" href="#portfolio">Portfolio</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">About</a>
-                    </li>
-                    <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -87,16 +92,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
-            </div>
-        </div>
-    </header>
 <!--
         
           
@@ -106,6 +101,36 @@
           
         
  -->
+
+
+
+
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        
+        <div class="container">
+            <div class="row team-feature-header">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">About</h2>
+                </div>
+            </div>
+            <div class="row team-feature-row">
+                <div class="col-md-4 text-center">
+                    <img src="img/team/kivanc.jpg" class="img-responsive img-circle team-feature-photo" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='/img/team/kivanc.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/team/kivanc.jpg';return;}this.onerror=null;this.alt='';">
+                </div>
+                <div class="col-md-8 team-feature-copy">
+                    <h4>Kivanc Nadir</h4>
+                    <p class="team-feature-role">Sound Designer</p>
+                    <p class="team-feature-description text-muted">Hi, I&rsquo;m K&#305;van&ccedil; - a Toronto-based sound designer. Over the years, my path in audio has taken me through a range of roles and disciplines. With degrees in Jazz and Sonic Arts, my background spans from arranging jazz to designing interactive music systems for games.</p>
+                    <p class="team-feature-description text-muted">I create stylistically accurate and technically well-structured audio tailored to each game&rsquo;s needs. I&rsquo;ve worked as the full-time audio department for two game studios and continue to collaborate on projects as a freelance sound designer. The games I&rsquo;ve worked on have explored themes ranging from sci-fi and medieval worlds to farming, house decoration, and even vampires.</p>
+                    <p class="team-feature-description text-muted">If you&rsquo;d like to learn more about my experience or get in touch, feel free to reach out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
 
@@ -216,7 +241,7 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
         <div class="container">
-            <div class="row">
+            <div class="row portfolio-grid">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Portfolio</h2>
                     <h3 class="section-subheading text-muted">Pieces selected from previous works.</h3>
@@ -224,6 +249,60 @@
             </div>
             <div class="row">
             
+                
+                
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal16" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/img/portfolio/PAWTION%20PANIC.png" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/PAWTION%20PANIC.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/PAWTION%20PANIC.png';return;}this.onerror=null;">
+                    </a>
+                </div>
+            
+                
+                
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal15" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/img/portfolio/RollThePattern.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/RollThePattern.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/RollThePattern.jpg';return;}this.onerror=null;">
+                    </a>
+                </div>
+            
+                
+                
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal14" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/img/portfolio/Reincarnation.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/Reincarnation.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/Reincarnation.jpg';return;}this.onerror=null;">
+                    </a>
+                </div>
+            
+                
+                
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal13" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/img/portfolio/FarmMatch.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/FarmMatch.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/FarmMatch.jpg';return;}this.onerror=null;">
+                    </a>
+                </div>
+            
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal12" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -231,10 +310,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/photocula.png" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/photocula.png" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/photocula.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/photocula.png';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal11" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -242,10 +323,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/triple-farm.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/triple-farm.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/triple-farm.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/triple-farm.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal10" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -253,10 +336,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/royaldecor.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/royaldecor.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/royaldecor.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/royaldecor.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal9" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -264,10 +349,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/match3d-box.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/match3d-box.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match3d-box.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match3d-box.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal8" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -275,10 +362,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/match-land.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/match-land.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match-land.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match-land.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal7" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -286,10 +375,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/match-3d-mania.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/match-3d-mania.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match-3d-mania.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match-3d-mania.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -297,10 +388,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/beatpunk.png" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/beatpunk.png" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/beatpunk.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/beatpunk.png';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -308,10 +401,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/christmas-3d.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/christmas-3d.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/christmas-3d.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/christmas-3d.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -319,10 +414,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/christmas-design.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/christmas-design.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/christmas-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/christmas-design.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -330,10 +427,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/dream-design.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/dream-design.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/dream-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/dream-design.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -341,10 +440,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/garden-design.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/garden-design.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/garden-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/garden-design.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
+                
+                
                 <div class="col-md-4 col-sm-6 portfolio-item">
                     <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
@@ -352,41 +453,13 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/friendsmatch.jpg" class="img-responsive img-centered" alt="">
+                        <img src="/img/portfolio/friendsmatch.jpg" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/friendsmatch.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/friendsmatch.jpg';return;}this.onerror=null;">
                     </a>
                 </div>
             
             </div>
         </div>
     </section>
-
-    <!-- Team Section -->
-    <section id="team" class="bg-light-gray">
-        
-        <div class="container">
-            <div class="row team-feature-header">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                </div>
-            </div>
-            <div class="row team-feature-row">
-                <div class="col-md-4 text-center">
-                    <img src="img/team/kivanc.jpg" class="img-responsive img-circle team-feature-photo" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='/agency-jekyll-theme-gh-pages/img/team/kivanc.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/team/kivanc.jpg';return;}this.onerror=null;this.alt='';">
-                </div>
-                <div class="col-md-8 team-feature-copy">
-                    <h4>Kivanc Nadir</h4>
-                    <p class="team-feature-role">Sound Designer</p>
-                    <p class="team-feature-description text-muted">Sound Designer</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
 
     <section id="contact">
     <div class="container">
@@ -427,7 +500,7 @@
                                         <input id="subject" name="subject" type="text" class="form-control subject-inline-input" maxlength="1000" placeholder="Subject" autocomplete="off">
                                     </div>
                                     <div class="textarea-wrap">
-                                        <textarea id="message" name="message" class="form-control message-inline-textarea" maxlength="4000" placeholder="Briefly describe your project scope, style, and timeline." required data-validation-required-message="Please enter your message." data-validation-maxlength-message="Message can be maximum 4000 characters."></textarea>
+                                        <textarea id="message" name="message" class="form-control message-inline-textarea" maxlength="4000" placeholder="Text" required data-validation-required-message="Please enter your message." data-validation-maxlength-message="Message can be maximum 4000 characters."></textarea>
                                         <span class="char-counter textarea-counter" data-for="message">0/4000</span>
                                     </div>
                                 </div>
@@ -486,6 +559,180 @@
 
      <!-- Portfolio Modals -->
  
+    
+    
+    <div class="portfolio-modal modal fade" id="portfolioModal16" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 contenteditable="true" data-edit-field="title">Pawtion Panic</h2>
+                            <hr class="star-primary">
+                            <img src="/img/portfolio/PAWTION%20PANIC.png" class="img-responsive img-centered" alt="Pawtion Panic" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/PAWTION%20PANIC.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/PAWTION%20PANIC.png';return;}this.onerror=null;">
+                            <p contenteditable="true" data-edit-field="description">Sound design and implementation work for Pawtion Panic.</p>
+                            <ul class="list-inline item-details">
+                                <li>Developer:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">Red Axe Games</a>
+                                    </strong>
+                                </li>
+                                <li>Service:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="service">Sound Design</a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="date">2024</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <div class="modal-action-row">
+                                <button type="button" class="btn btn-primary modal-save-btn">Save</button>
+                                <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div class="portfolio-modal modal fade" id="portfolioModal15" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 contenteditable="true" data-edit-field="title">RollThePattern</h2>
+                            <hr class="star-primary">
+                            <img src="/img/portfolio/RollThePattern.jpg" class="img-responsive img-centered" alt="RollThePattern" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/RollThePattern.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/RollThePattern.jpg';return;}this.onerror=null;">
+                            <p contenteditable="true" data-edit-field="description">Sound design and implementation work for RollThePattern.</p>
+                            <ul class="list-inline item-details">
+                                <li>Developer:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">Red Axe Games</a>
+                                    </strong>
+                                </li>
+                                <li>Service:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="service">Sound Design</a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="date">2024</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <div class="modal-action-row">
+                                <button type="button" class="btn btn-primary modal-save-btn">Save</button>
+                                <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div class="portfolio-modal modal fade" id="portfolioModal14" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 contenteditable="true" data-edit-field="title">Reincarnation</h2>
+                            <hr class="star-primary">
+                            <img src="/img/portfolio/Reincarnation.jpg" class="img-responsive img-centered" alt="Reincarnation" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/Reincarnation.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/Reincarnation.jpg';return;}this.onerror=null;">
+                            <p contenteditable="true" data-edit-field="description">Sound design and implementation work for Reincarnation.</p>
+                            <ul class="list-inline item-details">
+                                <li>Developer:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">Red Axe Games</a>
+                                    </strong>
+                                </li>
+                                <li>Service:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="service">Sound Design</a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="date">2024</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <div class="modal-action-row">
+                                <button type="button" class="btn btn-primary modal-save-btn">Save</button>
+                                <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div class="portfolio-modal modal fade" id="portfolioModal13" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 contenteditable="true" data-edit-field="title">Farm Match</h2>
+                            <hr class="star-primary">
+                            <img src="/img/portfolio/FarmMatch.jpg" class="img-responsive img-centered" alt="Farm Match" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/FarmMatch.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/FarmMatch.jpg';return;}this.onerror=null;">
+                            <p contenteditable="true" data-edit-field="description">Sound design and implementation work for Farm Match.</p>
+                            <ul class="list-inline item-details">
+                                <li>Developer:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">Red Axe Games</a>
+                                    </strong>
+                                </li>
+                                <li>Service:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="service">Sound Design</a>
+                                    </strong>
+                                </li>
+                                <li>Date:
+                                    <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="date">2024</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                            <div class="modal-action-row">
+                                <button type="button" class="btn btn-primary modal-save-btn">Save</button>
+                                <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal12" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -500,7 +747,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">XXM8UN</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/photocula.png" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/photocula.png" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/photocula.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/photocula.png';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -527,6 +774,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal11" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -541,7 +790,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Triple Farm</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/triple-farm.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/triple-farm.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/triple-farm.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/triple-farm.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -568,6 +817,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal10" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -582,7 +833,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Treehouse II</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/royaldecor.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/royaldecor.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/royaldecor.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/royaldecor.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -609,6 +860,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal9" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -623,7 +876,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Golden II</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/match3d-box.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/match3d-box.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match3d-box.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match3d-box.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -650,6 +903,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal8" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -664,7 +919,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Escape II</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/match-land.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/match-land.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match-land.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match-land.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -691,6 +946,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -705,7 +962,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Dreams ASD II</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/match-3d-mania.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/match-3d-mania.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/match-3d-mania.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/match-3d-mania.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -732,6 +989,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -746,8 +1005,8 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Dreams ASD</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/beatpunk.jpg" class="img-responsive img-centered" alt="image-alt">
-                            <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
+                            <img src="/img/portfolio/beatpunk.png" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/beatpunk.png';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/beatpunk.png';return;}this.onerror=null;">
+                            <p contenteditable="true" data-edit-field="description">One of my past projects, Beatpunk, explored the intersection of gameplay and music composition. It was a bullet heaven game built around a 4-bar looping synthwave structure, where guitar, synth, drums, and bass were divided into two-beat musical samples written in D minor. As players gained experience, they activated these musical layers in real time - effectively composing the soundtrack through gameplay. Each musical element was tied to abilities, and as the track evolved, the character's attacks evolved with it. The result was a system where music wasn't just background - it was the combat system.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
                                     <strong><a href="http://startbootstrap.com" contenteditable="true" data-edit-field="client">Start Bootstrap</a>
@@ -773,6 +1032,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -787,7 +1048,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Escape</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/christmas-3d.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/christmas-3d.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/christmas-3d.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/christmas-3d.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -814,6 +1075,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -828,7 +1091,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Golden</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/christmas-design.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/christmas-design.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/christmas-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/christmas-design.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -855,6 +1118,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -869,7 +1134,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Treehouse</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/dream-design.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/dream-design.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/dream-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/dream-design.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -896,6 +1161,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -910,7 +1177,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Round Icons</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/garden-design.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/garden-design.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/garden-design.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/garden-design.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -937,6 +1204,8 @@
         </div>
     </div>
 
+    
+    
     <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -951,7 +1220,7 @@
                         <div class="modal-body">
                             <h2 contenteditable="true" data-edit-field="title">Startup Framework</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/friendsmatch.jpg" class="img-responsive img-centered" alt="image-alt">
+                            <img src="/img/portfolio/friendsmatch.jpg" class="img-responsive img-centered" alt="image-alt" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/friendsmatch.jpg';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/friendsmatch.jpg';return;}this.onerror=null;">
                             <p contenteditable="true" data-edit-field="description">Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.</p>
                             <ul class="list-inline item-details">
                                 <li>Developer:
@@ -980,21 +1249,21 @@
 
 
      <!-- jQuery Version 1.11.0 -->
-    <script src="/agency-jekyll-theme-gh-pages/js/jquery-1.11.0.js" onerror="this.onerror=null;this.src='js/jquery-1.11.0.js';"></script>
+    <script src="/js/jquery-1.11.0.js" onerror="this.onerror=null;this.src='js/jquery-1.11.0.js';"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/agency-jekyll-theme-gh-pages/js/bootstrap.min.js" onerror="this.onerror=null;this.src='js/bootstrap.min.js';"></script>
+    <script src="/js/bootstrap.min.js" onerror="this.onerror=null;this.src='js/bootstrap.min.js';"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="/agency-jekyll-theme-gh-pages/js/jquery.easing.min.js" onerror="this.onerror=null;this.src='js/jquery.easing.min.js';"></script>
-    <script src="/agency-jekyll-theme-gh-pages/js/classie.js" onerror="this.onerror=null;this.src='js/classie.js';"></script>
+    <script src="/js/jquery.easing.min.js" onerror="this.onerror=null;this.src='js/jquery.easing.min.js';"></script>
+    <script src="/js/classie.js" onerror="this.onerror=null;this.src='js/classie.js';"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="/agency-jekyll-theme-gh-pages/js/jqBootstrapValidation.js" onerror="this.onerror=null;this.src='js/jqBootstrapValidation.js';"></script>
-    <script src="/agency-jekyll-theme-gh-pages/js/contact_me.js" onerror="this.onerror=null;this.src='js/contact_me.js';"></script>
+    <script src="/js/jqBootstrapValidation.js" onerror="this.onerror=null;this.src='js/jqBootstrapValidation.js';"></script>
+    <script src="/js/contact_me.js" onerror="this.onerror=null;this.src='js/contact_me.js';"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/agency-jekyll-theme-gh-pages/js/agency.js?v=20260221b" onerror="this.onerror=null;this.src='js/agency.js';"></script>
+    <script src="/js/agency.js" onerror="this.onerror=null;this.src='js/agency.js';"></script>
 
 
     </body>
