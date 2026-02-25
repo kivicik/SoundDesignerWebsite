@@ -1,9 +1,10 @@
----
+﻿---
 title: RollThePattern
 subtitle: Game Audio
 layout: default
 modal-id: 15
 date: 2014-07-27
+permalink: /portfolio/rollthepattern/
 img: RollThePattern.jpg
 thumbnail: RollThePattern.jpg
 alt: RollThePattern

@@ -1,9 +1,10 @@
----
+﻿---
 title: Farm Match
 subtitle: Game Audio
 layout: default
 modal-id: 13
 date: 2014-07-25
+permalink: /portfolio/farm-match/
 img: FarmMatch.jpg
 thumbnail: FarmMatch.jpg
 alt: Farm Match

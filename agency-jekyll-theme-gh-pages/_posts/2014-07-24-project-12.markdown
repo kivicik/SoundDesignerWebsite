@@ -1,9 +1,10 @@
----
+﻿---
 title: XXM8UN
 subtitle: Website Design
 layout: default
 modal-id: 12
 date: 2014-07-24
+permalink: /portfolio/xxm8un/
 img: photocula.png
 thumbnail: photocula.png
 alt: image-alt

@@ -1,9 +1,10 @@
----
+﻿---
 title: Escape
 subtitle: Website Design
 layout: default
 modal-id: 2
 date: 2014-07-17
+permalink: /portfolio/escape/
 img: christmas-3d.jpg
 thumbnail: christmas-3d.jpg
 alt: image-alt

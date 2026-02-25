@@ -1,9 +1,10 @@
----
+﻿---
 title: Pawtion Panic
 subtitle: Game Audio
 layout: default
 modal-id: 16
 date: 2014-07-28
+permalink: /portfolio/pawtion-panic/
 img: "PAWTION PANIC.png"
 thumbnail: "PAWTION PANIC.png"
 alt: Pawtion Panic

@@ -1,9 +1,10 @@
----
+﻿---
 title: Dreams ASD II
 subtitle: Website Design
 layout: default
 modal-id: 7
 date: 2014-07-19
+permalink: /portfolio/dreams-asd-ii/
 img: match-3d-mania.jpg
 thumbnail: match-3d-mania.jpg
 alt: image-alt

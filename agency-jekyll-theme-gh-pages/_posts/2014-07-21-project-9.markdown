@@ -1,9 +1,10 @@
----
+﻿---
 title: Golden II
 subtitle: Website Design
 layout: default
 modal-id: 9
 date: 2014-07-21
+permalink: /portfolio/golden-ii/
 img: match3d-box.jpg
 thumbnail: match3d-box.jpg
 alt: image-alt

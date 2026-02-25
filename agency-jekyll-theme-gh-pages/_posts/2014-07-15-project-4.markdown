@@ -1,9 +1,10 @@
----
+﻿---
 title: Treehouse
 subtitle: Website Design
 layout: default
 modal-id: 4
 date: 2014-07-15
+permalink: /portfolio/treehouse/
 img: dream-design.jpg
 thumbnail: dream-design.jpg
 alt: image-alt

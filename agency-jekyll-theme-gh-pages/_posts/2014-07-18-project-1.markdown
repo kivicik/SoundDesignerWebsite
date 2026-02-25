@@ -1,9 +1,10 @@
----
+﻿---
 title: Dreams ASD
 subtitle: Website Design
 layout: default
 modal-id: 1
 date: 2014-07-18
+permalink: /portfolio/dreams-asd/
 img: beatpunk.png
 thumbnail: beatpunk.png
 alt: image-alt

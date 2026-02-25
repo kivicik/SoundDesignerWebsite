@@ -1,9 +1,10 @@
----
+﻿---
 title: Reincarnation
 subtitle: Game Audio
 layout: default
 modal-id: 14
 date: 2014-07-26
+permalink: /portfolio/reincarnation/
 img: Reincarnation.jpg
 thumbnail: Reincarnation.jpg
 alt: Reincarnation

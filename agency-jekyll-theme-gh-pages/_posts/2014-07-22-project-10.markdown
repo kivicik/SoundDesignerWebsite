@@ -1,9 +1,10 @@
----
+﻿---
 title: Treehouse II
 subtitle: Website Design
 layout: default
 modal-id: 10
 date: 2014-07-22
+permalink: /portfolio/treehouse-ii/
 img: royaldecor.jpg
 thumbnail: royaldecor.jpg
 alt: image-alt

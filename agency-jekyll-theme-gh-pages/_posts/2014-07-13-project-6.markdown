@@ -1,9 +1,10 @@
----
+﻿---
 title: Round Icons
 subtitle: Graphic Design
 layout: default
 modal-id: 6
 date: 2014-07-15
+permalink: /portfolio/round-icons/
 img: garden-design.jpg
 thumbnail: garden-design.jpg
 alt: image-alt

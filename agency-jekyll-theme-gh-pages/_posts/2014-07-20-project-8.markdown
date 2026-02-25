@@ -1,9 +1,10 @@
----
+﻿---
 title: Escape II
 subtitle: Website Design
 layout: default
 modal-id: 8
 date: 2014-07-20
+permalink: /portfolio/escape-ii/
 img: match-land.jpg
 thumbnail: match-land.jpg
 alt: image-alt
