@@ -131,17 +131,36 @@
 })();
 
 if (window.jQuery) {
-    window.jQuery('div.modal').on('hidden.bs.modal', function() {
-        if (window.location.hash !== '#' + this.id) return;
+    function clearModalHash() {
+        if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
         if (window.history && window.history.replaceState) {
             window.history.replaceState(
                 null,
                 document.title,
-                window.location.pathname + window.location.search + '#portfolio'
+                window.location.pathname + window.location.search
             );
         } else {
-            window.location.hash = 'portfolio';
+            window.location.hash = '';
         }
+    }
+
+    // Compatibility shim for older cached pages that still use anchor modal triggers.
+    window.jQuery(document).on('click', 'a.portfolio-link[href^="#portfolioModal"]', function(e) {
+        var target = this.getAttribute('href');
+        if (!/^#portfolioModal/i.test(target || '')) return;
+        e.preventDefault();
+        var modal = window.jQuery(target);
+        if (!modal.length) return;
+        modal.modal('show');
+        clearModalHash();
+    });
+
+    window.jQuery('div.modal').on('shown.bs.modal', function() {
+        clearModalHash();
+    });
+
+    window.jQuery('div.modal').on('hidden.bs.modal', function() {
+        clearModalHash();
     });
 
     window.jQuery(function() {
@@ -154,10 +173,10 @@ if (window.jQuery) {
             window.history.replaceState(
                 null,
                 document.title,
-                window.location.pathname + window.location.search + '#portfolio'
+                window.location.pathname + window.location.search
             );
         } else {
-            window.location.hash = 'portfolio';
+            window.location.hash = '';
         }
         if (portfolio) {
             var top = Math.max(0, portfolio.getBoundingClientRect().top + window.pageYOffset - offset);

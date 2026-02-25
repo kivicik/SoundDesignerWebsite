@@ -17,10 +17,10 @@
 
 
     <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link rel="stylesheet" href="{{ "/style.css" | prepend: site.baseurl }}" onerror="this.onerror=null;this.href='style.css';">
+    <link rel="stylesheet" href="{{ "/style.css" | prepend: site.baseurl }}{% if site.asset_version %}?v={{ site.asset_version }}{% endif %}" onerror="this.onerror=null;this.href='style.css';">
 
     <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{{ "/css/font-awesome/css/font-awesome.min.css" | prepend: site.baseurl }}" onerror="this.onerror=null;this.href='css/font-awesome/css/font-awesome.min.css';">
+    <link rel="stylesheet" href="{{ "/css/font-awesome/css/font-awesome.min.css" | prepend: site.baseurl }}{% if site.asset_version %}?v={{ site.asset_version }}{% endif %}" onerror="this.onerror=null;this.href='css/font-awesome/css/font-awesome.min.css';">
     <script>
         (function () {
             if (window.location.protocol !== 'file:') return;
