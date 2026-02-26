@@ -343,8 +343,8 @@ header .intro-text .intro-heading {
 }
 
 header.home-about-section {
-    padding-top: 160px;
-    padding-bottom: 100px;
+    padding-top: 118px;
+    padding-bottom: 82px;
     background: #232427;
     background-image: none;
     color: #fff;
@@ -353,21 +353,22 @@ header.home-about-section {
 header.home-about-section .home-about-row {
     display: flex;
     align-items: center;
-    gap: 46px;
+    gap: 28px;
 }
 
 header.home-about-section .home-about-title {
-    margin: 0 0 44px;
-    font-size: 40px;
-    letter-spacing: 2.2px;
+    margin: 0 0 26px;
+    font-size: 58px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
     font-weight: 700;
     color: #fff;
+    text-align: left;
 }
 
 header.home-about-section .home-about-photo {
-    width: 210px;
-    height: 210px;
+    width: 198px;
+    height: 198px;
     object-fit: cover;
     margin: 0 auto;
     border: 6px solid rgba(255,255,255,.75);
@@ -378,25 +379,11 @@ header.home-about-section .home-about-copy {
     text-align: left;
 }
 
-header.home-about-section .home-about-copy h4 {
-    margin: 0 0 10px;
-    text-transform: none;
-    font-size: 30px;
-    line-height: 1.15;
-    color: #fff;
-}
-
-header.home-about-section .home-about-role {
-    margin: 0 0 18px;
-    letter-spacing: .5px;
-    color: #fff;
-    font-weight: 600;
-}
-
 header.home-about-section .home-about-description {
-    max-width: 600px;
-    margin: 0 0 14px;
-    line-height: 1.7;
+    max-width: 780px;
+    margin: 0 0 12px;
+    line-height: 1.62;
+    font-size: 15px;
     color: #fff;
 }
 
@@ -412,12 +399,14 @@ header.home-about-section p {
 
 @media(max-width:991px) {
     header.home-about-section {
-        padding-top: 135px;
-        padding-bottom: 80px;
+        padding-top: 112px;
+        padding-bottom: 68px;
     }
 
     header.home-about-section .home-about-title {
-        margin: 0 0 52px;
+        margin: 0 0 28px;
+        font-size: 44px;
+        text-align: center;
     }
 
     header.home-about-section .home-about-row {
@@ -432,10 +421,6 @@ header.home-about-section p {
 
     header.home-about-section .home-about-copy {
         text-align: center;
-    }
-
-    header.home-about-section .home-about-copy h4 {
-        font-size: 28px;
     }
 
     header.home-about-section .home-about-description {
