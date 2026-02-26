@@ -272,8 +272,6 @@ fieldset[disabled] .btn-xl.active {
     }
 
     .navbar-default .navbar-brand {
-        width: 33.33%;
-        text-align: center;
         font-size: 2em;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
