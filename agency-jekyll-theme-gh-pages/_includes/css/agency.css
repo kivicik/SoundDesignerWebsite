@@ -1535,7 +1535,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 1030;
-    background-color: #30343b;
+    background-color: rgba(48, 52, 59, 0.92);
 }
 
 @media (min-width: 768px) {
