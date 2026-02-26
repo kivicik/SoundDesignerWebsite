@@ -255,9 +255,9 @@ fieldset[disabled] .btn-xl.active {
 @media(max-width:767px) {
     .navbar-default .navbar-brand {
         position: absolute;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
+        left: 0;
+        right: 0;
+        text-align: center;
     }
 }
 
