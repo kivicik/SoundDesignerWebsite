@@ -335,8 +335,8 @@ header .intro-text .intro-heading {
 }
 
 header.home-about-section {
-    padding-top: 118px;
-    padding-bottom: 82px;
+    padding-top: 90px;
+    padding-bottom: 90px;
     background: #232427;
     background-image: none;
     color: #fff;
@@ -395,8 +395,8 @@ header.home-about-section p {
 
 @media(max-width:991px) {
     header.home-about-section {
-        padding-top: 112px;
-        padding-bottom: 68px;
+        padding-top: 76px;
+        padding-bottom: 76px;
     }
 
     header.home-about-section .home-about-title {
