@@ -356,14 +356,18 @@ header.home-about-section .home-about-row {
     gap: 28px;
 }
 
+header.home-about-section .home-about-header {
+    margin-bottom: 24px;
+}
+
 header.home-about-section .home-about-title {
-    margin: 0 0 26px;
+    margin: 0;
     font-size: 58px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     font-weight: 700;
     color: #fff;
-    text-align: left;
+    text-align: center;
 }
 
 header.home-about-section .home-about-photo {
@@ -404,7 +408,7 @@ header.home-about-section p {
     }
 
     header.home-about-section .home-about-title {
-        margin: 0 0 28px;
+        margin: 0;
         font-size: 44px;
         text-align: center;
     }
