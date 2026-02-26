@@ -1835,3 +1835,11 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
 }
 
 
+
+/* Align navbar brand over first column (matches photo + Services icon) */
+@media (min-width: 768px) {
+    .navbar-default .navbar-header {
+        flex: 0 0 33.33% !important;
+        justify-content: center !important;
+    }
+}
