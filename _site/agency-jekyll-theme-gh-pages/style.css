@@ -343,8 +343,8 @@ header .intro-text .intro-heading {
 }
 
 header.home-about-section {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 120px;
+    padding-bottom: 120px;
     background: #232427;
     background-image: none;
     color: #fff;
@@ -353,11 +353,11 @@ header.home-about-section {
 header.home-about-section .home-about-row {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 56px;
 }
 
 header.home-about-section .home-about-header {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 header.home-about-section .home-about-title {
@@ -371,8 +371,8 @@ header.home-about-section .home-about-title {
 }
 
 header.home-about-section .home-about-photo {
-    width: 198px;
-    height: 198px;
+    width: 240px;
+    height: 240px;
     object-fit: cover;
     margin: 0 auto;
     border: 6px solid rgba(255,255,255,.75);
@@ -385,8 +385,8 @@ header.home-about-section .home-about-copy {
 
 header.home-about-section .home-about-description {
     max-width: 780px;
-    margin: 0 0 12px;
-    line-height: 1.62;
+    margin: 0 0 20px;
+    line-height: 1.78;
     font-size: 15px;
     color: #fff;
 }
