@@ -253,19 +253,11 @@ fieldset[disabled] .btn-xl.active {
 }
 
 @media(max-width:767px) {
-    .navbar-default .navbar-header {
-        text-align: center;
-    }
-
     .navbar-default .navbar-brand {
-        float: none;
-        display: inline-block;
-    }
-
-    .navbar-default .navbar-toggle {
         position: absolute;
-        right: 15px;
-        top: 12px;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 }
 
