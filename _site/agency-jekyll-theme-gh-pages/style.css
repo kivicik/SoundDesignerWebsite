@@ -353,7 +353,6 @@ header.home-about-section {
 header.home-about-section .home-about-row {
     display: flex;
     align-items: center;
-    gap: 56px;
 }
 
 header.home-about-section .home-about-header {
@@ -403,23 +402,28 @@ header.home-about-section p {
 
 @media(max-width:991px) {
     header.home-about-section {
-        padding-top: 76px;
-        padding-bottom: 76px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    header.home-about-section .home-about-header {
+        margin-bottom: 20px;
     }
 
     header.home-about-section .home-about-title {
         margin: 0;
-        font-size: 40px;
+        font-size: 30px;
         text-align: center;
     }
 
     header.home-about-section .home-about-row {
         display: block;
         text-align: center;
-        gap: 0;
     }
 
     header.home-about-section .home-about-photo {
+        width: 160px;
+        height: 160px;
         margin: 0 auto 24px;
     }
 
