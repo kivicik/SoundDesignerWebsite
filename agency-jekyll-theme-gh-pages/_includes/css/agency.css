@@ -244,6 +244,23 @@ fieldset[disabled] .btn-xl.active {
     background-color: #{{ site.data.template.color.secondary }};
 }
 
+@media(max-width:767px) {
+    .navbar-default .navbar-header {
+        text-align: center;
+    }
+
+    .navbar-default .navbar-brand {
+        float: none;
+        display: inline-block;
+    }
+
+    .navbar-default .navbar-toggle {
+        position: absolute;
+        right: 15px;
+        top: 12px;
+    }
+}
+
 @media(min-width:768px) {
     .navbar-default {
         padding: 25px 0;
@@ -255,6 +272,8 @@ fieldset[disabled] .btn-xl.active {
     }
 
     .navbar-default .navbar-brand {
+        width: 33.33%;
+        text-align: center;
         font-size: 2em;
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
