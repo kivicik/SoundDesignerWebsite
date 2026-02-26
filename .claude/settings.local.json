@@ -5,7 +5,10 @@
       "Bash(node -e \":*)",
       "Bash(git add _includes/css/agency.css _config.yml)",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(gh run list --limit 3)",
+      "Bash(curl -s \"https://api.github.com/repos/kivicik/SoundDesignerWebsite/pages\")",
+      "Bash(curl -s \"https://kivancnadir.com/style.css\")"
     ]
   }
 }
