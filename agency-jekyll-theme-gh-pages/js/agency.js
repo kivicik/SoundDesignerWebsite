@@ -283,7 +283,7 @@ if (window.jQuery) {
         });
     }, {
         threshold: 0.15,
-        rootMargin: '0px 0px -10% 0px'
+        rootMargin: '0px 0px 100px 0px'
     });
 
     window.requestAnimationFrame(function() {
@@ -317,7 +317,7 @@ if (window.jQuery) {
                 sectionRevealMap.forEach(function(_, section) {
                     revealSection(section);
                 });
-            }, 2200);
+            }, 500);
         });
     });
 })();
