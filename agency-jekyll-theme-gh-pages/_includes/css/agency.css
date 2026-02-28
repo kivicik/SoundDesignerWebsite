@@ -1210,8 +1210,8 @@ footer {
 footer .container {
     width: 100%;
     max-width: 860px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
 }
 
 footer .row {
