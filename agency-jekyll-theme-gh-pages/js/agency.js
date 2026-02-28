@@ -283,7 +283,7 @@ if (window.jQuery) {
         });
     }, {
         threshold: 0.15,
-        rootMargin: '0px 0px 100px 0px'
+        rootMargin: '0px 0px 0px 0px'
     });
 
     window.requestAnimationFrame(function() {
