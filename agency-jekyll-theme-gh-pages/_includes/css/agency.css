@@ -1262,19 +1262,30 @@ footer ul.social-buttons {
     justify-content: flex-end;
 }
 
+footer ul.social-buttons li {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 ul.social-buttons li a {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 100%;
     font-size: 20px;
-    line-height: 42px;
+    line-height: 1;
     outline: 0;
     color: #fff;
     background-color: #222;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
+}
+
+ul.social-buttons li a .fa {
+    line-height: 1;
 }
 
 ul.social-buttons li a:hover,
