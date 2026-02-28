@@ -1207,9 +1207,24 @@ footer {
     border-top: 1px solid rgba(34,34,34,.08);
 }
 
+footer .container {
+    width: 100%;
+    max-width: 860px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 footer .row {
     display: flex;
     align-items: center;
+}
+
+footer .col-md-6:first-child {
+    text-align: left;
+}
+
+footer .col-md-6:last-child {
+    text-align: right;
 }
 
 footer span.copyright {
@@ -1269,8 +1284,18 @@ ul.social-buttons li a:active {
 }
 
 @media(max-width:991px) {
+    footer .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     footer .row {
         display: block;
+    }
+
+    footer .col-md-6:first-child,
+    footer .col-md-6:last-child {
+        text-align: center;
     }
 }
 
