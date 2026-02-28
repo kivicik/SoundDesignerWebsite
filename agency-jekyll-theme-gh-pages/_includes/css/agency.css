@@ -244,16 +244,6 @@ fieldset[disabled] .btn-xl.active {
     background-color: #{{ site.data.template.color.secondary }};
 }
 
-@media(max-width:767px) {
-    .navbar-default .navbar-brand {
-        position: absolute !important;
-        left: 0 !important;
-        right: 0 !important;
-        text-align: center !important;
-        float: none !important;
-    }
-}
-
 @media(min-width:768px) {
     .navbar-default {
         padding: 25px 0;
@@ -382,10 +372,10 @@ header.home-about-section .home-about-photo {
 
 header.home-about-section .home-about-copy {
     text-align: left;
+    padding-left: 30px;
 }
 
 header.home-about-section .home-about-description {
-    max-width: 780px;
     margin: 0 0 20px;
     line-height: 1.78;
     font-size: 15px;
@@ -424,13 +414,14 @@ header.home-about-section p {
     }
 
     header.home-about-section .home-about-photo {
-        width: 160px;
-        height: 160px;
+        width: 120px;
+        height: 120px;
         margin: 0 auto 24px;
     }
 
     header.home-about-section .home-about-copy {
         text-align: center;
+        padding-left: 0;
     }
 
     header.home-about-section .home-about-description {
@@ -1252,6 +1243,10 @@ ul.social-buttons {
     justify-content: center;
 }
 
+footer ul.social-buttons {
+    justify-content: flex-end;
+}
+
 ul.social-buttons li a {
     display: block;
     width: 40px;
@@ -1549,7 +1544,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 1030;
-    background-color: rgba(48, 52, 59, 0.92);
+    background-color: rgb(48, 52, 59);
 }
 
 @media (min-width: 768px) {
@@ -1834,12 +1829,3 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
     background: #fff;
 }
 
-
-
-/* Align navbar brand over first column (matches photo + Services icon) */
-@media (min-width: 768px) {
-    .navbar-default .navbar-header {
-        flex: 0 0 33.33% !important;
-        justify-content: center !important;
-    }
-}

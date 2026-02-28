@@ -1251,6 +1251,10 @@ ul.social-buttons {
     justify-content: center;
 }
 
+footer ul.social-buttons {
+    justify-content: flex-end;
+}
+
 ul.social-buttons li a {
     display: block;
     width: 40px;
