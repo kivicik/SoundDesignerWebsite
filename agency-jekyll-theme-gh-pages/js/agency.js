@@ -21,8 +21,6 @@
     var links = Array.prototype.slice.call(document.querySelectorAll('.navbar-default .nav li:not(.hidden) a.page-scroll'));
     var nav = document.querySelector('.navbar-default');
     if (!links.length || !nav) return;
-    var CENTER_BAND_TOP_RATIO = 0.35;
-    var CENTER_BAND_BOTTOM_RATIO = 0.65;
     var headerSection = document.querySelector('header');
     var homeLink = links.find(function(link) { return link.getAttribute('href') === '#page-top'; }) || null;
     var sectionLinks = links.map(function(link) {
@@ -56,32 +54,31 @@
         link.style.borderRadius = '3px';
     }
 
-    function overlapLength(rect, top, bottom) {
-        return Math.max(0, Math.min(rect.bottom, bottom) - Math.max(rect.top, top));
-    }
-
     function updateActiveNav() {
         var activeLink = homeLink || links[0] || null;
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
-        var bandTop = window.innerHeight * CENTER_BAND_TOP_RATIO;
-        var bandBottom = window.innerHeight * CENTER_BAND_BOTTOM_RATIO;
-        var bestOverlap = -1;
+        var marker = navHeight() + 8;
+        var bestTop = -Infinity;
 
         if (homeLink && headerSection) {
-            var headerOverlap = overlapLength(headerSection.getBoundingClientRect(), bandTop, bandBottom);
-            if (headerOverlap > bestOverlap) {
-                bestOverlap = headerOverlap;
+            var headerTop = headerSection.getBoundingClientRect().top;
+            if (headerTop <= marker && headerTop > bestTop) {
+                bestTop = headerTop;
                 activeLink = homeLink;
             }
         }
 
         sectionLinks.forEach(function(item) {
-            var sectionOverlap = overlapLength(item.section.getBoundingClientRect(), bandTop, bandBottom);
-            if (sectionOverlap >= bestOverlap) {
-                bestOverlap = sectionOverlap;
+            var sectionTop = item.section.getBoundingClientRect().top;
+            if (sectionTop <= marker && sectionTop > bestTop) {
+                bestTop = sectionTop;
                 activeLink = item.link;
             }
         });
+
+        if (bestTop === -Infinity && sectionLinks.length) {
+            activeLink = sectionLinks[0].link;
+        }
 
         if (nearBottom) {
             var lastLink = (sectionLinks.length ? sectionLinks[sectionLinks.length - 1].link : links[links.length - 1]);
