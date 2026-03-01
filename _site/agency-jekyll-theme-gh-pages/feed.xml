@@ -5,9 +5,22 @@
     <description>Sound Designer &amp; Composer for video games. Based in Toronto, Canada.</description>
     <link>https://kivancnadir.com/</link>
     <atom:link href="https://kivancnadir.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Feb 2026 20:28:51 -0500</pubDate>
-    <lastBuildDate>Sat, 28 Feb 2026 20:28:51 -0500</lastBuildDate>
+    <pubDate>Sun, 01 Mar 2026 15:30:56 -0500</pubDate>
+    <lastBuildDate>Sun, 01 Mar 2026 15:30:56 -0500</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>Zenmaster</title>
+        <description>
+</description>
+        <pubDate>Tue, 29 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/portfolio/zenmaster/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/portfolio/zenmaster/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
     
       <item>
         <title>Pawtion Panic</title>
@@ -120,19 +133,6 @@
         <pubDate>Sun, 20 Jul 2014 00:00:00 -0400</pubDate>
         <link>https://kivancnadir.com/portfolio/escape-ii/</link>
         <guid isPermaLink="true">https://kivancnadir.com/portfolio/escape-ii/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Dreams ASD II</title>
-        <description>
-</description>
-        <pubDate>Sat, 19 Jul 2014 00:00:00 -0400</pubDate>
-        <link>https://kivancnadir.com/portfolio/dreams-asd-ii/</link>
-        <guid isPermaLink="true">https://kivancnadir.com/portfolio/dreams-asd-ii/</guid>
         
         
         <category>Web Development</category>
