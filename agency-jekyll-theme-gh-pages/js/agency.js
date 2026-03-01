@@ -217,17 +217,27 @@ if (window.jQuery) {
 }
 
 (function() {
+    var homeTargets = Array.prototype.slice.call(
+        document.querySelectorAll(
+            'header#home *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
+        )
+    );
     var priorityTargets = Array.prototype.slice.call(
         document.querySelectorAll(
             '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a'
         )
-    );
+    ).concat(homeTargets);
     var contentTargets = Array.prototype.slice.call(
         document.querySelectorAll(
             'section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
         )
     );
-    var targets = priorityTargets.concat(contentTargets);
+    var seenTargets = new Set();
+    var targets = priorityTargets.concat(contentTargets).filter(function(el) {
+        if (seenTargets.has(el)) return false;
+        seenTargets.add(el);
+        return true;
+    });
     if (!targets.length) return;
 
     function reveal(el) {
