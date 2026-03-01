@@ -1519,6 +1519,12 @@ html {
     object-position: 50% center;
 }
 
+#portfolio .portfolio-item .portfolio-link img[src*="zenmaster.jpg"] {
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    background-color: #0b0f14;
+}
+
 #portfolio .portfolio-item .portfolio-caption-link {
     display: block;
     color: inherit;
