@@ -1,6 +1,6 @@
 url: https://kivancnadir.com
 baseurl: ""
-asset_version: "20260301a"
+asset_version: "20260301b"
 
 # Site settings
 title: Kivanc Nadir - Sound Designer & Composer
@@ -57,6 +57,5 @@ address:
 markdown: kramdown
 permalink: pretty
 destination: ../_site/agency-jekyll-theme-gh-pages
-
 
 
