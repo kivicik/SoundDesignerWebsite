@@ -5,12 +5,11 @@ layout: default
 modal-id: 17
 date: 2014-07-29
 permalink: /portfolio/zenmaster/
-img: "zenmaster.jpg"
-thumbnail: "zenmaster.jpg"
+img: "zenmaster.png"
+thumbnail: "zenmaster.png"
 alt: Zenmaster
 project-date: 2026
 client: Kivan
 category: Sound Design
 description: Sound design and implementation work for Zenmaster.
 ---
-

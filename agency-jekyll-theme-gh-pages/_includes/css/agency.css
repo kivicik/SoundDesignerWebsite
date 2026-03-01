@@ -1511,18 +1511,6 @@ html {
     object-position: 50% center;
 }
 
-#portfolio .portfolio-item .portfolio-link img[src*="zenmaster.jpg"] {
-    object-fit: cover !important;
-    object-position: center 100% !important;
-    transform: scale(1.1);
-    transform-origin: center bottom;
-}
-
-#portfolio .portfolio-item .portfolio-link:hover img[src*="zenmaster.jpg"],
-#portfolio .portfolio-item .portfolio-link:focus img[src*="zenmaster.jpg"] {
-    transform: scale(1.1);
-}
-
 #portfolio .portfolio-item .portfolio-caption-link {
     display: block;
     color: inherit;
