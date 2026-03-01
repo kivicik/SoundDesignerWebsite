@@ -305,7 +305,7 @@ if (window.jQuery) {
             var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
             if (!trigger) { revealSection(section); return; }
             var rect = trigger.getBoundingClientRect();
-            var isVisible = rect.top < window.innerHeight + 100 && rect.bottom > (navH + 8);
+            var isVisible = rect.top < window.innerHeight && rect.bottom > (navH + 8);
             if (isVisible) {
                 revealSection(section);
             } else {
@@ -327,12 +327,6 @@ if (window.jQuery) {
                 sectionObserver.observe(item.trigger);
             });
 
-            // Failsafe: never leave sections hidden if an observer condition is missed.
-            window.setTimeout(function() {
-                sectionRevealMap.forEach(function(_, section) {
-                    revealSection(section);
-                });
-            }, 500);
         });
     });
 })();
