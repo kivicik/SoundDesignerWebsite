@@ -1520,6 +1520,11 @@ html {
     object-position: center bottom;
 }
 
+#portfolio .portfolio-item .portfolio-link img[src*="Reincarnation.jpg"],
+#portfolio .portfolio-item .portfolio-link img[src*="reincarnation.jpg"] {
+    object-position: 38% center;
+}
+
 #portfolio .portfolio-item .portfolio-caption-link {
     display: block;
     color: inherit;
