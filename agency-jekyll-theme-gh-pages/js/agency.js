@@ -287,7 +287,25 @@ if (window.jQuery) {
     });
 
     window.requestAnimationFrame(function() {
+        // Reveal sections already visible in the viewport instantly, before transitions are enabled.
+        var navEl = document.querySelector('.navbar-default');
+        var navH = navEl ? navEl.getBoundingClientRect().height : 0;
+        var sectionsToObserve = [];
+        sectionRevealMap.forEach(function(_, section) {
+            var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
+            if (!trigger) { revealSection(section); return; }
+            var rect = trigger.getBoundingClientRect();
+            var isVisible = rect.top < window.innerHeight && rect.bottom > (navH + 8);
+            if (isVisible) {
+                revealSection(section);
+            } else {
+                sectionsToObserve.push({ section: section, trigger: trigger });
+            }
+        });
+
+        // Now enable transitions for animated (scroll-triggered) reveals.
         document.body.classList.add('reveal-ready');
+
         window.requestAnimationFrame(function() {
             priorityTargets.forEach(function(el) {
                 var isHeader = el.matches('header') || !!el.closest('header');
@@ -295,24 +313,11 @@ if (window.jQuery) {
                 reveal(el);
             });
 
-            sectionRevealMap.forEach(function(_, section) {
-                var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
-                if (!trigger) {
-                    revealSection(section);
-                    return;
-                }
-                var rect = trigger.getBoundingClientRect();
-                var nav = document.querySelector('.navbar-default');
-                var navOffset = nav ? nav.getBoundingClientRect().height : 0;
-                var isVisibleEnough = rect.top < window.innerHeight * 0.9 && rect.bottom > (navOffset + 8);
-                if (isVisibleEnough) {
-                    revealSection(section);
-                    return;
-                }
-                sectionObserver.observe(trigger);
+            sectionsToObserve.forEach(function(item) {
+                sectionObserver.observe(item.trigger);
             });
 
-            // Failsafe: never leave desktop sections hidden if an observer condition is missed.
+            // Failsafe: never leave sections hidden if an observer condition is missed.
             window.setTimeout(function() {
                 sectionRevealMap.forEach(function(_, section) {
                     revealSection(section);
