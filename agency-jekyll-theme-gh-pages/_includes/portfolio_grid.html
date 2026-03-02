@@ -8,7 +8,11 @@
                 </div>
             </div>
             <div class="row">
-            {% for post in site.posts %}
+            {% assign ordered_modal_ids = "17,4,3,13,6,10,2,11,9,7,5,8,1,12,16,15,14" | split: "," %}
+            {% for modal_id in ordered_modal_ids %}
+                {% assign modal_id_number = modal_id | plus: 0 %}
+                {% assign post = site.posts | where: "modal-id", modal_id_number | first %}
+                {% if post %}
                 {% assign thumb_file = post.thumbnail | uri_escape %}
                 {% assign thumb_asset = '/img/portfolio/' | append: thumb_file %}
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -21,6 +25,7 @@
                         <img src="{{ thumb_asset | relative_url }}" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ thumb_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ thumb_file }}';return;}this.onerror=null;">
                     </button>
                 </div>
+                {% endif %}
             {% endfor %}
             </div>
         </div>
