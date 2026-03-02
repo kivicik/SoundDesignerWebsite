@@ -331,6 +331,51 @@ if (window.jQuery) {
     });
 })();
 
+// Enforce portfolio card order across prebuilt pages that may contain stale HTML order.
+(function() {
+    var desiredOrder = ['17', '4', '3', '13', '6', '10', '2', '11', '9', '7', '5', '8', '1', '12', '16', '15', '14'];
+
+    function getModalId(item) {
+        var trigger = item.querySelector('.portfolio-link');
+        if (!trigger) return null;
+        var target = trigger.getAttribute('data-target') || trigger.getAttribute('href') || '';
+        var match = target.match(/portfolioModal(\d+)/i);
+        return match ? match[1] : null;
+    }
+
+    function applyPortfolioOrder() {
+        var items = Array.prototype.slice.call(document.querySelectorAll('#portfolio .portfolio-item'));
+        if (!items.length) return;
+
+        var container = items[0].parentElement;
+        if (!container) return;
+
+        var idToItem = {};
+        items.forEach(function(item) {
+            var id = getModalId(item);
+            if (!id) return;
+            idToItem[id] = item;
+        });
+
+        var used = {};
+        desiredOrder.forEach(function(id) {
+            var item = idToItem[id];
+            if (!item) return;
+            used[id] = true;
+            container.appendChild(item);
+        });
+
+        items.forEach(function(item) {
+            var id = getModalId(item);
+            if (id && used[id]) return;
+            container.appendChild(item);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', applyPortfolioOrder);
+    window.addEventListener('load', applyPortfolioOrder);
+})();
+
 // Save/load editable portfolio modal content in localStorage.
 (function() {
     var modals = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal'));
