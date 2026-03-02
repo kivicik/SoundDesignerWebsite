@@ -129,7 +129,7 @@
 
 // Enforce portfolio card order across prebuilt pages that may contain stale HTML order.
 (function() {
-    var desiredOrder = ['17', '4', '3', '18', '13', '6', '10', '2', '11', '9', '7', '5', '8', '1', '12', '16', '15', '14'];
+    var desiredOrder = ['17', '4', '3', '13', '18', '2', '6', '10', '5', '8', '11', '9', '7', '1', '12', '16', '15', '14'];
 
     function getModalId(item) {
         var trigger = item.querySelector('.portfolio-link');
