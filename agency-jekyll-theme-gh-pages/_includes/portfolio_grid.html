@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="row">
-            {% assign ordered_modal_ids = "17,4,3,13,6,10,2,11,9,7,5,8,1,12,16,15,14" | split: "," %}
+            {% assign ordered_modal_ids = "17,4,3,18,13,6,10,2,11,9,7,5,8,1,12,16,15,14" | split: "," %}
             {% for modal_id in ordered_modal_ids %}
                 {% assign modal_id_number = modal_id | plus: 0 %}
                 {% assign post = site.posts | where: "modal-id", modal_id_number | first %}

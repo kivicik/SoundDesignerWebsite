@@ -5,9 +5,22 @@
     <description>Sound Designer &amp; Composer for video games. Based in Toronto, Canada.</description>
     <link>https://kivancnadir.com/</link>
     <atom:link href="https://kivancnadir.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 01 Mar 2026 15:56:54 -0500</pubDate>
-    <lastBuildDate>Sun, 01 Mar 2026 15:56:54 -0500</lastBuildDate>
+    <pubDate>Mon, 02 Mar 2026 00:59:09 -0500</pubDate>
+    <lastBuildDate>Mon, 02 Mar 2026 00:59:09 -0500</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      <item>
+        <title>Home Match 3D: Makeover Design</title>
+        <description>
+</description>
+        <pubDate>Wed, 30 Jul 2014 00:00:00 -0400</pubDate>
+        <link>https://kivancnadir.com/portfolio/home-match-3d/</link>
+        <guid isPermaLink="true">https://kivancnadir.com/portfolio/home-match-3d/</guid>
+        
+        
+        <category>Sound Design</category>
+        
+      </item>
     
       <item>
         <title>Zenmaster</title>
@@ -120,19 +133,6 @@
         <pubDate>Mon, 21 Jul 2014 00:00:00 -0400</pubDate>
         <link>https://kivancnadir.com/portfolio/golden-ii/</link>
         <guid isPermaLink="true">https://kivancnadir.com/portfolio/golden-ii/</guid>
-        
-        
-        <category>Web Development</category>
-        
-      </item>
-    
-      <item>
-        <title>Escape II</title>
-        <description>
-</description>
-        <pubDate>Sun, 20 Jul 2014 00:00:00 -0400</pubDate>
-        <link>https://kivancnadir.com/portfolio/escape-ii/</link>
-        <guid isPermaLink="true">https://kivancnadir.com/portfolio/escape-ii/</guid>
         
         
         <category>Web Development</category>
