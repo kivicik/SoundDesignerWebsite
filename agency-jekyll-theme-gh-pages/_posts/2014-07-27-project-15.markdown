@@ -1,4 +1,4 @@
-﻿---
+---
 title: RollThePattern
 subtitle: Game Audio
 layout: default
@@ -8,8 +8,9 @@ permalink: /portfolio/rollthepattern/
 img: RollThePattern.jpg
 thumbnail: RollThePattern.jpg
 alt: RollThePattern
-project-date: 2024
-client: Red Axe Games
-category: Sound Design
+project-date: "2024-2025"
+client: Narcade
+category: "Sound Design, Middleware Integration"
 description: Sound design and implementation work for RollThePattern.
 ---
+
