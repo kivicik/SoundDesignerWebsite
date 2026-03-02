@@ -57,7 +57,7 @@
     function updateActiveNav() {
         var activeLink = homeLink || links[0] || null;
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
-        var marker = navHeight() + 8;
+        var marker = Math.max(navHeight() + 8, window.innerHeight * 0.45);
         var bestTop = -Infinity;
 
         if (homeLink && headerSection) {
