@@ -1,5 +1,5 @@
 ---
-title: Round Icons
+title: "Garden & Home: Design Game"
 subtitle: Graphic Design
 layout: default
 modal-id: 6

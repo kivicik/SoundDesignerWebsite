@@ -1,5 +1,5 @@
 ---
-title: Treehouse II
+title: "Royal Decor: Design & Makeover"
 subtitle: Website Design
 layout: default
 modal-id: 10
