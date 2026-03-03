@@ -1400,10 +1400,10 @@ ul.social-buttons li a:active {
 .portfolio-modal .item-details {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
     max-width: 560px;
-    margin: 10px auto 24px;
+    margin: 14px auto 30px;
     padding: 16px 22px;
     list-style: none;
     background: #f1f1f1;
@@ -1418,7 +1418,7 @@ ul.social-buttons li a:active {
     gap: 18px;
     line-height: 1.5;
     border-bottom: 1px dashed #c8c8c8;
-    padding: 4px 0;
+    padding: 6px 0;
 }
 
 .portfolio-modal .item-details li:last-child {
@@ -1440,18 +1440,18 @@ ul.social-buttons li a:active {
     display: block;
     width: 100%;
     max-width: 760px;
-    margin: 0 auto 26px;
+    margin: 0 auto 34px;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
 }
 
 .portfolio-modal .modal-reel-wrap {
-    --modal-reel-gap: 8px;
+    --modal-reel-gap: 12px;
     position: relative;
     width: 100%;
     max-width: 760px;
-    margin: 10px auto 0;
+    margin: 16px auto 0;
 }
 
 .portfolio-modal .modal-reel {
@@ -1606,7 +1606,7 @@ ul.social-buttons li a:active {
 
 @media(max-width: 767px) {
     .portfolio-modal .modal-reel-wrap {
-        --modal-reel-gap: 6px;
+        --modal-reel-gap: 8px;
         margin-top: 8px;
     }
 
