@@ -1460,6 +1460,11 @@ ul.social-buttons li a:active {
     z-index: 2;
 }
 
+.portfolio-modal .modal-reel-edge span {
+    display: block;
+    transform: translateY(-4px);
+}
+
 .portfolio-modal .modal-reel-edge-left {
     left: 2px;
     background: linear-gradient(to right, rgba(20, 20, 20, 0.58) 0%, rgba(20, 20, 20, 0.26) 62%, rgba(20, 20, 20, 0) 100%);
@@ -1574,6 +1579,10 @@ ul.social-buttons li a:active {
     .portfolio-modal .modal-reel-edge {
         width: 70px;
         font-size: 46px;
+    }
+
+    .portfolio-modal .modal-reel-edge span {
+        transform: translateY(-3px);
     }
 
     .portfolio-modal .close-modal {
