@@ -1,5 +1,5 @@
 ---
-title: RollThePattern
+title: "Roll The Pattern"
 subtitle: Game Audio
 layout: default
 modal-id: 15
@@ -7,14 +7,14 @@ date: 2014-07-27
 permalink: /portfolio/rollthepattern/
 img: RollThePattern.jpg
 thumbnail: RollThePattern.jpg
-alt: RollThePattern
+alt: Roll The Pattern
 project-date: 2024-2025
 year: 2024-2025
 client: Narcade
 category: "Sound Design, Middleware Integration"
 service: Sound Design, Middleware Integration
 genre: Puzzle / Match-3
-description: Sound design and implementation work for RollThePattern.
+description: Sound design and implementation work for Roll The Pattern.
 ---
 
 
