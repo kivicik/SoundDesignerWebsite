@@ -1411,6 +1411,7 @@ ul.social-buttons li a:active {
 }
 
 .portfolio-modal .modal-reel-wrap {
+    --modal-reel-gap: 8px;
     position: relative;
     width: 100%;
     max-width: 760px;
@@ -1419,7 +1420,7 @@ ul.social-buttons li a:active {
 
 .portfolio-modal .modal-reel {
     display: flex;
-    gap: 8px;
+    gap: var(--modal-reel-gap);
     width: 100%;
     margin: 0 auto;
     padding: 2px 2px 4px;
@@ -1516,9 +1517,11 @@ ul.social-buttons li a:active {
 
 .portfolio-modal .close-modal {
     position: static;
-    display: inline-block;
-    width: auto;
-    height: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -1533,8 +1536,12 @@ ul.social-buttons li a:active {
 }
 
 .portfolio-modal .modal-dismiss-row {
-    margin-top: 6px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 760px;
+    margin: var(--modal-reel-gap) auto 0;
 }
 
 .portfolio-modal .close-modal:hover,
@@ -1548,11 +1555,12 @@ ul.social-buttons li a:active {
 
 @media(max-width: 767px) {
     .portfolio-modal .modal-reel-wrap {
+        --modal-reel-gap: 6px;
         margin-top: 8px;
     }
 
     .portfolio-modal .modal-reel {
-        gap: 6px;
+        gap: var(--modal-reel-gap);
     }
 
     .portfolio-modal .modal-reel-btn {
