@@ -321,9 +321,16 @@ if (window.jQuery) {
     function bindModalReelEdgeScroll() {
         var reels = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal .modal-reel'));
         reels.forEach(function(reel) {
-            if (!reel || reel.dataset.edgeScrollBound === '1') return;
-            reel.dataset.edgeScrollBound = '1';
+            if (!reel) return;
             var wrapper = reel.closest('.modal-reel-wrap');
+
+            if (reel.dataset.edgeScrollBound === '1') {
+                if (typeof reel.__updateEdgeState === 'function') {
+                    reel.__updateEdgeState(null);
+                }
+                return;
+            }
+            reel.dataset.edgeScrollBound = '1';
 
             var direction = 0;
             var rafId = 0;
@@ -349,6 +356,8 @@ if (window.jQuery) {
                 wrapper.classList.toggle('edge-hover-left', hoverLeft);
                 wrapper.classList.toggle('edge-hover-right', hoverRight);
             }
+
+            reel.__updateEdgeState = updateEdgeState;
 
             function stopScroll() {
                 direction = 0;
