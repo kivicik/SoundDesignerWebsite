@@ -325,6 +325,9 @@ if (window.jQuery) {
             var wrapper = reel.closest('.modal-reel-wrap');
 
             if (reel.dataset.edgeScrollBound === '1') {
+                if (typeof reel.__centerActiveReelItem === 'function') {
+                    reel.__centerActiveReelItem();
+                }
                 if (typeof reel.__updateEdgeState === 'function') {
                     reel.__updateEdgeState(null);
                 }
@@ -336,6 +339,17 @@ if (window.jQuery) {
             var rafId = 0;
             var speed = 8;
             var lastMouseX = null;
+
+            function centerActiveReelItem() {
+                if (!reel.clientWidth) return;
+                var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
+                if (!activeBtn) return;
+
+                var targetLeft = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (reel.clientWidth / 2);
+                var maxLeft = Math.max(0, reel.scrollWidth - reel.clientWidth);
+                var clampedLeft = Math.max(0, Math.min(maxLeft, targetLeft));
+                reel.scrollLeft = clampedLeft;
+            }
 
             function getEdgeSize() {
                 var firstThumb = reel.querySelector('.modal-reel-btn');
@@ -358,6 +372,7 @@ if (window.jQuery) {
             }
 
             reel.__updateEdgeState = updateEdgeState;
+            reel.__centerActiveReelItem = centerActiveReelItem;
 
             function stopScroll() {
                 direction = 0;
@@ -436,9 +451,11 @@ if (window.jQuery) {
                 updateEdgeState(lastMouseX);
             }, { passive: true });
             window.addEventListener('resize', function() {
+                centerActiveReelItem();
                 updateEdgeState(lastMouseX);
             });
 
+            centerActiveReelItem();
             updateEdgeState(null);
         });
     }
