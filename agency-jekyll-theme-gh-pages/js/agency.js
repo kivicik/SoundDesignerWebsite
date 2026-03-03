@@ -244,14 +244,13 @@ if (window.jQuery) {
         var modalEl = modal && modal.length ? modal : window.jQuery(modal);
         if (!modalEl || !modalEl.length) return;
 
-        var modalId = modalEl.attr('id');
+        var modalId = getModalIdFromTarget('#' + (modalEl.attr('id') || ''));
         if (!modalId) return;
 
-        var targetSelector = '#' + modalId;
         modalEl.find('.modal-reel-btn').each(function() {
             var button = window.jQuery(this);
-            var buttonTarget = button.data('target');
-            button.toggleClass('is-active', buttonTarget === targetSelector);
+            var buttonId = getModalIdFromTarget(button.attr('data-target'));
+            button.toggleClass('is-active', buttonId === modalId);
         });
     }
 
@@ -275,8 +274,18 @@ if (window.jQuery) {
         e.preventDefault();
         var modal = window.jQuery(target);
         if (!modal.length) return;
+        syncModalReelActive(modal);
         modal.modal('show');
         clearModalHash();
+    });
+
+    // Keep reel emphasis correct when opening a modal from the portfolio grid buttons.
+    window.jQuery(document).on('click', 'button.portfolio-link[data-target^="#portfolioModal"]', function() {
+        var target = this.getAttribute('data-target');
+        if (!/^#portfolioModal/i.test(target || '')) return;
+        var modal = window.jQuery(target);
+        if (!modal.length) return;
+        syncModalReelActive(modal);
     });
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
