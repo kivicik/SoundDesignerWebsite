@@ -8,10 +8,15 @@ permalink: /portfolio/pawtion-panic/
 img: "PAWTION PANIC.png"
 thumbnail: "PAWTION PANIC.png"
 alt: Pawtion Panic
-project-date: "2024-2025"
+project-date: 2024-2025
+year: 2024-2025
 client: Narcade
 category: "Sound Design, Middleware Integration"
+service: Sound Design, Middleware Integration
+genre: Puzzle / Match-3
 description: Sound design and implementation work for Pawtion Panic.
 ---
+
+
 
 

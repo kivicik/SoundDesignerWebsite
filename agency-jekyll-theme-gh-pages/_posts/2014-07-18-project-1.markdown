@@ -8,9 +8,12 @@ permalink: /portfolio/dreams-asd/
 img: beatpunk.png
 thumbnail: beatpunk.png
 alt: image-alt
-project-date: "2024-2025"
+project-date: 2024-2025
+year: 2024-2025
 client: Narcade
 category: "Sound Design, Middleware Integration"
+service: Sound Design, Middleware Integration
+genre: Puzzle / Match-3
 description: >-
   One of my past projects, Beatpunk, explored the intersection of gameplay and
   music composition. It was a bullet heaven game built around a 4-bar looping
@@ -22,6 +25,8 @@ description: >-
   a system where music wasn't just background - it was the combat system.
 
 ---
+
+
 
 
 

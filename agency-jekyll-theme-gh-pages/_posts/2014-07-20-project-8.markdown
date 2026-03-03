@@ -8,12 +8,17 @@ permalink: /portfolio/escape-ii/
 img: match-land.jpg
 thumbnail: match-land.jpg
 alt: image-alt
-project-date: "2024-2025"
+project-date: 2024-2025
+year: 2024-2025
 client: Narcade
 category: "Sound Design, Middleware Integration"
+service: Sound Design, Middleware Integration
+genre: Puzzle / Match-3
 description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
 
 ---
+
+
 
 
 
