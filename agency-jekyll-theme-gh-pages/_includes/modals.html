@@ -4,7 +4,7 @@
  {% for post in site.posts %}
     {% assign modal_img_file = post.img | uri_escape %}
     {% assign modal_img_asset = '/img/portfolio/' | append: modal_img_file %}
-    <div class="portfolio-modal modal fade{% if modal_editable %} is-editable{% endif %}" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade{% if modal_editable %} is-editable{% endif %}" id="portfolioModal{{ post.modal-id }}" data-post-url="{{ post.url | relative_url }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="container">
                 <div class="row">

@@ -4,7 +4,7 @@ subtitle: Game Audio
 layout: default
 modal-id: 13
 date: 2014-07-25
-permalink: /portfolio/farm-match/
+permalink: /portfolio/farm-game-match-3-puzzle/
 img: FarmMatch.jpg
 thumbnail: FarmMatch.jpg
 alt: Farm Match

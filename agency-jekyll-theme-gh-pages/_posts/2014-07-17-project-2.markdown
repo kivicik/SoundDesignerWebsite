@@ -4,7 +4,7 @@ subtitle: Website Design
 layout: default
 modal-id: 2
 date: 2014-07-17
-permalink: /portfolio/escape/
+permalink: /portfolio/christmas-match-3d/
 img: christmas-3d.jpg
 thumbnail: christmas-3d.jpg
 alt: image-alt

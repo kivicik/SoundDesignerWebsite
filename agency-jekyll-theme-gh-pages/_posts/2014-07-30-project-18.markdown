@@ -4,7 +4,7 @@ subtitle: Game Audio
 layout: default
 modal-id: 18
 date: 2014-07-30
-permalink: /portfolio/home-match-3d/
+permalink: /portfolio/home-match-3d-makeover-design/
 img: home3d.png
 thumbnail: home3d.png
 alt: "Home Match 3D: Makeover Design"

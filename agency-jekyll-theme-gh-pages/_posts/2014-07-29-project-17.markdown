@@ -4,7 +4,7 @@ subtitle: Game Audio
 layout: default
 modal-id: 17
 date: 2014-07-29
-permalink: /portfolio/zenmaster/
+permalink: /portfolio/zen-master-design-relax/
 img: "zenmaster.png"
 thumbnail: "zenmaster.png"
 alt: Zenmaster

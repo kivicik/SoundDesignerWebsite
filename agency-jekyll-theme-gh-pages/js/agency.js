@@ -198,6 +198,35 @@ if (window.jQuery) {
         return match ? match[1] : null;
     }
 
+    var modalOriginUrl = null;
+    var isModalSwitching = false;
+
+    function getCurrentUrl() {
+        return window.location.pathname + window.location.search + window.location.hash;
+    }
+
+    function captureModalOriginUrl() {
+        if (modalOriginUrl !== null) return;
+        modalOriginUrl = getCurrentUrl();
+    }
+
+    function updateUrlForModal(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        var postUrl = modalEl.attr('data-post-url');
+        if (!postUrl || !window.history || !window.history.replaceState) return;
+        window.history.replaceState(null, document.title, postUrl);
+    }
+
+    function restoreModalOriginUrl() {
+        if (modalOriginUrl === null) return;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, document.title, modalOriginUrl);
+        }
+        modalOriginUrl = null;
+    }
+
     function reorderModalReels() {
         var desiredOrder = Array.isArray(window.__portfolioDesiredOrder) ? window.__portfolioDesiredOrder : [];
         if (!desiredOrder.length) return;
@@ -302,6 +331,7 @@ if (window.jQuery) {
         e.preventDefault();
         var modal = window.jQuery(target);
         if (!modal.length) return;
+        captureModalOriginUrl();
         syncModalReelActive(modal);
         modal.modal('show');
         clearModalHash();
@@ -313,16 +343,23 @@ if (window.jQuery) {
         if (!/^#portfolioModal/i.test(target || '')) return;
         var modal = window.jQuery(target);
         if (!modal.length) return;
+        captureModalOriginUrl();
         syncModalReelActive(modal);
     });
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
+        captureModalOriginUrl();
         clearModalHash();
+        updateUrlForModal(window.jQuery(this));
         scheduleModalReelCenter(window.jQuery(this));
     });
 
     window.jQuery('div.modal').on('hidden.bs.modal', function() {
         clearModalHash();
+        var anyModalOpen = window.jQuery('.portfolio-modal.in').length > 0;
+        if (!isModalSwitching && !anyModalOpen) {
+            restoreModalOriginUrl();
+        }
     });
 
     window.jQuery(function() {
@@ -358,6 +395,7 @@ if (window.jQuery) {
         var targetModal = window.jQuery(targetSelector);
         if (!targetModal.length) return;
 
+        isModalSwitching = true;
         var currentHadFade = currentModal.hasClass('fade');
         var targetHadFade = targetModal.hasClass('fade');
         if (currentHadFade) currentModal.removeClass('fade');
@@ -370,6 +408,7 @@ if (window.jQuery) {
                 if (currentHadFade) currentModal.addClass('fade');
                 if (targetHadFade) targetModal.addClass('fade');
                 clearModalHash();
+                isModalSwitching = false;
             });
             targetModal.modal('show');
             window.jQuery('body').addClass('modal-open');
