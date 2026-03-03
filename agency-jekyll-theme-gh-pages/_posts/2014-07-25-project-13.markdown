@@ -1,5 +1,5 @@
 ---
-title: Farm Match
+title: "Farm Game: Match 3 Puzzle"
 subtitle: Game Audio
 layout: default
 modal-id: 13

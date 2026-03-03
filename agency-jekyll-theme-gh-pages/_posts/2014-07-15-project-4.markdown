@@ -1,5 +1,5 @@
 ---
-title: Treehouse
+title: Dream Home Design
 subtitle: Website Design
 layout: default
 modal-id: 4

@@ -1,5 +1,5 @@
 ---
-title: Zenmaster
+title: "Zen Master: Design & Relax"
 subtitle: Game Audio
 layout: default
 modal-id: 17
