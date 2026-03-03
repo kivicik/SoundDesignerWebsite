@@ -1334,12 +1334,20 @@ ul.social-buttons li a:active {
 
 .portfolio-modal .modal-content h2 {
     margin: 0 auto 15px;
-    max-width: 860px;
-    font-size: clamp(34px, 4.2vw, 52px);
+    max-width: 760px;
+    font-size: clamp(24px, 2.8vw, 38px);
     font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: 0.4px;
+    line-height: 1.15;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
     text-transform: none;
+}
+
+@media (max-width: 767px) {
+    .portfolio-modal .modal-content h2 {
+        max-width: 100%;
+        white-space: normal;
+    }
 }
 
 .portfolio-modal .modal-content p {
