@@ -1,5 +1,5 @@
 ---
-title: Christmas Home Design Game
+title: Christmas Home Design
 subtitle: Website Design
 layout: default
 modal-id: 3
