@@ -306,7 +306,9 @@ if (window.jQuery) {
     });
 
     var sectionRevealMap = new Map();
+    var sectionTriggerMap = new Map();
     var revealedSections = new WeakSet();
+    var observedTriggers = new WeakSet();
 
     contentTargets.forEach(function(el) {
         var section = el.closest('section');
@@ -314,6 +316,11 @@ if (window.jQuery) {
         var list = sectionRevealMap.get(section) || [];
         list.push(el);
         sectionRevealMap.set(section, list);
+    });
+
+    sectionRevealMap.forEach(function(_, section) {
+        var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading') || section;
+        sectionTriggerMap.set(section, trigger);
     });
 
     function revealSection(section) {
@@ -324,37 +331,59 @@ if (window.jQuery) {
             el.style.transitionDelay = '180ms';
             reveal(el);
         });
+        var trigger = sectionTriggerMap.get(section);
+        if (trigger && observedTriggers.has(trigger)) {
+            sectionObserver.unobserve(trigger);
+        }
     }
 
     var sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;
-            var section = entry.target.closest('section');
+            var section = entry.target.closest('section') || entry.target;
             revealSection(section);
             sectionObserver.unobserve(entry.target);
         });
     }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px 0px 0px'
+        threshold: 0,
+        rootMargin: '0px 0px -8% 0px'
     });
 
-    window.requestAnimationFrame(function() {
-        // Reveal sections already visible in the viewport instantly, before transitions are enabled.
+    function navHeight() {
         var navEl = document.querySelector('.navbar-default');
-        var navH = navEl ? navEl.getBoundingClientRect().height : 0;
-        var sectionsToObserve = [];
+        return navEl ? navEl.getBoundingClientRect().height : 0;
+    }
+
+    function isSectionVisible(section) {
+        var rect = section.getBoundingClientRect();
+        var topOffset = navHeight() + 8;
+        return rect.top < window.innerHeight && rect.bottom > topOffset;
+    }
+
+    function syncVisibleSections() {
         sectionRevealMap.forEach(function(_, section) {
-            var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading');
-            if (!trigger) { revealSection(section); return; }
-            var rect = trigger.getBoundingClientRect();
-            var isVisible = rect.top < window.innerHeight && rect.bottom > (navH + 8);
-            if (isVisible) {
+            if (isSectionVisible(section)) {
                 revealSection(section);
-            } else {
-                sectionsToObserve.push({ section: section, trigger: trigger });
             }
         });
+    }
 
+    function observeHiddenSections() {
+        sectionRevealMap.forEach(function(_, section) {
+            if (revealedSections.has(section)) return;
+            var trigger = sectionTriggerMap.get(section) || section;
+            if (observedTriggers.has(trigger)) return;
+            observedTriggers.add(trigger);
+            sectionObserver.observe(trigger);
+        });
+    }
+
+    function runRevealPass() {
+        syncVisibleSections();
+        observeHiddenSections();
+    }
+
+    window.requestAnimationFrame(function() {
         // Now enable transitions for animated (scroll-triggered) reveals.
         document.body.classList.add('reveal-ready');
 
@@ -365,12 +394,16 @@ if (window.jQuery) {
                 reveal(el);
             });
 
-            sectionsToObserve.forEach(function(item) {
-                sectionObserver.observe(item.trigger);
-            });
-
+            runRevealPass();
         });
     });
+
+    // Handle refresh scroll restoration and late layout shifts without requiring manual scroll.
+    window.setTimeout(runRevealPass, 120);
+    window.setTimeout(runRevealPass, 450);
+    window.addEventListener('load', runRevealPass);
+    window.addEventListener('pageshow', runRevealPass);
+    window.addEventListener('resize', runRevealPass);
 })();
 
 

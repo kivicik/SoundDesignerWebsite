@@ -1,8 +1,10 @@
  <!-- Portfolio Modals -->
+ {% assign modal_editable = site.portfolio_editable_modals | default: false %}
+ {% assign show_modal_description = site.portfolio_show_description | default: false %}
  {% for post in site.posts %}
     {% assign modal_img_file = post.img | uri_escape %}
     {% assign modal_img_asset = '/img/portfolio/' | append: modal_img_file %}
-    <div class="portfolio-modal modal fade" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal modal fade{% if modal_editable %} is-editable{% endif %}" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -14,15 +16,37 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
+                            {% if modal_editable %}
+                            <h2 contenteditable="true">{{ post.title }}</h2>
+                            {% else %}
                             <h2>{{ post.title }}</h2>
+                            {% endif %}
                             <hr class="star-primary">
                             <img src="{{ modal_img_asset | relative_url }}" class="img-responsive img-centered" alt="{{ post.alt }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ modal_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ modal_img_file }}';return;}this.onerror=null;">
+                            {% if show_modal_description %}
+                            {% if modal_editable %}
+                            <p contenteditable="true">{{ post.description }}</p>
+                            {% else %}
                             <p>{{ post.description }}</p>
+                            {% endif %}
+                            {% endif %}
                             <ul class="item-details">
-                                <li><span class="meta-label">Developer:</span> <strong>{{ post.client }}</strong></li>
-                                <li><span class="meta-label">Year:</span> <strong>{{ post.year | default: post.project-date }}</strong></li>
-                                <li><span class="meta-label">Genre:</span> <strong>{{ post.genre | default: "Puzzle / Match-3" }}</strong></li>
-                                <li><span class="meta-label">Service:</span> <strong>{{ post.service | default: post.category }}</strong></li>
+                                <li>
+                                    <span class="meta-label">Developer:</span>
+                                    <strong>{% if modal_editable %}<span contenteditable="true">{{ post.client }}</span>{% else %}{{ post.client }}{% endif %}</strong>
+                                </li>
+                                <li>
+                                    <span class="meta-label">Year:</span>
+                                    <strong>{% if modal_editable %}<span contenteditable="true">{{ post.year | default: post.project-date }}</span>{% else %}{{ post.year | default: post.project-date }}{% endif %}</strong>
+                                </li>
+                                <li>
+                                    <span class="meta-label">Genre:</span>
+                                    <strong>{% if modal_editable %}<span contenteditable="true">{{ post.genre | default: "Puzzle / Match-3" }}</span>{% else %}{{ post.genre | default: "Puzzle / Match-3" }}{% endif %}</strong>
+                                </li>
+                                <li>
+                                    <span class="meta-label">Service:</span>
+                                    <strong>{% if modal_editable %}<span contenteditable="true">{{ post.service | default: post.category }}</span>{% else %}{{ post.service | default: post.category }}{% endif %}</strong>
+                                </li>
                             </ul>
                             <div class="modal-action-row">
                                 <button type="button" class="btn modal-close-btn" data-dismiss="modal">Close</button>

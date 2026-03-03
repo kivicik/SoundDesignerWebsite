@@ -1,6 +1,8 @@
 url: https://kivancnadir.com
 baseurl: ""
-asset_version: "20260303c"
+asset_version: "20260303f"
+portfolio_show_description: false
+portfolio_editable_modals: false
 
 # Site settings
 title: Kivanc Nadir - Sound Designer & Composer
