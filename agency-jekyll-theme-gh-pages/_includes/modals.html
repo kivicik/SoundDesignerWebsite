@@ -6,13 +6,13 @@
     {% assign modal_img_asset = '/img/portfolio/' | append: modal_img_file %}
     <div class="portfolio-modal modal fade{% if modal_editable %} is-editable{% endif %}" id="portfolioModal{{ post.modal-id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
-            <button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
+                            <button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                             {% if modal_editable %}
                             <h2 contenteditable="true">{{ post.title }}</h2>
                             {% else %}

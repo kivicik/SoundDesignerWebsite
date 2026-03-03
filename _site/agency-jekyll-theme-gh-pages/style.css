@@ -1412,42 +1412,49 @@ ul.social-buttons li a:active {
     margin-bottom: 30px;
 }
 
+.portfolio-modal .modal-body {
+    position: relative;
+}
+
 .portfolio-modal .close-modal {
     position: absolute;
-    top: 20px;
-    right: 22px;
-    width: 34px;
-    height: 34px;
+    top: -46px;
+    right: 0;
+    width: 30px;
+    height: 30px;
     padding: 0;
-    border: 0;
+    border: 1px solid #bdbdbd;
     border-radius: 999px;
-    color: #6b6b6b;
-    background: rgba(255, 255, 255, 0.74);
-    font-size: 26px;
-    font-weight: 400;
-    line-height: 34px;
-    text-align: center;
-    opacity: 0.75;
+    color: #4c4c4c;
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .portfolio-modal .close-modal:hover,
 .portfolio-modal .close-modal:focus {
-    color: #2f2f2f;
-    background: rgba(255, 255, 255, 0.9);
+    color: #222;
+    background: #fff;
     opacity: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     outline: none;
 }
 
 @media(max-width: 767px) {
     .portfolio-modal .close-modal {
-        top: 12px;
-        right: 12px;
-        width: 30px;
-        height: 30px;
-        font-size: 22px;
-        line-height: 30px;
+        top: -40px;
+        right: 4px;
+        width: 28px;
+        height: 28px;
+        font-size: 19px;
     }
 
     .portfolio-modal .item-details {
