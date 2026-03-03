@@ -1429,6 +1429,14 @@ ul.social-buttons li a:active {
     overflow-y: hidden;
     justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.portfolio-modal .modal-reel::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .portfolio-modal .modal-reel-btn {

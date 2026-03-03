@@ -262,6 +262,84 @@ if (window.jQuery) {
         currentModal.modal('hide');
     });
 
+    function bindModalReelEdgeScroll() {
+        var reels = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal .modal-reel'));
+        reels.forEach(function(reel) {
+            if (!reel || reel.dataset.edgeScrollBound === '1') return;
+            reel.dataset.edgeScrollBound = '1';
+
+            var direction = 0;
+            var rafId = 0;
+            var speed = 8;
+
+            function stopScroll() {
+                direction = 0;
+                if (rafId) {
+                    window.cancelAnimationFrame(rafId);
+                    rafId = 0;
+                }
+            }
+
+            function tick() {
+                if (!direction) {
+                    rafId = 0;
+                    return;
+                }
+                reel.scrollLeft += direction * speed;
+                rafId = window.requestAnimationFrame(tick);
+            }
+
+            function startScroll(nextDirection) {
+                if (direction === nextDirection) return;
+                direction = nextDirection;
+                if (!direction) {
+                    stopScroll();
+                    return;
+                }
+                if (!rafId) {
+                    rafId = window.requestAnimationFrame(tick);
+                }
+            }
+
+            reel.addEventListener('mousemove', function(event) {
+                if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+                    stopScroll();
+                    return;
+                }
+
+                var rect = reel.getBoundingClientRect();
+                var firstThumb = reel.querySelector('.modal-reel-btn');
+                var edgeSize = firstThumb ? firstThumb.getBoundingClientRect().width : 84;
+                var x = event.clientX - rect.left;
+                var canScrollLeft = reel.scrollLeft > 0;
+                var canScrollRight = reel.scrollLeft + reel.clientWidth < reel.scrollWidth - 1;
+
+                if (x <= edgeSize && canScrollLeft) {
+                    startScroll(-1);
+                    return;
+                }
+                if (x >= rect.width - edgeSize && canScrollRight) {
+                    startScroll(1);
+                    return;
+                }
+                startScroll(0);
+            });
+
+            reel.addEventListener('mouseleave', stopScroll);
+            reel.addEventListener('wheel', stopScroll, { passive: true });
+            reel.addEventListener('click', stopScroll);
+            reel.addEventListener('touchstart', stopScroll, { passive: true });
+        });
+    }
+
+    window.jQuery(function() {
+        bindModalReelEdgeScroll();
+    });
+
+    window.jQuery('div.modal').on('shown.bs.modal', function() {
+        bindModalReelEdgeScroll();
+    });
+
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
     window.jQuery(function() {
         window.jQuery('#services .col-md-4').filter(function() {
