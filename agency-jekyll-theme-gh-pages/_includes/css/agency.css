@@ -1428,10 +1428,10 @@ ul.social-buttons li a:active {
     width: 84px;
     padding: 0;
     border: 1px solid #cfcfcf;
-    background: #efefef;
-    opacity: 0.72;
+    background: #fff;
+    opacity: 0.9;
     cursor: pointer;
-    transition: opacity 0.2s ease, border-color 0.2s ease;
+    transition: opacity 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
 }
 
 .portfolio-modal .modal-reel-btn img {
@@ -1440,18 +1440,26 @@ ul.social-buttons li a:active {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
+    filter: saturate(1.05) contrast(1.02);
 }
 
 .portfolio-modal .modal-reel-btn:hover,
 .portfolio-modal .modal-reel-btn:focus {
-    opacity: 0.96;
-    border-color: #a2a2a2;
+    opacity: 1;
+    border-color: #999;
+    filter: none;
     outline: none;
 }
 
 .portfolio-modal .modal-reel-btn.is-active {
     opacity: 1;
-    border-color: #8e8e8e;
+    border-color: #7f7f7f;
+}
+
+.portfolio-modal .modal-reel-btn:hover img,
+.portfolio-modal .modal-reel-btn:focus img,
+.portfolio-modal .modal-reel-btn.is-active img {
+    filter: none;
 }
 
 .portfolio-modal .close-modal {
