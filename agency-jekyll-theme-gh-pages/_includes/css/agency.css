@@ -471,6 +471,23 @@ section h3.section-subheading {
     margin-bottom: 32px;
 }
 
+/* Keep service icon colors stable on hover/focus. */
+#services .fa-stack .text-primary,
+#services .col-md-4:hover .fa-stack .text-primary,
+#services .col-md-4:focus-within .fa-stack .text-primary,
+#services a:hover .fa-stack .text-primary,
+#services a:focus .fa-stack .text-primary {
+    color: #{{ site.data.template.color.primary }};
+}
+
+#services .fa-stack .fa-inverse,
+#services .col-md-4:hover .fa-stack .fa-inverse,
+#services .col-md-4:focus-within .fa-stack .fa-inverse,
+#services a:hover .fa-stack .fa-inverse,
+#services a:focus .fa-stack .fa-inverse {
+    color: #fff;
+}
+
 #portfolio .portfolio-item {
     right: 0;
     margin: 0 0 9px;
