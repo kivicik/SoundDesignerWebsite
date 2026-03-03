@@ -1410,14 +1410,9 @@ ul.social-buttons li a:active {
     object-position: center;
 }
 
-.portfolio-modal .modal-body {
-    position: relative;
-}
-
 .portfolio-modal .close-modal {
-    position: absolute;
-    top: 4px;
-    right: max(0px, calc(50% - 396px));
+    position: static;
+    display: inline-block;
     width: auto;
     height: auto;
     padding: 0;
@@ -1433,6 +1428,11 @@ ul.social-buttons li a:active {
     transition: opacity 0.2s ease, color 0.2s ease;
 }
 
+.portfolio-modal .modal-dismiss-row {
+    margin-top: 6px;
+    text-align: center;
+}
+
 .portfolio-modal .close-modal:hover,
 .portfolio-modal .close-modal:focus {
     color: #6f6f6f;
@@ -1444,8 +1444,6 @@ ul.social-buttons li a:active {
 
 @media(max-width: 767px) {
     .portfolio-modal .close-modal {
-        top: 2px;
-        right: 2px;
         font-size: 22px;
     }
 
