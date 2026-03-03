@@ -1532,10 +1532,6 @@ ul.social-buttons li a:active {
     z-index: 3;
 }
 
-.portfolio-modal .modal-reel-btn.reel-group-end {
-    margin-right: 14px;
-}
-
 .portfolio-modal .modal-reel-btn:hover img,
 .portfolio-modal .modal-reel-btn:focus img,
 .portfolio-modal .modal-reel-btn.is-active img {
@@ -1596,10 +1592,6 @@ ul.social-buttons li a:active {
 
     .portfolio-modal .modal-reel-btn.is-active {
         transform: translateY(-1px) scale(1.05);
-    }
-
-    .portfolio-modal .modal-reel-btn.reel-group-end {
-        margin-right: 10px;
     }
 
     .portfolio-modal .modal-reel-edge {

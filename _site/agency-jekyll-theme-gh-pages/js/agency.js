@@ -210,7 +210,6 @@ if (window.jQuery) {
             var idToButton = {};
             var leftovers = [];
             buttons.forEach(function(button) {
-                button.classList.remove('reel-group-end');
                 var modalId = getModalIdFromTarget(button.getAttribute('data-target'));
                 if (!modalId || idToButton[modalId]) {
                     leftovers.push(button);
@@ -237,11 +236,6 @@ if (window.jQuery) {
             leftovers.forEach(function(button) {
                 reel.appendChild(button);
                 ordered.push(button);
-            });
-
-            ordered.forEach(function(button, index) {
-                var isGroupEnd = (index + 1) % 3 === 0 && index !== ordered.length - 1;
-                button.classList.toggle('reel-group-end', isGroupEnd);
             });
         });
     }
