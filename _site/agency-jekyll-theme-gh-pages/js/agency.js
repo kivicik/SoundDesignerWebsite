@@ -267,10 +267,32 @@ if (window.jQuery) {
         reels.forEach(function(reel) {
             if (!reel || reel.dataset.edgeScrollBound === '1') return;
             reel.dataset.edgeScrollBound = '1';
+            var wrapper = reel.closest('.modal-reel-wrap');
 
             var direction = 0;
             var rafId = 0;
             var speed = 8;
+            var lastMouseX = null;
+
+            function getEdgeSize() {
+                var firstThumb = reel.querySelector('.modal-reel-btn');
+                return firstThumb ? firstThumb.getBoundingClientRect().width : 84;
+            }
+
+            function updateEdgeState(hoverX) {
+                if (!wrapper) return;
+                var canScrollLeft = reel.scrollLeft > 0;
+                var canScrollRight = reel.scrollLeft + reel.clientWidth < reel.scrollWidth - 1;
+                wrapper.classList.toggle('can-scroll-left', canScrollLeft);
+                wrapper.classList.toggle('can-scroll-right', canScrollRight);
+
+                var hasHover = typeof hoverX === 'number';
+                var edgeSize = getEdgeSize();
+                var hoverLeft = hasHover && hoverX <= edgeSize && canScrollLeft;
+                var hoverRight = hasHover && hoverX >= reel.clientWidth - edgeSize && canScrollRight;
+                wrapper.classList.toggle('edge-hover-left', hoverLeft);
+                wrapper.classList.toggle('edge-hover-right', hoverRight);
+            }
 
             function stopScroll() {
                 direction = 0;
@@ -286,6 +308,7 @@ if (window.jQuery) {
                     return;
                 }
                 reel.scrollLeft += direction * speed;
+                updateEdgeState(lastMouseX);
                 rafId = window.requestAnimationFrame(tick);
             }
 
@@ -308,11 +331,12 @@ if (window.jQuery) {
                 }
 
                 var rect = reel.getBoundingClientRect();
-                var firstThumb = reel.querySelector('.modal-reel-btn');
-                var edgeSize = firstThumb ? firstThumb.getBoundingClientRect().width : 84;
+                var edgeSize = getEdgeSize();
                 var x = event.clientX - rect.left;
+                lastMouseX = x;
                 var canScrollLeft = reel.scrollLeft > 0;
                 var canScrollRight = reel.scrollLeft + reel.clientWidth < reel.scrollWidth - 1;
+                updateEdgeState(x);
 
                 if (x <= edgeSize && canScrollLeft) {
                     startScroll(-1);
@@ -325,10 +349,32 @@ if (window.jQuery) {
                 startScroll(0);
             });
 
-            reel.addEventListener('mouseleave', stopScroll);
-            reel.addEventListener('wheel', stopScroll, { passive: true });
-            reel.addEventListener('click', stopScroll);
-            reel.addEventListener('touchstart', stopScroll, { passive: true });
+            reel.addEventListener('mouseleave', function() {
+                lastMouseX = null;
+                updateEdgeState(null);
+                stopScroll();
+            });
+            reel.addEventListener('wheel', function() {
+                updateEdgeState(lastMouseX);
+                stopScroll();
+            }, { passive: true });
+            reel.addEventListener('click', function() {
+                updateEdgeState(lastMouseX);
+                stopScroll();
+            });
+            reel.addEventListener('touchstart', function() {
+                lastMouseX = null;
+                updateEdgeState(null);
+                stopScroll();
+            }, { passive: true });
+            reel.addEventListener('scroll', function() {
+                updateEdgeState(lastMouseX);
+            }, { passive: true });
+            window.addEventListener('resize', function() {
+                updateEdgeState(lastMouseX);
+            });
+
+            updateEdgeState(null);
         });
     }
 

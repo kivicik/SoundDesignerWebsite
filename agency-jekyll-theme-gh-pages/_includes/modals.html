@@ -42,14 +42,18 @@
                                     <strong>{% if modal_editable %}<span contenteditable="true">{{ post.service | default: post.category }}</span>{% else %}{{ post.service | default: post.category }}{% endif %}</strong>
                                 </li>
                             </ul>
-                            <div class="modal-reel" aria-label="Portfolio reel">
-                                {% for thumb in site.posts %}
-                                {% assign reel_img_file = thumb.thumbnail | default: thumb.img | uri_escape %}
-                                {% assign reel_img_asset = '/img/portfolio/' | append: reel_img_file %}
-                                <button type="button" class="modal-reel-btn{% if thumb.modal-id == post.modal-id %} is-active{% endif %}" data-target="#portfolioModal{{ thumb.modal-id }}" aria-label="Open {{ thumb.title }}">
-                                    <img src="{{ reel_img_asset | relative_url }}" alt="{{ thumb.title }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ reel_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ reel_img_file }}';return;}this.onerror=null;">
-                                </button>
-                                {% endfor %}
+                            <div class="modal-reel-wrap">
+                                <div class="modal-reel-edge modal-reel-edge-left" aria-hidden="true"><span>&lt;</span></div>
+                                <div class="modal-reel" aria-label="Portfolio reel">
+                                    {% for thumb in site.posts %}
+                                    {% assign reel_img_file = thumb.thumbnail | default: thumb.img | uri_escape %}
+                                    {% assign reel_img_asset = '/img/portfolio/' | append: reel_img_file %}
+                                    <button type="button" class="modal-reel-btn{% if thumb.modal-id == post.modal-id %} is-active{% endif %}" data-target="#portfolioModal{{ thumb.modal-id }}" aria-label="Open {{ thumb.title }}">
+                                        <img src="{{ reel_img_asset | relative_url }}" alt="{{ thumb.title }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ reel_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ reel_img_file }}';return;}this.onerror=null;">
+                                    </button>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-reel-edge modal-reel-edge-right" aria-hidden="true"><span>&gt;</span></div>
                             </div>
                             <div class="modal-dismiss-row">
                                 <button type="button" class="close-modal" data-dismiss="modal" aria-label="Close">
