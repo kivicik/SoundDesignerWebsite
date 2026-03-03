@@ -240,6 +240,21 @@ if (window.jQuery) {
         });
     }
 
+    function syncModalReelActive(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        var modalId = modalEl.attr('id');
+        if (!modalId) return;
+
+        var targetSelector = '#' + modalId;
+        modalEl.find('.modal-reel-btn').each(function() {
+            var button = window.jQuery(this);
+            var buttonTarget = button.data('target');
+            button.toggleClass('is-active', buttonTarget === targetSelector);
+        });
+    }
+
     function clearModalHash() {
         if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
         if (window.history && window.history.replaceState) {
@@ -312,6 +327,7 @@ if (window.jQuery) {
 
         currentModal.one('hidden.bs.modal.modalReel', function() {
             targetModal.one('shown.bs.modal.modalReel', function() {
+                syncModalReelActive(targetModal);
                 if (currentHadFade) currentModal.addClass('fade');
                 if (targetHadFade) targetModal.addClass('fade');
                 clearModalHash();
@@ -470,6 +486,7 @@ if (window.jQuery) {
     });
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
+        syncModalReelActive(window.jQuery(this));
         reorderModalReels();
         bindModalReelEdgeScroll();
     });
