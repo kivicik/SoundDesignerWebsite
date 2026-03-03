@@ -305,9 +305,19 @@ if (window.jQuery) {
         var targetModal = window.jQuery(targetSelector);
         if (!targetModal.length) return;
 
+        var currentHadFade = currentModal.hasClass('fade');
+        var targetHadFade = targetModal.hasClass('fade');
+        if (currentHadFade) currentModal.removeClass('fade');
+        if (targetHadFade) targetModal.removeClass('fade');
+
         currentModal.one('hidden.bs.modal.modalReel', function() {
+            targetModal.one('shown.bs.modal.modalReel', function() {
+                if (currentHadFade) currentModal.addClass('fade');
+                if (targetHadFade) targetModal.addClass('fade');
+                clearModalHash();
+            });
             targetModal.modal('show');
-            clearModalHash();
+            window.jQuery('body').addClass('modal-open');
         });
         currentModal.modal('hide');
     });
