@@ -5,8 +5,8 @@ layout: default
 modal-id: 18
 date: 2014-07-30
 permalink: /portfolio/home-match-3d/
-img: home3d.jpg
-thumbnail: home3d.jpg
+img: home3d.png
+thumbnail: home3d.png
 alt: "Home Match 3D: Makeover Design"
 project-date: 2024-2025
 year: 2024-2025

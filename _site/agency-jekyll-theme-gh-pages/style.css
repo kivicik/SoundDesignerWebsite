@@ -345,13 +345,8 @@ header .intro-text .intro-heading {
 header.home-about-section {
     padding-top: 120px;
     padding-bottom: 120px;
-    background-color: #232427;
-    background-image:
-        linear-gradient(rgba(35, 36, 39, 0.78), rgba(35, 36, 39, 0.9)),
-        url('img/portfolio/home3d.png');
-    background-repeat: no-repeat, no-repeat;
-    background-position: center center, center 34px;
-    background-size: cover, 520px auto;
+    background: #232427;
+    background-image: none;
     color: #fff;
 }
 
@@ -409,8 +404,6 @@ header.home-about-section p {
     header.home-about-section {
         padding-top: 60px;
         padding-bottom: 60px;
-        background-position: center center, center 22px;
-        background-size: cover, 360px auto;
     }
 
     header.home-about-section .home-about-header {
@@ -1348,8 +1341,13 @@ ul.social-buttons li a:active {
 }
 
 .portfolio-modal .modal-content h2 {
-    margin-bottom: 15px;
-    font-size: 3em;
+    margin: 0 auto 15px;
+    max-width: 860px;
+    font-size: clamp(34px, 4.2vw, 52px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.4px;
+    text-transform: none;
 }
 
 .portfolio-modal .modal-content p {
