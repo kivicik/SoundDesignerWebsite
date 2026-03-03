@@ -1431,20 +1431,20 @@ ul.social-buttons li a:active {
     padding: 0;
     border: 0;
     border-radius: 0;
-    color: #5b5b5b;
+    color: #9a9a9a;
     background: transparent;
-    font-size: 28px;
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 300;
     line-height: 1;
-    opacity: 0.85;
+    opacity: 0.78;
     cursor: pointer;
     transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .portfolio-modal .close-modal:hover,
 .portfolio-modal .close-modal:focus {
-    color: #222;
-    opacity: 1;
+    color: #6f6f6f;
+    opacity: 0.95;
     background: transparent;
     box-shadow: none;
     outline: none;
@@ -1454,7 +1454,7 @@ ul.social-buttons li a:active {
     .portfolio-modal .close-modal {
         top: 2px;
         right: 2px;
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .portfolio-modal .item-details {
