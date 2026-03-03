@@ -245,6 +245,23 @@ if (window.jQuery) {
         }
     });
 
+    window.jQuery(document).on('click', '.portfolio-modal .modal-reel-btn', function(e) {
+        e.preventDefault();
+        var button = window.jQuery(this);
+        var currentModal = button.closest('.portfolio-modal');
+        var targetSelector = button.data('target');
+        if (!targetSelector || !currentModal.length || currentModal.is(targetSelector)) return;
+
+        var targetModal = window.jQuery(targetSelector);
+        if (!targetModal.length) return;
+
+        currentModal.one('hidden.bs.modal.modalReel', function() {
+            targetModal.modal('show');
+            clearModalHash();
+        });
+        currentModal.modal('hide');
+    });
+
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
     window.jQuery(function() {
         window.jQuery('#services .col-md-4').filter(function() {
