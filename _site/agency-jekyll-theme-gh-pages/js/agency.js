@@ -377,6 +377,11 @@ if (window.jQuery) {
 (function() {
     var modals = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal'));
     if (!modals.length || !window.localStorage) return;
+    var lockedFields = {
+        client: true,
+        service: true,
+        date: true
+    };
 
     function keyFor(modalId) {
         return 'portfolioModalContent:' + modalId;
@@ -409,7 +414,15 @@ if (window.jQuery) {
         var mutated = false;
         getFields(modal).forEach(function(el) {
             var field = el.getAttribute('data-edit-field');
-            if (!field || typeof data[field] !== 'string') return;
+            if (!field) return;
+            if (lockedFields[field]) {
+                if (Object.prototype.hasOwnProperty.call(data, field)) {
+                    delete data[field];
+                    mutated = true;
+                }
+                return;
+            }
+            if (typeof data[field] !== 'string') return;
             var cleaned = cleanStoredText(data[field]);
             if (cleaned !== data[field]) {
                 data[field] = cleaned;
@@ -427,7 +440,7 @@ if (window.jQuery) {
         var payload = {};
         getFields(modal).forEach(function(el) {
             var field = el.getAttribute('data-edit-field');
-            if (!field) return;
+            if (!field || lockedFields[field]) return;
             payload[field] = cleanStoredText(el.textContent || '');
         });
         localStorage.setItem(keyFor(modal.id), JSON.stringify(payload));
