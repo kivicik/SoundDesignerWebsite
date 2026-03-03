@@ -245,32 +245,6 @@ if (window.jQuery) {
         }
     });
 
-    function showAdjacentPortfolioModal(currentModal, direction) {
-        var modals = window.jQuery('.portfolio-modal');
-        if (!modals.length || !currentModal) return;
-
-        var currentIndex = modals.index(currentModal);
-        if (currentIndex < 0) return;
-
-        var targetIndex = (currentIndex + direction + modals.length) % modals.length;
-        var current = modals.eq(currentIndex);
-        var target = modals.eq(targetIndex);
-        if (!target.length || target[0] === current[0]) return;
-
-        current.one('hidden.bs.modal.modalNav', function() {
-            target.modal('show');
-            clearModalHash();
-        });
-        current.modal('hide');
-    }
-
-    window.jQuery(document).on('click', '.portfolio-modal .modal-nav', function(e) {
-        e.preventDefault();
-        var direction = window.jQuery(this).data('dir') === 'prev' ? -1 : 1;
-        var currentModal = window.jQuery(this).closest('.portfolio-modal')[0];
-        showAdjacentPortfolioModal(currentModal, direction);
-    });
-
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
     window.jQuery(function() {
         window.jQuery('#services .col-md-4').filter(function() {
