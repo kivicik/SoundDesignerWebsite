@@ -1526,6 +1526,10 @@ ul.social-buttons li a:active {
     border-color: #7f7f7f;
 }
 
+.portfolio-modal .modal-reel-btn.reel-group-end {
+    margin-right: 14px;
+}
+
 .portfolio-modal .modal-reel-btn:hover img,
 .portfolio-modal .modal-reel-btn:focus img,
 .portfolio-modal .modal-reel-btn.is-active img {
@@ -1582,6 +1586,10 @@ ul.social-buttons li a:active {
 
     .portfolio-modal .modal-reel-btn {
         width: 70px;
+    }
+
+    .portfolio-modal .modal-reel-btn.reel-group-end {
+        margin-right: 10px;
     }
 
     .portfolio-modal .modal-reel-edge {

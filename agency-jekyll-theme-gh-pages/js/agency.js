@@ -130,6 +130,7 @@
 // Enforce portfolio card order across prebuilt pages that may contain stale HTML order.
 (function() {
     var desiredOrder = ['17', '4', '3', '13', '18', '2', '6', '10', '5', '8', '9', '7', '1', '12', '16', '15', '14', '11'];
+    window.__portfolioDesiredOrder = desiredOrder.slice();
 
     function getModalId(item) {
         var trigger = item.querySelector('.portfolio-link');
@@ -192,6 +193,59 @@
 })();
 
 if (window.jQuery) {
+    function getModalIdFromTarget(target) {
+        var match = (target || '').match(/portfolioModal(\d+)/i);
+        return match ? match[1] : null;
+    }
+
+    function reorderModalReels() {
+        var desiredOrder = Array.isArray(window.__portfolioDesiredOrder) ? window.__portfolioDesiredOrder : [];
+        if (!desiredOrder.length) return;
+
+        var reels = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal .modal-reel'));
+        reels.forEach(function(reel) {
+            var buttons = Array.prototype.slice.call(reel.querySelectorAll('.modal-reel-btn'));
+            if (!buttons.length) return;
+
+            var idToButton = {};
+            var leftovers = [];
+            buttons.forEach(function(button) {
+                button.classList.remove('reel-group-end');
+                var modalId = getModalIdFromTarget(button.getAttribute('data-target'));
+                if (!modalId || idToButton[modalId]) {
+                    leftovers.push(button);
+                    return;
+                }
+                idToButton[modalId] = button;
+            });
+
+            var ordered = [];
+            desiredOrder.forEach(function(id) {
+                var button = idToButton[id];
+                if (!button) return;
+                reel.appendChild(button);
+                ordered.push(button);
+                delete idToButton[id];
+            });
+
+            Object.keys(idToButton).forEach(function(id) {
+                var button = idToButton[id];
+                reel.appendChild(button);
+                ordered.push(button);
+            });
+
+            leftovers.forEach(function(button) {
+                reel.appendChild(button);
+                ordered.push(button);
+            });
+
+            ordered.forEach(function(button, index) {
+                var isGroupEnd = (index + 1) % 3 === 0 && index !== ordered.length - 1;
+                button.classList.toggle('reel-group-end', isGroupEnd);
+            });
+        });
+    }
+
     function clearModalHash() {
         if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
         if (window.history && window.history.replaceState) {
@@ -225,6 +279,8 @@ if (window.jQuery) {
     });
 
     window.jQuery(function() {
+        reorderModalReels();
+
         // If the page is loaded with a modal hash, normalize to portfolio section.
         if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
         var nav = document.querySelector('.navbar-default');
@@ -379,10 +435,12 @@ if (window.jQuery) {
     }
 
     window.jQuery(function() {
+        reorderModalReels();
         bindModalReelEdgeScroll();
     });
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
+        reorderModalReels();
         bindModalReelEdgeScroll();
     });
 
