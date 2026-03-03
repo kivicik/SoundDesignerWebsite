@@ -1406,45 +1406,42 @@ ul.social-buttons li a:active {
 
 .portfolio-modal .close-modal {
     position: absolute;
-    top: 25px;
-    right: 25px;
-    width: 75px;
-    height: 75px;
-    background-color: transparent;
+    top: 20px;
+    right: 22px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    color: #6b6b6b;
+    background: rgba(255, 255, 255, 0.74);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 34px;
+    text-align: center;
+    opacity: 0.75;
     cursor: pointer;
+    transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Use compact action buttons near content instead of a corner close control. */
-.portfolio-modal .close-modal {
-    display: none;
-}
-
-.portfolio-modal .modal-action-row {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.portfolio-modal .modal-close-btn {
-    border-radius: 0;
-    min-width: 96px;
-    padding: 10px 18px;
-    font-size: 14px;
-    text-transform: none;
-    color: #333;
-    background: transparent;
-    border: 1px solid #b7b7b7;
-}
-
-.portfolio-modal .modal-close-btn:hover,
-.portfolio-modal .modal-close-btn:focus,
-.portfolio-modal .modal-close-btn:active {
-    color: #111;
-    background: #f5f5f5;
-    border-color: #9e9e9e;
+.portfolio-modal .close-modal:hover,
+.portfolio-modal .close-modal:focus {
+    color: #2f2f2f;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    outline: none;
 }
 
 @media(max-width: 767px) {
+    .portfolio-modal .close-modal {
+        top: 12px;
+        right: 12px;
+        width: 30px;
+        height: 30px;
+        font-size: 22px;
+        line-height: 30px;
+    }
+
     .portfolio-modal .item-details {
         padding: 14px 16px;
     }
@@ -1480,31 +1477,6 @@ ul.social-buttons li a:active {
     border-color: #fed136;
     box-shadow: 0 0 0 2px rgba(254, 209, 54, 0.22);
     background: #fff;
-}
-
-.portfolio-modal .close-modal:hover {
-    opacity: .3;
-}
-
-.portfolio-modal .close-modal .lr {
-    z-index: 1051;
-    width: 1px;
-    height: 75px;
-    margin-left: 35px;
-    background-color: #222;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.portfolio-modal .close-modal .lr .rl {
-    z-index: 1052;
-    width: 1px;
-    height: 75px;
-    background-color: #222;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
 }
 
 ::-moz-selection {
