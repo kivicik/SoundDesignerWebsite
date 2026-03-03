@@ -254,6 +254,34 @@ if (window.jQuery) {
         });
     }
 
+    function centerModalReelActive(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        var reel = modalEl.find('.modal-reel').get(0);
+        if (!reel || !reel.clientWidth) return;
+
+        var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
+        if (!activeBtn) return;
+
+        var targetLeft = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (reel.clientWidth / 2);
+        var maxLeft = Math.max(0, reel.scrollWidth - reel.clientWidth);
+        reel.scrollLeft = Math.max(0, Math.min(maxLeft, targetLeft));
+    }
+
+    function scheduleModalReelCenter(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        centerModalReelActive(modalEl);
+        window.requestAnimationFrame(function() {
+            centerModalReelActive(modalEl);
+        });
+        window.setTimeout(function() {
+            centerModalReelActive(modalEl);
+        }, 90);
+    }
+
     function clearModalHash() {
         if (!/^#portfolioModal/i.test(window.location.hash || '')) return;
         if (window.history && window.history.replaceState) {
@@ -290,6 +318,7 @@ if (window.jQuery) {
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
         clearModalHash();
+        scheduleModalReelCenter(window.jQuery(this));
     });
 
     window.jQuery('div.modal').on('hidden.bs.modal', function() {
@@ -337,6 +366,7 @@ if (window.jQuery) {
         currentModal.one('hidden.bs.modal.modalReel', function() {
             targetModal.one('shown.bs.modal.modalReel', function() {
                 syncModalReelActive(targetModal);
+                scheduleModalReelCenter(targetModal);
                 if (currentHadFade) currentModal.addClass('fade');
                 if (targetHadFade) targetModal.addClass('fade');
                 clearModalHash();
@@ -498,6 +528,7 @@ if (window.jQuery) {
         syncModalReelActive(window.jQuery(this));
         reorderModalReels();
         bindModalReelEdgeScroll();
+        scheduleModalReelCenter(window.jQuery(this));
     });
 
     // Remove legacy middleware option row (A B C) if present in cached/generated pages
