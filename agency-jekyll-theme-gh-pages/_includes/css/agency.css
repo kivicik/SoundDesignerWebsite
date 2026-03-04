@@ -1236,9 +1236,9 @@ footer .container {
 }
 
 footer .footer-meta {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
-    justify-content: space-between;
     gap: 18px;
 }
 
@@ -1247,7 +1247,7 @@ footer span.copyright {
     line-height: 1.45;
     font-family: {{ site.data.template.font.primary }};
     text-transform: none;
-    text-align: left;
+    text-align: center;
 }
 
 footer ul.quicklinks {
@@ -1278,8 +1278,8 @@ ul.social-buttons {
 footer ul.social-buttons {
     margin-left: 0;
     margin-right: 0;
-    justify-content: flex-end;
-    flex-shrink: 0;
+    padding-left: 0;
+    justify-content: center;
 }
 
 footer ul.social-buttons li {
@@ -1321,8 +1321,7 @@ ul.social-buttons li a:active {
     }
 
     footer .footer-meta {
-        flex-direction: column;
-        justify-content: center;
+        grid-template-columns: 1fr;
         gap: 10px;
     }
 
