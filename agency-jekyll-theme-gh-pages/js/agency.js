@@ -322,6 +322,45 @@ if (window.jQuery) {
         }
     }
 
+    function isReelButtonVisible(reel, button) {
+        if (!reel || !button) return false;
+        var reelRect = reel.getBoundingClientRect();
+        var btnRect = button.getBoundingClientRect();
+        var leftPad = 6;
+        var rightPad = 6;
+        return btnRect.left >= reelRect.left + leftPad && btnRect.right <= reelRect.right - rightPad;
+    }
+
+    function keepCenteringUntilVisible(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        var attempts = 0;
+        var maxAttempts = 36;
+
+        function step() {
+            attempts += 1;
+            var reel = modalEl.find('.modal-reel').get(0);
+            if (!reel || !reel.clientWidth) {
+                if (attempts < maxAttempts) window.setTimeout(step, 50);
+                return;
+            }
+
+            var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
+            if (!activeBtn) {
+                if (attempts < maxAttempts) window.setTimeout(step, 50);
+                return;
+            }
+
+            centerReelOnActiveButton(reel);
+            if (!isReelButtonVisible(reel, activeBtn) && attempts < maxAttempts) {
+                window.setTimeout(step, 50);
+            }
+        }
+
+        step();
+    }
+
     function centerModalReelActive(modal) {
         var modalEl = modal && modal.length ? modal : window.jQuery(modal);
         if (!modalEl || !modalEl.length) return;
@@ -354,6 +393,8 @@ if (window.jQuery) {
                 centerModalReelActive(modalEl);
             }, { once: true });
         }
+
+        keepCenteringUntilVisible(modalEl);
     }
 
     function clearModalHash() {
