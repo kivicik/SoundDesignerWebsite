@@ -361,6 +361,15 @@ header.home-about-section .home-about-title {
     text-align: center;
 }
 
+header.home-about-section .home-about-subtitle,
+#team .home-about-subtitle {
+    margin: 12px 0 0;
+    font-size: 17px;
+    color: rgba(255,255,255,.7);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
 header.home-about-section .home-about-photo {
     width: 240px;
     height: 240px;
