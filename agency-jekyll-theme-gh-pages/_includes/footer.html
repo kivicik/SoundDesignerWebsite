@@ -1,18 +1,13 @@
   <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <span class="copyright">Copyright &copy; Kivanc Nadir {{ 'now' | date: "%Y" }}</span>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-inline social-buttons">
-                        {% for network in site.social %}
-                        <li><a href="{{ network.url }}"><i class="fa fa-{{ network.title }}"></i></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div class="footer-meta">
+                <span class="copyright">Copyright &copy; Kivanc Nadir {{ 'now' | date: "%Y" }}</span>
+                <ul class="list-inline social-buttons">
+                    {% for network in site.social %}
+                    <li><a href="{{ network.url }}" aria-label="{{ network.title }}"><i class="fa fa-{{ network.title }}"></i></a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </footer>
-
