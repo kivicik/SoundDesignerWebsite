@@ -293,6 +293,20 @@ if (window.jQuery) {
 
         var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
         if (!activeBtn) return;
+        var buttons = Array.prototype.slice.call(reel.querySelectorAll('.modal-reel-btn'));
+        var activeIndex = buttons.indexOf(activeBtn);
+        var reelStyle = window.getComputedStyle ? window.getComputedStyle(reel) : null;
+        var reelGap = 0;
+        if (reelStyle) {
+            reelGap = parseFloat(reelStyle.columnGap || reelStyle.gap || '0') || 0;
+        }
+        var measuredWidth = activeBtn.getBoundingClientRect().width;
+        if (!measuredWidth && buttons.length) {
+            measuredWidth = buttons[0].getBoundingClientRect().width;
+        }
+        if (!measuredWidth) {
+            measuredWidth = 84;
+        }
 
         if (typeof activeBtn.scrollIntoView === 'function') {
             try {
@@ -307,6 +321,10 @@ if (window.jQuery) {
         }
 
         var targetLeft = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (reel.clientWidth / 2);
+        if (activeIndex >= 0 && measuredWidth > 0) {
+            var estimatedLeft = activeIndex * (measuredWidth + reelGap);
+            targetLeft = estimatedLeft + (measuredWidth / 2) - (reel.clientWidth / 2);
+        }
         reel.scrollLeft = clampReelScrollLeft(reel, targetLeft);
 
         var reelRect = reel.getBoundingClientRect();
@@ -355,6 +373,11 @@ if (window.jQuery) {
             centerReelOnActiveButton(reel);
             if (!isReelButtonVisible(reel, activeBtn) && attempts < maxAttempts) {
                 window.setTimeout(step, 50);
+                return;
+            }
+
+            if (!isReelButtonVisible(reel, activeBtn)) {
+                reel.scrollLeft = clampReelScrollLeft(reel, activeBtn.offsetLeft - 8);
             }
         }
 
@@ -419,7 +442,10 @@ if (window.jQuery) {
         if (!modal.length) return;
         captureModalOriginUrl();
         syncModalReelActive(modal);
+        scheduleModalReelCenter(modal);
         modal.modal('show');
+        window.setTimeout(function() { scheduleModalReelCenter(modal); }, 120);
+        window.setTimeout(function() { scheduleModalReelCenter(modal); }, 320);
         clearModalHash();
     });
 
@@ -431,6 +457,9 @@ if (window.jQuery) {
         if (!modal.length) return;
         captureModalOriginUrl();
         syncModalReelActive(modal);
+        scheduleModalReelCenter(modal);
+        window.setTimeout(function() { scheduleModalReelCenter(modal); }, 120);
+        window.setTimeout(function() { scheduleModalReelCenter(modal); }, 320);
     });
 
     window.jQuery('div.modal').on('shown.bs.modal', function() {
