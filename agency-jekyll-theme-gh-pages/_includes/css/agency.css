@@ -1040,34 +1040,6 @@ section#contact .subject-inline {
     border-bottom: 1px solid rgba(136, 143, 154, 0.35);
 }
 
-section#contact .linkedin-edge-field {
-    position: relative;
-}
-
-section#contact .linkedin-edge-field > .linkedin-edge-icon,
-section#contact .contact-submit > .linkedin-edge-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid rgba(232, 236, 242, 0.45);
-    background: #16191d;
-    color: #fff;
-    pointer-events: none;
-    z-index: 4;
-}
-
-section#contact .linkedin-edge-icon .fa {
-    font-size: 14px;
-    line-height: 1;
-}
-
 section#contact .contact-field-label {
     display: block;
     margin-bottom: 11px;
@@ -1092,10 +1064,6 @@ section#contact .form-control {
     height: 46px;
 }
 
-section#contact .linkedin-edge-field .form-control {
-    padding-right: 44px;
-}
-
 section#contact textarea.form-control {
     min-height: 180px;
     height: 180px;
@@ -1108,7 +1076,7 @@ section#contact textarea.form-control {
 section#contact .subject-inline-input {
     border: 0 !important;
     height: 50px;
-    padding: 12px 44px 12px 16px;
+    padding: 12px 16px;
     color: #9aa1ad;
     font-size: 14px;
     font-weight: 400;
@@ -1166,11 +1134,9 @@ section#contact .contact-submit {
     color: #fff;
     border-radius: 0;
     min-width: 150px;
-    padding: 14px 56px 14px 30px;
+    padding: 14px 30px;
     text-transform: none;
     font-size: 16px;
-    position: relative;
-    overflow: visible;
 }
 
 section#contact .contact-actions {
