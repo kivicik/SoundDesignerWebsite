@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Bootswatch v3.2.0
  * Homepage: http://bootswatch.com
  * Copyright 2012-2014 Thomas Park
@@ -1033,30 +1033,6 @@ section#contact .subject-inline {
     border-bottom: 1px solid rgba(136, 143, 154, 0.35);
 }
 
-section#contact .linkedin-edge-field {
-    position: relative;
-}
-
-section#contact .linkedin-edge-field::after,
-section#contact .contact-submit::after {
-    content: "\f0e1";
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(50%, -50%);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #111214;
-    color: #fff;
-    font-family: "FontAwesome";
-    font-size: 14px;
-    line-height: 28px;
-    text-align: center;
-    pointer-events: none;
-    z-index: 4;
-}
-
 section#contact .contact-field-label {
     display: block;
     margin-bottom: 11px;
@@ -1079,10 +1055,6 @@ section#contact .form-control {
     box-shadow: none;
     padding: 12px 14px;
     height: 46px;
-}
-
-section#contact .linkedin-edge-field .form-control {
-    padding-right: 34px;
 }
 
 section#contact textarea.form-control {
