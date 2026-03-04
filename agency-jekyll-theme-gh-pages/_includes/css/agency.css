@@ -1331,24 +1331,15 @@ ul.social-buttons li a:active {
     }
 
     footer .footer-meta {
-        position: relative;
-        display: block;
-        min-height: 42px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 
     footer span.copyright {
-        position: absolute;
-        left: 25%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         text-align: center;
     }
 
     footer ul.social-buttons {
-        position: absolute;
-        left: clamp(72%, calc(75% + 37.5px), 92%);
-        top: 50%;
-        transform: translate(-50%, -50%);
         justify-content: center;
     }
 }
