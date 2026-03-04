@@ -1236,10 +1236,15 @@ footer .container {
 }
 
 footer .footer-meta {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
-    gap: 18px;
+    position: relative;
+    min-height: 42px;
+}
+
+footer span.copyright,
+footer ul.social-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 footer span.copyright {
@@ -1247,6 +1252,7 @@ footer span.copyright {
     line-height: 1.45;
     font-family: {{ site.data.template.font.primary }};
     text-transform: none;
+    left: 33.333%;
     text-align: center;
 }
 
@@ -1276,6 +1282,7 @@ ul.social-buttons {
 }
 
 footer ul.social-buttons {
+    left: 66.667%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
@@ -1321,8 +1328,16 @@ ul.social-buttons li a:active {
     }
 
     footer .footer-meta {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        position: static;
+        min-height: 0;
+        display: block;
+    }
+
+    footer span.copyright,
+    footer ul.social-buttons {
+        position: static;
+        top: auto;
+        transform: none;
     }
 
     footer span.copyright {
