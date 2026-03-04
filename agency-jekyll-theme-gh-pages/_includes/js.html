@@ -14,21 +14,3 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ "/js/agency.js" | prepend: site.baseurl }}{% if site.asset_version %}?v={{ site.asset_version }}{% endif %}" onerror="this.onerror=null;this.src='js/agency.js';"></script>
-
-    <!-- Dark Mode Toggle -->
-    <script>
-    (function () {
-        var $btn = $('#theme-toggle');
-        function updateIcon() {
-            var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-            $btn.find('i').attr('class', dark ? 'fa fa-sun-o' : 'fa fa-moon-o');
-        }
-        updateIcon();
-        $btn.on('click', function () {
-            var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            updateIcon();
-        });
-    })();
-    </script>
