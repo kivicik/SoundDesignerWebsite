@@ -283,19 +283,51 @@ if (window.jQuery) {
         });
     }
 
-    function centerModalReelActive(modal) {
-        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
-        if (!modalEl || !modalEl.length) return;
+    function clampReelScrollLeft(reel, left) {
+        var maxLeft = Math.max(0, reel.scrollWidth - reel.clientWidth);
+        return Math.max(0, Math.min(maxLeft, left));
+    }
 
-        var reel = modalEl.find('.modal-reel').get(0);
+    function centerReelOnActiveButton(reel) {
         if (!reel || !reel.clientWidth) return;
 
         var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
         if (!activeBtn) return;
 
+        if (typeof activeBtn.scrollIntoView === 'function') {
+            try {
+                activeBtn.scrollIntoView({
+                    behavior: 'auto',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            } catch (e) {
+                activeBtn.scrollIntoView(false);
+            }
+        }
+
         var targetLeft = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (reel.clientWidth / 2);
-        var maxLeft = Math.max(0, reel.scrollWidth - reel.clientWidth);
-        reel.scrollLeft = Math.max(0, Math.min(maxLeft, targetLeft));
+        reel.scrollLeft = clampReelScrollLeft(reel, targetLeft);
+
+        var reelRect = reel.getBoundingClientRect();
+        var btnRect = activeBtn.getBoundingClientRect();
+        if (btnRect.left < reelRect.left || btnRect.right > reelRect.right) {
+            var delta = 0;
+            if (btnRect.left < reelRect.left) {
+                delta = btnRect.left - reelRect.left - 8;
+            } else if (btnRect.right > reelRect.right) {
+                delta = btnRect.right - reelRect.right + 8;
+            }
+            reel.scrollLeft = clampReelScrollLeft(reel, reel.scrollLeft + delta);
+        }
+    }
+
+    function centerModalReelActive(modal) {
+        var modalEl = modal && modal.length ? modal : window.jQuery(modal);
+        if (!modalEl || !modalEl.length) return;
+
+        var reel = modalEl.find('.modal-reel').get(0);
+        centerReelOnActiveButton(reel);
     }
 
     function scheduleModalReelCenter(modal) {
@@ -309,6 +341,19 @@ if (window.jQuery) {
         window.setTimeout(function() {
             centerModalReelActive(modalEl);
         }, 90);
+        window.setTimeout(function() {
+            centerModalReelActive(modalEl);
+        }, 220);
+        window.setTimeout(function() {
+            centerModalReelActive(modalEl);
+        }, 420);
+
+        var activeImg = modalEl.find('.modal-reel-btn.is-active img').get(0);
+        if (activeImg && !activeImg.complete) {
+            activeImg.addEventListener('load', function() {
+                centerModalReelActive(modalEl);
+            }, { once: true });
+        }
     }
 
     function clearModalHash() {
@@ -439,14 +484,7 @@ if (window.jQuery) {
             var lastMouseX = null;
 
             function centerActiveReelItem() {
-                if (!reel.clientWidth) return;
-                var activeBtn = reel.querySelector('.modal-reel-btn.is-active');
-                if (!activeBtn) return;
-
-                var targetLeft = activeBtn.offsetLeft + (activeBtn.offsetWidth / 2) - (reel.clientWidth / 2);
-                var maxLeft = Math.max(0, reel.scrollWidth - reel.clientWidth);
-                var clampedLeft = Math.max(0, Math.min(maxLeft, targetLeft));
-                reel.scrollLeft = clampedLeft;
+                centerReelOnActiveButton(reel);
             }
 
             function getEdgeSize() {
