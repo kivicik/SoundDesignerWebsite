@@ -97,11 +97,12 @@
             if (!target) return;
             e.preventDefault();
             var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
+            if (window.__revealAllSections) window.__revealAllSections();
             if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
                 window.jQuery('html, body').stop(true).animate(
                     { scrollTop: top },
-                    650,
-                    'swing'
+                    700,
+                    'easeInOutCubic'
                 );
             } else {
                 window.scrollTo({ top: top, behavior: 'smooth' });
@@ -742,6 +743,18 @@ if (window.jQuery) {
     var sectionTriggerMap = new Map();
     var revealedSections = new WeakSet();
     var observedTriggers = new WeakSet();
+
+    window.__revealAllSections = function() {
+        sectionRevealMap.forEach(function(_, section) {
+            if (revealedSections.has(section)) return;
+            revealedSections.add(section);
+            var list = sectionRevealMap.get(section) || [];
+            list.forEach(function(el) {
+                el.style.transitionDelay = '0ms';
+                reveal(el);
+            });
+        });
+    };
 
     contentTargets.forEach(function(el) {
         var section = el.closest('section');
