@@ -21,7 +21,6 @@
     var links = Array.prototype.slice.call(document.querySelectorAll('.navbar-default .nav li:not(.hidden) a.page-scroll'));
     var nav = document.querySelector('.navbar-default');
     if (!links.length || !nav) return;
-    var headerSection = document.querySelector('header');
     var homeLink = links.find(function(link) { return link.getAttribute('href') === '#page-top'; }) || null;
     var sectionLinks = links.map(function(link) {
         var href = link.getAttribute('href');
@@ -35,17 +34,18 @@
         return nav.getBoundingClientRect().height || 0;
     }
 
-    function clearActive() {
-        links.forEach(function(link) {
-            link.classList.remove('is-active');
-            if (link.parentElement) link.parentElement.classList.remove('active');
-            link.style.backgroundColor = '';
-            link.style.color = '';
-            link.style.borderRadius = '';
-        });
-    }
+    var currentActiveLink = null;
 
     function setActive(link) {
+        if (link === currentActiveLink) return;
+        if (currentActiveLink) {
+            currentActiveLink.classList.remove('is-active');
+            if (currentActiveLink.parentElement) currentActiveLink.parentElement.classList.remove('active');
+            currentActiveLink.style.backgroundColor = '';
+            currentActiveLink.style.color = '';
+            currentActiveLink.style.borderRadius = '';
+        }
+        currentActiveLink = link;
         if (!link) return;
         link.classList.add('is-active');
         if (link.parentElement) link.parentElement.classList.add('active');
@@ -54,41 +54,21 @@
         link.style.borderRadius = '3px';
     }
 
-    var isNavScrolling = false;
-
     function updateActiveNav() {
-        if (isNavScrolling) return;
-        var activeLink = homeLink || links[0] || null;
-        var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
-        var marker = Math.max(navHeight() + 8, window.innerHeight * 0.45);
-        var bestTop = -Infinity;
+        var threshold = navHeight() + 1;
+        var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 10;
 
-        if (homeLink && headerSection) {
-            var headerTop = headerSection.getBoundingClientRect().top;
-            if (headerTop <= marker && headerTop > bestTop) {
-                bestTop = headerTop;
-                activeLink = homeLink;
-            }
+        if (nearBottom && sectionLinks.length) {
+            setActive(sectionLinks[sectionLinks.length - 1].link);
+            return;
         }
 
+        var activeLink = homeLink || links[0] || null;
         sectionLinks.forEach(function(item) {
-            var sectionTop = item.section.getBoundingClientRect().top;
-            if (sectionTop <= marker && sectionTop > bestTop) {
-                bestTop = sectionTop;
+            if (item.section.getBoundingClientRect().top <= threshold) {
                 activeLink = item.link;
             }
         });
-
-        if (bestTop === -Infinity && sectionLinks.length) {
-            activeLink = sectionLinks[0].link;
-        }
-
-        if (nearBottom) {
-            var lastLink = (sectionLinks.length ? sectionLinks[sectionLinks.length - 1].link : links[links.length - 1]);
-            if (lastLink) activeLink = lastLink;
-        }
-
-        clearActive();
         setActive(activeLink);
     }
 
@@ -101,25 +81,14 @@
             e.preventDefault();
             var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
             if (window.__revealAllSections) window.__revealAllSections();
-            isNavScrolling = true;
-            clearActive();
-            setActive(link);
             if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
-                window.jQuery('html, body').stop(true).animate(
-                    { scrollTop: top },
-                    700,
-                    'easeInOutCubic',
-                    function() { isNavScrolling = false; }
-                );
+                window.jQuery('html, body').stop(true).animate({ scrollTop: top }, 700, 'easeInOutCubic');
             } else {
                 window.scrollTo({ top: top, behavior: 'smooth' });
-                window.setTimeout(function() { isNavScrolling = false; }, 800);
             }
-
             if (window.jQuery) {
                 window.jQuery('.navbar-toggle:visible').click();
             }
-
             clearModalHashIfPresent();
         });
     });
