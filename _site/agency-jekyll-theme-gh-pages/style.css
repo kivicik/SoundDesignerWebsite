@@ -19,8 +19,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 60px;
-    --section-space-desktop: 72px;
+    --section-space-mobile: 48px;
+    --section-space-desktop: 60px;
 
     --clr-bg-dark: #2C3639;
     --clr-bg-mid: #3F4E4F;
@@ -372,7 +372,7 @@ header .intro-text .intro-heading {
 
 header.home-about-section {
     padding-top: 72px;
-    padding-bottom: 0;
+    padding-bottom: 60px;
     background: var(--clr-bg-dark);
     background-image: none;
     color: #fff;
