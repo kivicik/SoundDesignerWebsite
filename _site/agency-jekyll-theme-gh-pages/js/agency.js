@@ -111,7 +111,8 @@
             var target = document.querySelector(href);
             if (!target) return;
             e.preventDefault();
-            var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
+            var scrollAnchor = target.querySelector('h2, h3') || target;
+            var top = Math.max(0, scrollAnchor.getBoundingClientRect().top + window.pageYOffset - navHeight() - 24);
             if (window.__revealAllSections) window.__revealAllSections();
             if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
                 window.jQuery('html, body').stop(true).animate({ scrollTop: top }, 700, 'easeInOutCubic');
