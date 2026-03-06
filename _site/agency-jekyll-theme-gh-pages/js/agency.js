@@ -54,21 +54,39 @@
         link.style.borderRadius = '3px';
     }
 
-    function updateActiveNav() {
-        var threshold = navHeight() + 1;
-        var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 10;
+    function overlapLength(rect, top, bottom) {
+        return Math.max(0, Math.min(rect.bottom, bottom) - Math.max(rect.top, top));
+    }
 
-        if (nearBottom && sectionLinks.length) {
-            setActive(sectionLinks[sectionLinks.length - 1].link);
-            return;
+    var headerSection = document.querySelector('header');
+
+    function updateActiveNav() {
+        var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 10;
+        var bandTop = window.innerHeight * 0.3;
+        var bandBottom = window.innerHeight * 0.7;
+        var bestOverlap = -1;
+        var activeLink = homeLink || links[0] || null;
+
+        if (homeLink && headerSection) {
+            var headerOverlap = overlapLength(headerSection.getBoundingClientRect(), bandTop, bandBottom);
+            if (headerOverlap > bestOverlap) {
+                bestOverlap = headerOverlap;
+                activeLink = homeLink;
+            }
         }
 
-        var activeLink = homeLink || links[0] || null;
         sectionLinks.forEach(function(item) {
-            if (item.section.getBoundingClientRect().top <= threshold) {
+            var overlap = overlapLength(item.section.getBoundingClientRect(), bandTop, bandBottom);
+            if (overlap >= bestOverlap) {
+                bestOverlap = overlap;
                 activeLink = item.link;
             }
         });
+
+        if (nearBottom && sectionLinks.length) {
+            activeLink = sectionLinks[sectionLinks.length - 1].link;
+        }
+
         setActive(activeLink);
     }
 
