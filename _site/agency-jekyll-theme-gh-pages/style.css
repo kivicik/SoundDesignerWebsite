@@ -19,8 +19,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 80px;
-    --section-space-desktop: 100px;
+    --section-space-mobile: 60px;
+    --section-space-desktop: 72px;
 }
 
 .text-muted {
