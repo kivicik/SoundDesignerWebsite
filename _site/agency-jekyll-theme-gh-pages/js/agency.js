@@ -93,8 +93,18 @@
         });
     });
 
+    var navRafPending = false;
+    function scheduleNavUpdate() {
+        if (navRafPending) return;
+        navRafPending = true;
+        window.requestAnimationFrame(function() {
+            navRafPending = false;
+            updateActiveNav();
+        });
+    }
+
     window.addEventListener('hashchange', clearModalHashIfPresent);
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    window.addEventListener('scroll', scheduleNavUpdate, { passive: true });
     window.addEventListener('resize', updateActiveNav);
     window.addEventListener('load', function() {
         clearModalHashIfPresent();
