@@ -11,8 +11,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 100px;
-    --section-space-desktop: 150px;
+    --section-space-mobile: 80px;
+    --section-space-desktop: 100px;
 
     --clr-bg-dark: #222831;
     --clr-bg-mid: #393E46;
