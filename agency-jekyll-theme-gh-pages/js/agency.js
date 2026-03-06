@@ -54,7 +54,10 @@
         link.style.borderRadius = '3px';
     }
 
+    var isNavScrolling = false;
+
     function updateActiveNav() {
+        if (isNavScrolling) return;
         var activeLink = homeLink || links[0] || null;
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 6;
         var marker = Math.max(navHeight() + 8, window.innerHeight * 0.45);
@@ -98,17 +101,20 @@
             e.preventDefault();
             var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
             if (window.__revealAllSections) window.__revealAllSections();
+            isNavScrolling = true;
+            clearActive();
+            setActive(link);
             if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
                 window.jQuery('html, body').stop(true).animate(
                     { scrollTop: top },
                     700,
-                    'easeInOutCubic'
+                    'easeInOutCubic',
+                    function() { isNavScrolling = false; }
                 );
             } else {
                 window.scrollTo({ top: top, behavior: 'smooth' });
+                window.setTimeout(function() { isNavScrolling = false; }, 800);
             }
-            clearActive();
-            setActive(link);
 
             if (window.jQuery) {
                 window.jQuery('.navbar-toggle:visible').click();
