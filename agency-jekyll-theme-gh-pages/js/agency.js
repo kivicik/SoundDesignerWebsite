@@ -60,18 +60,25 @@
 
     var headerSection = document.querySelector('header');
 
+    function getSectionForLink(link) {
+        if (link === homeLink) return headerSection;
+        var found = null;
+        sectionLinks.forEach(function(item) { if (item.link === link) found = item.section; });
+        return found;
+    }
+
     function updateActiveNav() {
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 10;
         var bandTop = window.innerHeight * 0.3;
         var bandBottom = window.innerHeight * 0.7;
         var bestOverlap = -1;
-        var activeLink = homeLink || links[0] || null;
+        var bestLink = homeLink || links[0] || null;
 
         if (homeLink && headerSection) {
             var headerOverlap = overlapLength(headerSection.getBoundingClientRect(), bandTop, bandBottom);
             if (headerOverlap > bestOverlap) {
                 bestOverlap = headerOverlap;
-                activeLink = homeLink;
+                bestLink = homeLink;
             }
         }
 
@@ -79,15 +86,22 @@
             var overlap = overlapLength(item.section.getBoundingClientRect(), bandTop, bandBottom);
             if (overlap >= bestOverlap) {
                 bestOverlap = overlap;
-                activeLink = item.link;
+                bestLink = item.link;
             }
         });
 
         if (nearBottom && sectionLinks.length) {
-            activeLink = sectionLinks[sectionLinks.length - 1].link;
+            setActive(sectionLinks[sectionLinks.length - 1].link);
+            return;
         }
 
-        setActive(activeLink);
+        if (bestLink !== currentActiveLink && currentActiveLink !== null) {
+            var currentSection = getSectionForLink(currentActiveLink);
+            var currentOverlap = currentSection ? overlapLength(currentSection.getBoundingClientRect(), bandTop, bandBottom) : 0;
+            if (bestOverlap <= currentOverlap + 30) return;
+        }
+
+        setActive(bestLink);
     }
 
     links.forEach(function(link) {
