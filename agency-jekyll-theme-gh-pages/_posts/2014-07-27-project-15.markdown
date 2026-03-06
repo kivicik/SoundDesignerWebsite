@@ -8,11 +8,11 @@ permalink: /portfolio/roll-the-pattern/
 img: RollThePattern.jpg
 thumbnail: RollThePattern.jpg
 alt: Roll The Pattern
-project-date: 2024-2025
-year: 2024-2025
+project-date: 2022
+year: 2022
 client: Narcade
-category: "Sound Design, Middleware Integration"
-service: Sound Design, Middleware Integration
+category: "Sound Design, Music Composition"
+service: Sound Design, Music Composition
 genre: Puzzle / Match-3
 description: Sound design and implementation work for Roll The Pattern.
 ---

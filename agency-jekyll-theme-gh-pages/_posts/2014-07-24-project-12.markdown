@@ -8,12 +8,12 @@ permalink: /portfolio/photocula/
 img: photocula.png
 thumbnail: photocula.png
 alt: image-alt
-project-date: 2024-2025
-year: 2024-2025
+project-date: 2022
+year: 2022
 client: Narcade
-category: "Sound Design, Middleware Integration"
-service: Sound Design, Middleware Integration
-genre: Puzzle / Match-3
+category: "Sound Design, Music Composition"
+service: Sound Design, Music Composition
+genre: 2D Puzzle / Platformer
 description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
 
 ---

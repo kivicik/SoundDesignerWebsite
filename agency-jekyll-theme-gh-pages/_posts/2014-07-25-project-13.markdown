@@ -8,11 +8,11 @@ permalink: /portfolio/farm-game-match-3-puzzle/
 img: FarmMatch.jpg
 thumbnail: FarmMatch.jpg
 alt: Farm Match
-project-date: 2024-2025
-year: 2024-2025
+project-date: 2024
+year: 2024
 client: Narcade
-category: "Sound Design, Middleware Integration"
-service: Sound Design, Middleware Integration
+category: "Sound Design, FMOD Integration, Music Editing & Implementation"
+service: Sound Design, FMOD Integration, Music Editing & Implementation
 genre: Puzzle / Match-3
 description: Sound design and implementation work for Farm Match.
 ---

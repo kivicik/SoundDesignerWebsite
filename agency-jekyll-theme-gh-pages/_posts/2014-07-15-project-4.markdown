@@ -8,11 +8,11 @@ permalink: /portfolio/dream-home-design/
 img: dream-design.jpg
 thumbnail: dream-design.jpg
 alt: image-alt
-project-date: 2024-2025
-year: 2024-2025
+project-date: 2024
+year: 2024
 client: Narcade
-category: "Sound Design, Middleware Integration"
-service: Sound Design, Middleware Integration
+category: "Sound Design, FMOD Integration, Music Composition"
+service: Sound Design, FMOD Integration, Music Composition
 genre: Puzzle / Match-3
 description: Lorem ipsum dolor sit amet, usu cu alterum nominavi lobortis. At duo novum diceret. Tantas apeirian vix et, usu sanctus postulant inciderint ut, populo diceret necessitatibus in vim. Cu eum dicam feugiat noluisse.
 

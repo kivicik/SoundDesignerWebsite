@@ -8,12 +8,12 @@ permalink: /portfolio/beatpunk/
 img: beatpunk.png
 thumbnail: beatpunk.png
 alt: image-alt
-project-date: 2024-2025
-year: 2024-2025
+project-date: 2022-2024
+year: 2022-2024
 client: Narcade
-category: "Sound Design, Middleware Integration"
-service: Sound Design, Middleware Integration
-genre: Puzzle / Match-3
+category: "Sound Design, FMOD Integration, Music Composition"
+service: Sound Design, FMOD Integration, Music Composition
+genre: Roguelike / Top-down Shooter
 description: >-
   One of my past projects, Beatpunk, explored the intersection of gameplay and
   music composition. It was a bullet heaven game built around a 4-bar looping
