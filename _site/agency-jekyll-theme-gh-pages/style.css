@@ -1720,7 +1720,7 @@ body {
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 /* Keep all portfolio thumbnails in a consistent frame */
