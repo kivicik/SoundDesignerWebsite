@@ -26,26 +26,26 @@ body {
     --clr-bg-dark: #222831;
     --clr-bg-mid: #393E46;
     --clr-bg-light: #393E46;
-    --clr-accent: #948979;
-    --clr-accent-hover: #7A6E60;
+    --clr-accent: #E8A030;
+    --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DFD0B8;
     --clr-text-muted-dark: rgba(223,208,184,0.65);
     --clr-text-on-light: #222831;
     --clr-text-muted-light: #393E46;
-    --clr-focus-ring: rgba(148,137,121,0.35);
+    --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
 [data-theme="dark"] {
     --clr-bg-dark: #16191F;
     --clr-bg-mid: #222831;
     --clr-bg-light: #222831;
-    --clr-accent: #948979;
-    --clr-accent-hover: #7A6E60;
+    --clr-accent: #E8A030;
+    --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DFD0B8;
     --clr-text-muted-dark: rgba(223,208,184,0.65);
     --clr-text-on-light: #DFD0B8;
     --clr-text-muted-light: rgba(223,208,184,0.7);
-    --clr-focus-ring: rgba(148,137,121,0.35);
+    --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
 .text-muted {
