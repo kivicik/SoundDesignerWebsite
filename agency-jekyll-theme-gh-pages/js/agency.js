@@ -35,6 +35,7 @@
     }
 
     var currentActiveLink = null;
+    var clickLockUntil = 0;
 
     function setActive(link) {
         if (link === currentActiveLink) return;
@@ -68,6 +69,7 @@
     }
 
     function updateActiveNav() {
+        if (Date.now() < clickLockUntil) return;
         if (window.pageYOffset < 50 && links[0]) {
             setActive(links[0]);
             return;
@@ -115,6 +117,8 @@
             var target = document.querySelector(href);
             if (!target) return;
             e.preventDefault();
+            setActive(link);
+            clickLockUntil = Date.now() + 900;
             var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - navHeight());
             if (window.__revealAllSections) window.__revealAllSections();
             if (window.jQuery && window.jQuery.fn && window.jQuery.fn.animate) {
