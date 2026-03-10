@@ -1445,6 +1445,12 @@ ul.social-buttons li a:active {
     text-transform: none;
 }
 
+.portfolio-modal hr.star-primary {
+    width: 80px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin: 0 auto 24px;
+}
+
 @media (max-width: 767px) {
     .portfolio-modal .modal-content h2 {
         max-width: 100%;
