@@ -870,7 +870,7 @@ section h3.section-subheading {
 }
 
 #about {
-    background: var(--clr-bg-light);
+    background: var(--clr-bg-mid);
     color: inherit;
 }
 
@@ -1277,8 +1277,7 @@ header {
 footer {
     padding: 12px 0;
     text-align: center;
-    background-color: var(--clr-bg-dark);
-    border-top: 1px solid rgba(255,255,255,0.08);
+    background-color: #0F0F0F;
 }
 
 footer .container {
@@ -1761,6 +1760,7 @@ body {
 
 html {
     scroll-behavior: auto;
+    background-color: #0F0F0F;
 }
 
 /* Keep all portfolio thumbnails in a consistent frame */
