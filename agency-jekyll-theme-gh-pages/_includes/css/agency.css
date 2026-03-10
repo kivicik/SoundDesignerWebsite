@@ -16,7 +16,7 @@ body {
     --section-space-desktop: 72px;
 
     --clr-bg-dark: #0F0F0F;
-    --clr-bg-mid: #111111;
+    --clr-bg-mid: #141414;
     --clr-bg-light: #1A1A1A;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
@@ -366,7 +366,7 @@ header .intro-text .intro-heading {
 header.home-about-section {
     padding-top: 72px;
     padding-bottom: 80px;
-    background: #111111;
+    background: #141414;
     background-image: none;
     color: #fff;
 }
@@ -862,7 +862,7 @@ section h3.section-subheading {
 }
 
 #about {
-    background: #111111;
+    background: #141414;
     color: inherit;
 }
 
@@ -971,7 +971,7 @@ aside.clients img {
 }
 
 section#contact {
-    background: #111111;
+    background: #141414;
     color: var(--clr-text-on-dark);
 }
 
