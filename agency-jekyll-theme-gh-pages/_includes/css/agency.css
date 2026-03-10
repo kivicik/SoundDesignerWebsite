@@ -207,7 +207,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-brand {
     font-family: {{ site.data.template.font.primary }};
-    color: var(--clr-accent);
+    color: var(--clr-text-on-dark);
     letter-spacing: 0 !important;
     word-spacing: 0 !important;
     font-kerning: normal;
@@ -219,7 +219,7 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:active,
 .navbar-default .navbar-brand.active {
-    color: var(--clr-accent-hover);
+    color: var(--clr-accent);
 }
 
 .navbar-default .navbar-collapse {
@@ -506,7 +506,7 @@ section h3.section-subheading {
 #services .col-md-4:focus-within .fa-stack .text-primary,
 #services a:hover .fa-stack .text-primary,
 #services a:focus .fa-stack .text-primary {
-    color: var(--clr-accent);
+    color: var(--clr-bg-mid);
 }
 
 #services .fa-stack .fa-inverse,
