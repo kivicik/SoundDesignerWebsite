@@ -1,6 +1,6 @@
-1. Alttaki lcopyright ve linkedinin yerlerine kas. (ANLAMIYO YAPAMADIM)
-2. Anasayfadan postlara tiklayinca tiklanan resmin thumbnailini emphasize etmiyor. En basini gosteriyor thumbnaillarin.
-3. Postlarin tiklayinca acilan sayfadaki resmin ratio ile postlarin thumbnaillari ayni ratio olabilir.
+1. Alttaki lcopyright ve linkedinin yerlerine kas. 
+2. Anasayfadan postlara tiklayinca tiklanan resmin thumbnailini emphasize etmiyor. En basini gosteriyor thumbnaillarin. DONE
+3. Postlarin tiklayinca acilan sayfadaki resmin ratio ile postlarin thumbnaillari ayni ratio olabilir. DONE
 4. Showreelda gereksiz tekrarlayan seyleri temizleyebilirsin, bosuna repetitivelik gostermeye gerek yok. 1 dkya dusurmeye calis.
 5. AI detectlenemeyecek sekilde tekrar yazmaya calis bionu.
 6. Dark mode ayarlamaya calis siteye en azindan daha iyi bi colour palette.
@@ -12,3 +12,4 @@ Emphasized thumbnailin altindaki golge biraz fazla olabilir bi daha degerlendir.
 12. Cizgiyi uzat Hi, I’m Kıvanç - a Toronto-based sound designer. 
 13. kalan textlere de el at. 
 14. Postlarin icerikleri
+15. Aklima soyle bi  fikir geldi, postlarin tiklaninca acilan sayfalarindan kurtuluruz, oradaki infoyu thumbnaillara hoverlayinca yazdiririz, trackeri thumbnailden cekince normalde doner. Guzel bi vfx bulmak lazim tabii.
