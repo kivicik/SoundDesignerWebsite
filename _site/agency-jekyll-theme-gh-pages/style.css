@@ -531,7 +531,7 @@ section h3.section-subheading {
 }
 
 #portfolio {
-    background-color: var(--clr-bg-light);
+    background-color: #111111;
 }
 
 #portfolio .section-heading {
@@ -1909,7 +1909,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 1030;
-    background-color: rgb(48, 52, 59);
+    background-color: #0F0F0F;
 }
 
 @media (min-width: 768px) {
