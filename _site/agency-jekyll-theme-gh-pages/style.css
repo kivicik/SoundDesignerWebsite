@@ -514,7 +514,7 @@ section h3.section-subheading {
 #services .col-md-4:focus-within .fa-stack .text-primary,
 #services a:hover .fa-stack .text-primary,
 #services a:focus .fa-stack .text-primary {
-    color: var(--clr-bg-mid);
+    color: var(--clr-accent);
 }
 
 #services .fa-stack .fa-inverse,
