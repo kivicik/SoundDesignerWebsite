@@ -416,9 +416,12 @@ header.home-about-section .home-about-description:last-child {
 }
 
 header.home-about-section .section-heading,
-header.home-about-section h4,
-header.home-about-section p {
+header.home-about-section h4 {
     color: #fff;
+}
+
+header.home-about-section p {
+    color: var(--clr-text-muted-dark);
 }
 
 @media(max-width:991px) {
