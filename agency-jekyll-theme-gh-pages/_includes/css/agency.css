@@ -528,6 +528,7 @@ section h3.section-subheading {
 
 #portfolio .section-heading {
     color: var(--clr-text-on-dark);
+    margin-bottom: 15px;
 }
 
 #portfolio .portfolio-item {
