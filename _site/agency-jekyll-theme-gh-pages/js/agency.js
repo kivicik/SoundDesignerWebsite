@@ -68,6 +68,10 @@
     }
 
     function updateActiveNav() {
+        if (window.pageYOffset < 50 && links[0]) {
+            setActive(links[0]);
+            return;
+        }
         var nearBottom = window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 10;
         var bandTop = window.innerHeight * 0.3;
         var bandBottom = window.innerHeight * 0.7;
