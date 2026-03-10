@@ -364,7 +364,7 @@ header .intro-text .intro-heading {
 
 header.home-about-section {
     padding-top: 72px;
-    padding-bottom: 0;
+    padding-bottom: 100px;
     background: var(--clr-bg-dark);
     background-image: none;
     color: #fff;
