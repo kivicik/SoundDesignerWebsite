@@ -6,7 +6,7 @@
 
 body {
     overflow-x: hidden;
-    background-color: #DFD0B8;
+    background-color: #EFEFEF;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: var(--clr-text-on-light);
 }
@@ -17,7 +17,7 @@ body {
 
     --clr-bg-dark: #222831;
     --clr-bg-mid: #393E46;
-    --clr-bg-light: #393E46;
+    --clr-bg-light: #222831;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DFD0B8;
@@ -515,6 +515,14 @@ section h3.section-subheading {
 #services a:hover .fa-stack .fa-inverse,
 #services a:focus .fa-stack .fa-inverse {
     color: #fff;
+}
+
+#portfolio {
+    background-color: var(--clr-bg-dark);
+}
+
+#portfolio .section-heading {
+    color: var(--clr-text-on-dark);
 }
 
 #portfolio .portfolio-item {
