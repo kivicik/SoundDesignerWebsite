@@ -366,7 +366,7 @@ header .intro-text .intro-heading {
 header.home-about-section {
     padding-top: 72px;
     padding-bottom: 80px;
-    background: var(--clr-bg-dark);
+    background: #111111;
     background-image: none;
     color: #fff;
 }
@@ -497,7 +497,7 @@ section h3.section-subheading {
 }
 
 #services {
-    background-color: var(--clr-bg-mid);
+    background-color: #1A1A1A;
 }
 
 #services .section-heading {
@@ -523,7 +523,7 @@ section h3.section-subheading {
 }
 
 #portfolio {
-    background-color: #111111;
+    background-color: #1A1A1A;
 }
 
 #portfolio .section-heading {
@@ -862,7 +862,7 @@ section h3.section-subheading {
 }
 
 #about {
-    background: #1A1A1A;
+    background: #111111;
     color: inherit;
 }
 
@@ -971,7 +971,7 @@ aside.clients img {
 }
 
 section#contact {
-    background: var(--clr-bg-dark);
+    background: #111111;
     color: var(--clr-text-on-dark);
 }
 
