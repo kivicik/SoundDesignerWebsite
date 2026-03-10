@@ -1419,6 +1419,8 @@ ul.social-buttons li a:active {
     background-clip: border-box;
     -webkit-box-shadow: none;
     box-shadow: none;
+    background-color: #141414;
+    color: var(--clr-text-on-dark);
 }
 
 @media (min-height: 860px) {
@@ -1471,7 +1473,7 @@ ul.social-buttons li a:active {
     padding: 16px 22px;
     list-style: none;
     background: var(--clr-bg-light);
-    border: 1px solid #d3d3d3;
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 4px;
 }
 
@@ -1481,7 +1483,7 @@ ul.social-buttons li a:active {
     justify-content: space-between;
     gap: 18px;
     line-height: 1.5;
-    border-bottom: 1px dashed #c8c8c8;
+    border-bottom: 1px dashed rgba(255,255,255,0.12);
     padding: 6px 0;
 }
 
@@ -1591,8 +1593,8 @@ ul.social-buttons li a:active {
     flex: 0 0 auto;
     width: 84px;
     padding: 0;
-    border: 1px solid #cfcfcf;
-    background: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: #1A1A1A;
     opacity: 0.74;
     cursor: pointer;
     transform: translateY(0) scale(1);
@@ -1611,7 +1613,7 @@ ul.social-buttons li a:active {
 .portfolio-modal .modal-reel-btn:hover,
 .portfolio-modal .modal-reel-btn:focus {
     opacity: 0.92;
-    border-color: #999;
+    border-color: rgba(255,255,255,0.4);
     filter: none;
     outline: none;
 }
@@ -1640,7 +1642,7 @@ ul.social-buttons li a:active {
     padding: 0;
     border: 0;
     border-radius: 0;
-    color: #9a9a9a;
+    color: #DEDEDE;
     background: transparent;
     font-size: 24px;
     font-weight: 300;
@@ -1661,7 +1663,7 @@ ul.social-buttons li a:active {
 
 .portfolio-modal .close-modal:hover,
 .portfolio-modal .close-modal:focus {
-    color: #6f6f6f;
+    color: #fff;
     opacity: 0.95;
     background: transparent;
     box-shadow: none;
