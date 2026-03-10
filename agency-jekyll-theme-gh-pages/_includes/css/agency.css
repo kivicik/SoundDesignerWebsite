@@ -6,7 +6,7 @@
 
 body {
     overflow-x: hidden;
-    background-color: #141414;
+    background-color: #0F0F0F;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: var(--clr-text-on-light);
 }
@@ -16,7 +16,7 @@ body {
     --section-space-desktop: 72px;
 
     --clr-bg-dark: #0F0F0F;
-    --clr-bg-mid: #1A1A1A;
+    --clr-bg-mid: #111111;
     --clr-bg-light: #1A1A1A;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
@@ -523,7 +523,7 @@ section h3.section-subheading {
 }
 
 #portfolio {
-    background-color: var(--clr-bg-dark);
+    background-color: var(--clr-bg-light);
 }
 
 #portfolio .section-heading {
