@@ -221,6 +221,20 @@ fieldset[disabled] .btn-xl.active {
     font-kerning: normal;
     font-feature-settings: "kern" 1;
     text-rendering: geometricPrecision;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.15;
+}
+
+.navbar-default .navbar-brand .brand-subtitle {
+    display: block;
+    font-size: 0.42em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clr-text-muted-dark);
+    margin-top: 2px;
 }
 
 .navbar-default .navbar-brand:hover,
