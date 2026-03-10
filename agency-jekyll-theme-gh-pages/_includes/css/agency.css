@@ -6,7 +6,7 @@
 
 body {
     overflow-x: hidden;
-    background-color: #EFEFEF;
+    background-color: #141414;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: var(--clr-text-on-light);
 }
@@ -15,28 +15,28 @@ body {
     --section-space-mobile: 60px;
     --section-space-desktop: 72px;
 
-    --clr-bg-dark: #222831;
-    --clr-bg-mid: #393E46;
-    --clr-bg-light: #222831;
+    --clr-bg-dark: #0F0F0F;
+    --clr-bg-mid: #1A1A1A;
+    --clr-bg-light: #1A1A1A;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
-    --clr-text-on-dark: #DFD0B8;
-    --clr-text-muted-dark: rgba(223,208,184,0.65);
-    --clr-text-on-light: #222831;
-    --clr-text-muted-light: #393E46;
+    --clr-text-on-dark: #DEDEDE;
+    --clr-text-muted-dark: rgba(210,210,210,0.55);
+    --clr-text-on-light: #DEDEDE;
+    --clr-text-muted-light: rgba(210,210,210,0.55);
     --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
 [data-theme="dark"] {
-    --clr-bg-dark: #16191F;
-    --clr-bg-mid: #222831;
-    --clr-bg-light: #222831;
+    --clr-bg-dark: #0F0F0F;
+    --clr-bg-mid: #1A1A1A;
+    --clr-bg-light: #1A1A1A;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
-    --clr-text-on-dark: #DFD0B8;
-    --clr-text-muted-dark: rgba(223,208,184,0.65);
-    --clr-text-on-light: #DFD0B8;
-    --clr-text-muted-light: rgba(223,208,184,0.7);
+    --clr-text-on-dark: #DEDEDE;
+    --clr-text-muted-dark: rgba(210,210,210,0.55);
+    --clr-text-on-light: #DEDEDE;
+    --clr-text-muted-light: rgba(210,210,210,0.55);
     --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
@@ -496,8 +496,13 @@ section h3.section-subheading {
     text-transform: none;
 }
 
+#services {
+    background-color: var(--clr-bg-mid);
+}
+
 #services .section-heading {
     margin-bottom: 32px;
+    color: var(--clr-text-on-dark);
 }
 
 /* Keep service icon colors stable on hover/focus. */
@@ -1264,8 +1269,8 @@ header {
 footer {
     padding: 12px 0;
     text-align: center;
-    background-color: var(--clr-bg-light);
-    border-top: 1px solid rgba(34,34,34,.08);
+    background-color: var(--clr-bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 footer .container {
