@@ -853,6 +853,10 @@ section h3.section-subheading {
     color: inherit;
 }
 
+#about .section-heading {
+    color: #fff;
+}
+
 #team .team-feature-row {
     display: flex;
     align-items: center;
@@ -967,7 +971,7 @@ section#contact .container {
 }
 
 section#contact .section-heading {
-    color: var(--clr-text-on-dark);
+    color: #fff;
     margin: 0 0 44px;
     text-align: center;
 }
