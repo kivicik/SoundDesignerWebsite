@@ -1530,10 +1530,16 @@ ul.social-buttons li a:active {
     display: block;
     width: 100%;
     max-width: 760px;
+    height: 370px;
     margin: 0 auto 34px;
-    aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
+}
+
+@media (max-width: 760px) {
+    .portfolio-modal .modal-main-image {
+        height: 48.68vw;
+    }
 }
 
 .portfolio-modal .modal-reel-wrap {
