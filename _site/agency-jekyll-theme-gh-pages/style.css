@@ -1526,13 +1526,22 @@ ul.social-buttons li a:active {
     text-align: right;
 }
 
-.portfolio-modal .modal-main-image {
-    display: block;
+.portfolio-modal .modal-main-image-wrap {
+    position: relative;
     width: 100%;
     max-width: 760px;
-    height: auto !important;
-    aspect-ratio: 2 / 1;
     margin: 0 auto 34px;
+    padding-top: 50%;
+    overflow: hidden;
+}
+
+.portfolio-modal .modal-main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
     object-fit: cover;
     object-position: center;
 }
