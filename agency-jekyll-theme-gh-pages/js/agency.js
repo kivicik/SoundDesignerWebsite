@@ -547,6 +547,49 @@ if (window.jQuery) {
         currentModal.modal('hide');
     });
 
+    window.jQuery(document).on('keydown', function(e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        var openModal = window.jQuery('.portfolio-modal.in');
+        if (!openModal.length) return;
+        if (isModalSwitching) return;
+
+        var desiredOrder = Array.isArray(window.__portfolioDesiredOrder) ? window.__portfolioDesiredOrder : [];
+        if (!desiredOrder.length) return;
+
+        var currentId = openModal.attr('id') ? openModal.attr('id').replace('portfolioModal', '') : null;
+        if (!currentId) return;
+
+        var idx = desiredOrder.indexOf(currentId);
+        if (idx === -1) return;
+
+        var nextIdx = e.key === 'ArrowRight' ? idx + 1 : idx - 1;
+        if (nextIdx < 0 || nextIdx >= desiredOrder.length) return;
+
+        var targetId = '#portfolioModal' + desiredOrder[nextIdx];
+        var targetModal = window.jQuery(targetId);
+        if (!targetModal.length) return;
+
+        isModalSwitching = true;
+        var currentHadFade = openModal.hasClass('fade');
+        var targetHadFade = targetModal.hasClass('fade');
+        if (currentHadFade) openModal.removeClass('fade');
+        if (targetHadFade) targetModal.removeClass('fade');
+
+        openModal.one('hidden.bs.modal.modalReel', function() {
+            targetModal.one('shown.bs.modal.modalReel', function() {
+                syncModalReelActive(targetModal);
+                scheduleModalReelCenter(targetModal);
+                if (currentHadFade) openModal.addClass('fade');
+                if (targetHadFade) targetModal.addClass('fade');
+                clearModalHash();
+                isModalSwitching = false;
+            });
+            targetModal.modal('show');
+            window.jQuery('body').addClass('modal-open');
+        });
+        openModal.modal('hide');
+    });
+
     function bindModalReelEdgeScroll() {
         var reels = Array.prototype.slice.call(document.querySelectorAll('.portfolio-modal .modal-reel'));
         reels.forEach(function(reel) {
