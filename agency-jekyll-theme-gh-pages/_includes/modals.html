@@ -16,9 +16,7 @@
                             <h2>{{ post.title }}</h2>
                             {% endif %}
                             <hr class="star-primary">
-                            <div class="modal-main-image-wrap">
-                                <img src="{{ modal_img_asset | relative_url }}" class="img-responsive img-centered modal-main-image" alt="{{ post.alt }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ modal_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ modal_img_file }}';return;}this.onerror=null;">
-                            </div>
+                            <img src="{{ modal_img_asset | relative_url }}" class="img-responsive img-centered modal-main-image" alt="{{ post.alt }}" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ modal_img_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ modal_img_file }}';return;}this.onerror=null;">
                             {% if show_modal_description %}
                             {% if modal_editable %}
                             <p contenteditable="true">{{ post.description }}</p>
