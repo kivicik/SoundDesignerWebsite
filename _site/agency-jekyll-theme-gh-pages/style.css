@@ -235,7 +235,7 @@ fieldset[disabled] .btn-xl.active {
     text-transform: uppercase;
     color: var(--clr-text-muted-dark);
     margin-top: 2px;
-    margin-left: -0.05em;
+    margin-left: 3px;
 }
 
 .navbar-default .navbar-brand:hover,
