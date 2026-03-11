@@ -526,7 +526,7 @@ section h3.section-subheading {
 }
 
 #services {
-    background-color: #252525;
+    background-color: #141414;
 }
 
 #services .section-heading {
@@ -552,7 +552,7 @@ section h3.section-subheading {
 }
 
 #portfolio {
-    background-color: #141414;
+    background-color: #252525;
 }
 
 #portfolio .section-heading {
@@ -892,7 +892,7 @@ section h3.section-subheading {
 }
 
 #about {
-    background: #252525;
+    background: #141414;
     color: inherit;
 }
 
@@ -1001,7 +1001,7 @@ aside.clients img {
 }
 
 section#contact {
-    background: #141414;
+    background: #252525;
     color: var(--clr-text-on-dark);
 }
 
