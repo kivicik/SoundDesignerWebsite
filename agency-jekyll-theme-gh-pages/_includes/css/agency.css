@@ -1416,6 +1416,12 @@ ul.social-buttons li a:active {
     }
 }
 
+@media(max-width:767px) {
+    footer ul.social-buttons {
+        left: 50%;
+    }
+}
+
 .btn:focus,
 .btn:active,
 .btn.active,
