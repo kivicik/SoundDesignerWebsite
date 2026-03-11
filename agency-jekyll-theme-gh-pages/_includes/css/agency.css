@@ -411,6 +411,7 @@ header.home-about-section .home-about-photo {
     margin: 0 auto;
     border: 6px solid rgba(255,255,255,.75);
     box-shadow: 0 6px 14px rgba(0,0,0,.22);
+    filter: brightness(0.8);
 }
 
 header.home-about-section .home-about-copy {
