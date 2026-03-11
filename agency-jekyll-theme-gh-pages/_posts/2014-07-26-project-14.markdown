@@ -10,7 +10,7 @@ thumbnail: Reincarnation.jpg
 alt: Reincarnation
 project-date: 2022-2023
 year: 2022-2023
-client: Narcade
+client: Yin Yang Games
 category: "Sound Design, FMOD Integration, Music Composition"
 service: Sound Design, FMOD Integration, Music Composition
 genre: Roguelike / Card Game

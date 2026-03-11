@@ -10,7 +10,7 @@ thumbnail: "PAWTION PANIC.png"
 alt: Pawtion Panic
 project-date: 2024
 year: 2024
-client: Narcade
+client: Recel Games
 category: "Sound Design, FMOD Integration, Music Composition"
 service: Sound Design, FMOD Integration, Music Composition
 genre: Potion Crafting

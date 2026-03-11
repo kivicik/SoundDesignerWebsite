@@ -10,7 +10,7 @@ thumbnail: photocula.png
 alt: image-alt
 project-date: 2022
 year: 2022
-client: Narcade
+client: Recel Games
 category: "Sound Design, Music Composition"
 service: Sound Design, Music Composition
 genre: 2D Puzzle / Platformer

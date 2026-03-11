@@ -10,7 +10,7 @@ thumbnail: beatpunk.png
 alt: image-alt
 project-date: 2022-2024
 year: 2022-2024
-client: Narcade
+client: Recel Games
 category: "Sound Design, FMOD Integration, Music Composition"
 service: Sound Design, FMOD Integration, Music Composition
 genre: Roguelike / Top-down Shooter

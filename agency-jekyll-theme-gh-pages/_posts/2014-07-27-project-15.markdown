@@ -10,7 +10,7 @@ thumbnail: RollThePattern.jpg
 alt: Roll The Pattern
 project-date: 2022
 year: 2022
-client: Narcade
+client: Recel Games
 category: "Sound Design, Music Composition"
 service: Sound Design, Music Composition
 genre: Puzzle / Match-3
