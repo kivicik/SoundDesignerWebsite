@@ -20,8 +20,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 60px;
-    --section-space-desktop: 72px;
+    --section-space-mobile: 80px;
+    --section-space-desktop: 100px;
 
     --clr-bg-dark: #0F0F0F;
     --clr-bg-mid: #141414;
@@ -387,8 +387,8 @@ header .intro-text .intro-heading {
 }
 
 header.home-about-section {
-    padding-top: 72px;
-    padding-bottom: 80px;
+    padding-top: 90px;
+    padding-bottom: 100px;
     background: #141414;
     background-image: none;
     color: #fff;
