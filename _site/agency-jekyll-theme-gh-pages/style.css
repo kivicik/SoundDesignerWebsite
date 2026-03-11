@@ -443,7 +443,7 @@ header.home-about-section .home-about-description:last-child {
 
 header.home-about-section .section-heading,
 header.home-about-section h4 {
-    color: #fff;
+    color: var(--clr-text-on-dark);
 }
 
 header.home-about-section p {
