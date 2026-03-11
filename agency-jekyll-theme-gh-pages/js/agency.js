@@ -730,11 +730,57 @@ if (window.jQuery) {
         bindModalReelEdgeScroll();
     });
 
+    function updateModalNavButtons(modal) {
+        var order = Array.isArray(window.__portfolioDesiredOrder) ? window.__portfolioDesiredOrder : [];
+        var currentId = modal.attr('id') ? modal.attr('id').replace('portfolioModal', '') : null;
+        if (!currentId || !order.length) return;
+        var idx = order.indexOf(currentId);
+        var prev = modal.find('.modal-nav-prev');
+        var next = modal.find('.modal-nav-next');
+        if (idx <= 0) prev.addClass('is-hidden'); else prev.removeClass('is-hidden');
+        if (idx >= order.length - 1) next.addClass('is-hidden'); else next.removeClass('is-hidden');
+    }
+
+    window.jQuery(document).on('click', '.portfolio-modal .modal-nav-btn', function() {
+        var btn = window.jQuery(this);
+        var openModal = btn.closest('.portfolio-modal');
+        if (!openModal.length || isModalSwitching) return;
+        var order = Array.isArray(window.__portfolioDesiredOrder) ? window.__portfolioDesiredOrder : [];
+        if (!order.length) return;
+        var currentId = openModal.attr('id') ? openModal.attr('id').replace('portfolioModal', '') : null;
+        if (!currentId) return;
+        var idx = order.indexOf(currentId);
+        if (idx === -1) return;
+        var nextIdx = btn.hasClass('modal-nav-next') ? idx + 1 : idx - 1;
+        if (nextIdx < 0 || nextIdx >= order.length) return;
+        var targetModal = window.jQuery('#portfolioModal' + order[nextIdx]);
+        if (!targetModal.length) return;
+        isModalSwitching = true;
+        var currentHadFade = openModal.hasClass('fade');
+        var targetHadFade = targetModal.hasClass('fade');
+        if (currentHadFade) openModal.removeClass('fade');
+        if (targetHadFade) targetModal.removeClass('fade');
+        openModal.one('hidden.bs.modal.modalReel', function() {
+            targetModal.one('shown.bs.modal.modalReel', function() {
+                syncModalReelActive(targetModal);
+                scheduleModalReelCenter(targetModal);
+                if (currentHadFade) openModal.addClass('fade');
+                if (targetHadFade) targetModal.addClass('fade');
+                clearModalHash();
+                isModalSwitching = false;
+            });
+            targetModal.modal('show');
+            window.jQuery('body').addClass('modal-open');
+        });
+        openModal.modal('hide');
+    });
+
     window.jQuery('div.modal').on('shown.bs.modal', function() {
         syncModalReelActive(window.jQuery(this));
         reorderModalReels();
         bindModalReelEdgeScroll();
         scheduleModalReelCenter(window.jQuery(this));
+        updateModalNavButtons(window.jQuery(this));
     });
 
     // Remove legacy middleware option row (A B C) if present in cached/generated pages

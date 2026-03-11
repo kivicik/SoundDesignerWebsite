@@ -431,7 +431,7 @@ header.home-about-section .home-about-description {
     margin: 0 0 20px;
     line-height: 1.78;
     font-size: 15px;
-    color: #fff;
+    color: var(--clr-text-muted-dark);
 }
 
 header.home-about-section .home-about-description:last-child {
@@ -1661,14 +1661,14 @@ ul.social-buttons li a:active {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     border: 0;
     border-radius: 0;
     color: #DEDEDE;
     background: transparent;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 300;
     line-height: 1;
     opacity: 0.78;
@@ -1680,9 +1680,32 @@ ul.social-buttons li a:active {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 28px;
     width: 100%;
     max-width: 760px;
     margin: 14px auto 0;
+}
+
+.portfolio-modal .modal-nav-btn {
+    background: none;
+    border: none;
+    color: var(--clr-text-on-dark);
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+}
+
+.portfolio-modal .modal-nav-btn:hover,
+.portfolio-modal .modal-nav-btn:focus {
+    opacity: 1;
+    outline: none;
+}
+
+.portfolio-modal .modal-nav-btn.is-hidden {
+    visibility: hidden;
 }
 
 .portfolio-modal .close-modal:hover,
