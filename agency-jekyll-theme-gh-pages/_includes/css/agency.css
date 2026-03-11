@@ -311,7 +311,7 @@ fieldset[disabled] .btn-xl.active {
 
     .navbar-default.navbar-shrink {
         padding: 10px 0;
-        background-color: var(--clr-bg-dark);
+        background-color: #000000;
     }
 
     .navbar-default.navbar-shrink .navbar-brand {
@@ -1291,7 +1291,7 @@ header {
 footer {
     padding: 12px 0;
     text-align: center;
-    background-color: #0F0F0F;
+    background-color: #000000;
 }
 
 footer .container {
@@ -1955,7 +1955,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 1030;
-    background-color: #0F0F0F;
+    background-color: #000000;
 }
 
 @media (min-width: 768px) {
