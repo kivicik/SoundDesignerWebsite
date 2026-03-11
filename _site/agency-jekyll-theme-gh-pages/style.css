@@ -20,8 +20,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 60px;
-    --section-space-desktop: 72px;
+    --section-space-mobile: 100px;
+    --section-space-desktop: 120px;
 
     --clr-bg-dark: #0F0F0F;
     --clr-bg-mid: #141414;
