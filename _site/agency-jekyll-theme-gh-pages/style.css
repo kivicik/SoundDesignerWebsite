@@ -1690,12 +1690,13 @@ ul.social-buttons li a:active {
     background: none;
     border: none;
     color: var(--clr-text-on-dark);
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1;
     cursor: pointer;
-    padding: 0 4px;
-    opacity: 0.55;
+    padding: 0 8px;
+    opacity: 0.75;
     transition: opacity 0.2s ease;
+    min-width: 36px;
 }
 
 .portfolio-modal .modal-nav-btn:hover,
