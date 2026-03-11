@@ -17,7 +17,7 @@ body {
 
     --clr-bg-dark: #0F0F0F;
     --clr-bg-mid: #141414;
-    --clr-bg-light: #1A1A1A;
+    --clr-bg-light: #252525;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DEDEDE;
@@ -30,7 +30,7 @@ body {
 [data-theme="dark"] {
     --clr-bg-dark: #0F0F0F;
     --clr-bg-mid: #1A1A1A;
-    --clr-bg-light: #1A1A1A;
+    --clr-bg-light: #252525;
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DEDEDE;
