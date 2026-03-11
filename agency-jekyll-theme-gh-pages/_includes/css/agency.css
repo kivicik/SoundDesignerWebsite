@@ -12,8 +12,8 @@ body {
 }
 
 :root {
-    --section-space-mobile: 80px;
-    --section-space-desktop: 100px;
+    --section-space-mobile: 60px;
+    --section-space-desktop: 72px;
 
     --clr-bg-dark: #0F0F0F;
     --clr-bg-mid: #141414;
@@ -379,8 +379,8 @@ header .intro-text .intro-heading {
 }
 
 header.home-about-section {
-    padding-top: 90px;
-    padding-bottom: 100px;
+    padding-top: 72px;
+    padding-bottom: 80px;
     background: #141414;
     background-image: none;
     color: #fff;
@@ -2231,30 +2231,3 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
 [data-theme="dark"] .theme-toggle-btn {
     color: var(--clr-text-on-dark);
 }
-
-/* Section-to-section color transitions */
-header.home-about-section,
-#about,
-#portfolio,
-#services,
-section#contact {
-    position: relative;
-}
-
-#about::before,
-#portfolio::before,
-#services::before,
-section#contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    pointer-events: none;
-}
-
-#about::before        { background: linear-gradient(to bottom, #141414, #252525); }
-#portfolio::before    { background: linear-gradient(to bottom, #252525, #141414); }
-#services::before     { background: linear-gradient(to bottom, #141414, #252525); }
-section#contact::before { background: linear-gradient(to bottom, #252525, #141414); }
