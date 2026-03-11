@@ -381,8 +381,7 @@ header .intro-text .intro-heading {
 header.home-about-section {
     padding-top: 72px;
     padding-bottom: 80px;
-    background: #141414;
-    background-image: none;
+    background: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)), url('../img/daw-bg.png') center/cover no-repeat;
     color: #fff;
 }
 
