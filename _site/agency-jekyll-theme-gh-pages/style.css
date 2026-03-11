@@ -1492,7 +1492,7 @@ ul.social-buttons li a:active {
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    max-width: 560px;
+    max-width: 760px;
     margin: 14px auto 30px;
     padding: 16px 22px;
     list-style: none;
