@@ -2268,3 +2268,30 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
 }
 
 
+
+/* Section-to-section color transitions */
+header.home-about-section,
+#about,
+#portfolio,
+#services,
+section#contact {
+    position: relative;
+}
+
+#about::before,
+#portfolio::before,
+#services::before,
+section#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: none;
+}
+
+#about::before        { background: linear-gradient(to bottom, #141414, #252525); }
+#portfolio::before    { background: linear-gradient(to bottom, #252525, #141414); }
+#services::before     { background: linear-gradient(to bottom, #141414, #252525); }
+section#contact::before { background: linear-gradient(to bottom, #252525, #141414); }
