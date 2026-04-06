@@ -1014,6 +1014,22 @@ section#contact .contact-intro {
     text-align: center;
 }
 
+section#contact .contact-info p {
+    margin: 0 0 12px;
+    color: var(--clr-text-muted-dark);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+section#contact .contact-info a {
+    color: var(--clr-text-muted-dark);
+    text-decoration: none;
+}
+
+section#contact .contact-info a:hover {
+    color: var(--clr-text-on-dark);
+}
+
 section#contact .contact-layout {
     margin: 0;
 }
