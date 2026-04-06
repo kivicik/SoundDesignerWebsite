@@ -1414,25 +1414,7 @@ ul.social-buttons li a:active {
     }
 
     footer .footer-meta {
-        position: relative;
         min-height: 42px;
-        --footer-center-offset: clamp(86px, 16vw, 140px);
-    }
-
-    footer span.copyright {
-        position: absolute;
-        left: calc(50% - var(--footer-center-offset));
-        top: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
-
-    footer ul.social-buttons {
-        position: absolute;
-        left: calc(50% + var(--footer-center-offset));
-        top: 50%;
-        transform: translate(-50%, -50%);
-        justify-content: center;
     }
 }
 
