@@ -20,12 +20,12 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <p class="hover-title">{{ post.title }}</p>
-                                <ul class="hover-meta">
-                                    <li><span class="hover-label">Developer</span><span class="hover-value">{{ post.client }}</span></li>
-                                    <li><span class="hover-label">Year</span><span class="hover-value">{{ post.year | default: post.project-date }}</span></li>
-                                    <li><span class="hover-label">Genre</span><span class="hover-value">{{ post.genre | default: "Puzzle / Match-3" }}</span></li>
-                                    <li><span class="hover-label">Service</span><span class="hover-value">{{ post.service | default: post.category }}</span></li>
-                                </ul>
+                                <div class="hover-meta">
+                                    <div class="hover-row"><span class="hover-label">Developer</span><span class="hover-value">{{ post.client }}</span></div>
+                                    <div class="hover-row"><span class="hover-label">Year</span><span class="hover-value">{{ post.year | default: post.project-date }}</span></div>
+                                    <div class="hover-row"><span class="hover-label">Genre</span><span class="hover-value">{{ post.genre | default: "Puzzle / Match-3" }}</span></div>
+                                    <div class="hover-row"><span class="hover-label">Service</span><span class="hover-value">{{ post.service | default: post.category }}</span></div>
+                                </div>
                             </div>
                         </div>
                         <img src="{{ thumb_asset | relative_url }}" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ thumb_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ thumb_file }}';return;}this.onerror=null;">

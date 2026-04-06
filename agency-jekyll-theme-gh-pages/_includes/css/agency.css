@@ -618,17 +618,14 @@ section h3.section-subheading {
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover-content .hover-meta {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     border-top: 1px dashed rgba(255,255,255,.2);
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover-content .hover-meta li {
+#portfolio .portfolio-item .portfolio-link .portfolio-hover-content .hover-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 6px 0;
+    padding: 5px 0;
     border-bottom: 1px dashed rgba(255,255,255,.2);
     font-size: 11px;
     gap: 8px;
