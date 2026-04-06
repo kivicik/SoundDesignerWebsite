@@ -1325,9 +1325,10 @@ footer .container {
 }
 
 footer .footer-meta {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 42px;
-    --footer-center-offset: clamp(120px, 18vw, 190px);
 }
 
 footer span.copyright {
@@ -1335,10 +1336,6 @@ footer span.copyright {
     line-height: 1.45;
     font-family: Montserrat, "Helvetica Neue",Helvetica,Arial,sans-serif;
     text-transform: none;
-    position: absolute;
-    left: calc(50% - var(--footer-center-offset));
-    top: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
 }
 

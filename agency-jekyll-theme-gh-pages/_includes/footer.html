@@ -2,12 +2,6 @@
         <div class="container">
             <div class="footer-meta">
                 <span class="copyright">Copyright &copy; Kıvanç Nadir {{ 'now' | date: "%Y" }}</span>
-                <ul class="list-inline social-buttons">
-                    {% for network in site.social %}
-                    <li><a href="{{ network.url }}" aria-label="{{ network.title }}"><i class="fa fa-{{ network.title }}"></i></a>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
     </footer>
