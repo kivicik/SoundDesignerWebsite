@@ -957,3 +957,12 @@ if (window.jQuery) {
 })();
 
 
+
+document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('You are about to visit an external page. Continue?')) {
+            window.open(link.href, '_blank', 'noopener');
+        }
+    });
+});
