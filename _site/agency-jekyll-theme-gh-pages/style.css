@@ -427,6 +427,8 @@ header.home-about-section .home-about-photo {
 
 header.home-about-section .home-about-copy {
     text-align: left;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 header.home-about-section .home-about-description {
