@@ -1,4 +1,5 @@
 ---
+game_link: https://play.google.com/store/apps/details?id=com.nar.gardendesign
 title: "Garden & Home: Design Game"
 subtitle: Graphic Design
 layout: default
