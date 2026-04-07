@@ -2009,12 +2009,7 @@ html {
 .portfolio-collapse-wrap {
     position: relative;
     overflow: hidden;
-    max-height: var(--portfolio-collapsed-height, 600px);
-    transition: max-height 0.5s ease;
-}
-
-.portfolio-collapse-wrap.is-expanded {
-    max-height: 9999px;
+    transition: max-height 0.4s ease;
 }
 
 .portfolio-fade-overlay {

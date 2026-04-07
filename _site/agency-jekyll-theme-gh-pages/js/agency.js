@@ -980,25 +980,49 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
 (function() {
     var portfolioWrap = document.querySelector('.portfolio-collapse-wrap');
     var portfolioToggle = document.getElementById('portfolioToggle');
+    var portfolioFade = document.getElementById('portfolioFade');
     if (!portfolioWrap || !portfolioToggle) return;
 
-    function setCollapsedHeight() {
+    var expanded = false;
+
+    function getCollapsedHeight() {
         var items = portfolioWrap.querySelectorAll('.portfolio-item');
         if (items.length >= 6) {
-            var wrapTop = portfolioWrap.getBoundingClientRect().top + window.scrollY;
-            var sixthBottom = items[5].getBoundingClientRect().bottom + window.scrollY;
-            portfolioWrap.style.setProperty('--portfolio-collapsed-height', (sixthBottom - wrapTop) + 'px');
+            var wrapRect = portfolioWrap.getBoundingClientRect();
+            var sixthRect = items[5].getBoundingClientRect();
+            return sixthRect.bottom - wrapRect.top;
         }
+        return 600;
     }
 
-    // Wait for images to settle then measure
-    window.addEventListener('load', setCollapsedHeight);
-    window.addEventListener('resize', setCollapsedHeight);
-    setCollapsedHeight();
+    function collapse() {
+        var h = getCollapsedHeight();
+        portfolioWrap.style.maxHeight = h + 'px';
+        portfolioWrap.style.overflow = 'hidden';
+        if (portfolioFade) portfolioFade.style.opacity = '1';
+        portfolioToggle.classList.remove('is-expanded');
+        expanded = false;
+    }
+
+    function expand() {
+        portfolioWrap.style.maxHeight = portfolioWrap.scrollHeight + 'px';
+        if (portfolioFade) portfolioFade.style.opacity = '0';
+        portfolioToggle.classList.add('is-expanded');
+        expanded = true;
+    }
+
+    // Init collapsed after images load for accurate height
+    window.addEventListener('load', function() {
+        collapse();
+    });
+    // Fallback if load already fired
+    if (document.readyState === 'complete') collapse();
+
+    window.addEventListener('resize', function() {
+        if (!expanded) collapse();
+    });
 
     portfolioToggle.addEventListener('click', function() {
-        var expanded = portfolioWrap.classList.toggle('is-expanded');
-        portfolioToggle.classList.toggle('is-expanded', expanded);
-        portfolioToggle.setAttribute('aria-expanded', String(expanded));
+        if (expanded) { collapse(); } else { expand(); }
     });
 }());
