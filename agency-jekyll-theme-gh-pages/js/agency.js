@@ -995,19 +995,21 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
         return 600;
     }
 
+    var toggleIcon = portfolioToggle.querySelector('i');
+
     function collapse() {
         var h = getCollapsedHeight();
         portfolioWrap.style.maxHeight = h + 'px';
         portfolioWrap.style.overflow = 'hidden';
         if (portfolioFade) portfolioFade.style.opacity = '1';
-        portfolioToggle.classList.remove('is-expanded');
+        if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-down'; }
         expanded = false;
     }
 
     function expand() {
         portfolioWrap.style.maxHeight = portfolioWrap.scrollHeight + 'px';
         if (portfolioFade) portfolioFade.style.opacity = '0';
-        portfolioToggle.classList.add('is-expanded');
+        if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-up'; }
         expanded = true;
     }
 
