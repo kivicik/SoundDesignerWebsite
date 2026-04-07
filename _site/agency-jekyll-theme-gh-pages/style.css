@@ -2376,12 +2376,15 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
     cursor: pointer;
     padding: 8px 16px;
     opacity: 0.6;
-    transition: opacity 0.2s, transform 0.3s;
+    transition: opacity 0.2s;
 }
 .portfolio-toggle-btn:hover {
     opacity: 1;
 }
+.portfolio-toggle-btn i {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
 .portfolio-toggle-btn.is-expanded i {
     transform: rotate(180deg);
-    display: inline-block;
 }
