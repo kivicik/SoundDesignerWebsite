@@ -50,7 +50,7 @@
         if (!link) return;
         link.classList.add('is-active');
         if (link.parentElement) link.parentElement.classList.add('active');
-        link.style.backgroundColor = '#fed136';
+        link.style.backgroundColor = '#252525';
         link.style.color = '#fff';
         link.style.borderRadius = '3px';
     }

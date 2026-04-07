@@ -2098,14 +2098,14 @@ html {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-    background-color: var(--clr-accent) !important;
+    background-color: #252525 !important;
     color: #fff !important;
 }
 
 .navbar-default .nav li a.page-scroll.is-active,
 .navbar-default .nav li a.page-scroll.is-active:hover,
 .navbar-default .nav li a.page-scroll.is-active:focus {
-    background-color: var(--clr-accent) !important;
+    background-color: #252525 !important;
     color: #fff !important;
     border-radius: 3px;
 }
