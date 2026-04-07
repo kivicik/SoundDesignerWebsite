@@ -453,10 +453,6 @@ header.home-about-section p {
 }
 
 @media(max-width:991px) {
-    section h2.section-heading {
-        font-size: 30px;
-    }
-
     header.home-about-section {
         padding-top: 60px;
         padding-bottom: 60px;
@@ -507,6 +503,12 @@ section h2.section-heading {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 40px;
+}
+
+@media(max-width:991px) {
+    section h2.section-heading {
+        font-size: 30px;
+    }
 }
 
 section h3.section-subheading {
