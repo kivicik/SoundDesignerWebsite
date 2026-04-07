@@ -1815,6 +1815,18 @@ ul.social-buttons li a:active {
     background: #252525;
 }
 
+#portfolio ::-moz-selection,
+#contact ::-moz-selection {
+    text-shadow: none;
+    background: #141414;
+}
+
+#portfolio ::selection,
+#contact ::selection {
+    text-shadow: none;
+    background: #141414;
+}
+
 img::selection {
     background: 0 0;
 }

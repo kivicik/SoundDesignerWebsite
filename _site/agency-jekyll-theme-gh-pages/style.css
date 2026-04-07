@@ -2305,3 +2305,15 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
     text-shadow: none;
     background: #252525;
 }
+
+#portfolio ::-moz-selection,
+#contact ::-moz-selection {
+    text-shadow: none;
+    background: #141414;
+}
+
+#portfolio ::selection,
+#contact ::selection {
+    text-shadow: none;
+    background: #141414;
+}
