@@ -425,8 +425,7 @@ header.home-about-section .home-about-photo {
 
 header.home-about-section .home-about-selfie {
     width: 100%;
-    max-width: 280px;
-    border-radius: 6px;
+    max-width: 380px;
     display: block;
     margin: 0 auto;
 }
