@@ -398,7 +398,7 @@ header.home-about-section {
 
 header.home-about-section .home-about-row {
     display: flex;
-    align-items: center;
+    align-items: stretch;
 }
 
 header.home-about-section .home-about-header {
