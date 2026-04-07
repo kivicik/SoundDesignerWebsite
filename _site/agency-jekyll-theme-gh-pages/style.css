@@ -1378,6 +1378,7 @@ footer span.copyright {
     display: inline-block;
     line-height: 1.45;
     font-family: Montserrat, "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
     text-transform: none;
     text-align: center;
 }
