@@ -409,7 +409,7 @@ header.home-about-section .home-about-title {
 
 header.home-about-section .home-about-photo {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
 }
 
@@ -418,6 +418,8 @@ header.home-about-section .home-about-selfie {
     max-width: 380px;
     display: block;
     margin: 0 auto;
+    object-fit: cover;
+    object-position: center top;
 }
 
 header.home-about-section .home-about-copy {
