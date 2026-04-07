@@ -417,10 +417,22 @@ header.home-about-section .home-about-photo {
     filter: brightness(0.8);
 }
 
+header.home-about-section .home-about-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header.home-about-section .home-about-selfie {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 6px;
+    display: block;
+    margin: 0 auto;
+}
+
 header.home-about-section .home-about-copy {
     text-align: left;
-    max-width: 860px;
-    margin: 0 auto;
 }
 
 header.home-about-section .home-about-description {
