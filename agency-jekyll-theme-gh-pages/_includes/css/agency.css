@@ -1807,12 +1807,12 @@ ul.social-buttons li a:active {
 
 ::-moz-selection {
     text-shadow: none;
-    background: var(--clr-accent);
+    background: #252525;
 }
 
 ::selection {
     text-shadow: none;
-    background: var(--clr-accent);
+    background: #252525;
 }
 
 img::selection {

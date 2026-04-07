@@ -1814,21 +1814,21 @@ ul.social-buttons li a:active {
     background: #fff;
 }
 
-::-moz-selection {
+{PLACEHOLDER}
     text-shadow: none;
     background: var(--clr-accent);
 }
 
-::selection {
+{PLACEHOLDER2}
     text-shadow: none;
     background: var(--clr-accent);
 }
 
-img::selection {
+img{PLACEHOLDER2}
     background: 0 0;
 }
 
-img::-moz-selection {
+img{PLACEHOLDER}
     background: 0 0;
 }
 
@@ -2295,3 +2295,13 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
 }
 
 
+
+::-moz-selection {
+    text-shadow: none;
+    background: #252525;
+}
+
+::selection {
+    text-shadow: none;
+    background: #252525;
+}
