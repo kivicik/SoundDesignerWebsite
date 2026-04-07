@@ -558,19 +558,37 @@ section h3.section-subheading {
     margin-bottom: 50px;
 }
 
+#portfolio .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#portfolio .container > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#portfolio .col-md-4,
+#portfolio .col-sm-6 {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 #portfolio .portfolio-item {
     right: 0;
-    margin: 0 0 9px;
+    margin: 0;
 }
 
 #portfolio .portfolio-grid {
-    margin-left: -4.5px;
-    margin-right: -4.5px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #portfolio .portfolio-grid .portfolio-item {
-    padding-left: 4.5px;
-    padding-right: 4.5px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
@@ -682,7 +700,7 @@ section h3.section-subheading {
 
 @media(min-width:767px) {
     #portfolio .portfolio-item {
-        margin: 0 0 9px;
+        margin: 0;
     }
 }
 
