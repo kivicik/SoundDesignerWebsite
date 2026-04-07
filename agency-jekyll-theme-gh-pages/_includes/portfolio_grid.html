@@ -7,32 +7,40 @@
                     <!-- <h3 class="section-subheading text-muted">Pieces selected from previous works.</h3> -->
                 </div>
             </div>
-            <div class="row">
-            {% assign ordered_modal_ids = "17,4,3,13,18,2,6,10,5,8,9,7,1,12,16,15,14,11" | split: "," %}
-            {% for modal_id in ordered_modal_ids %}
-                {% assign modal_id_number = modal_id | plus: 0 %}
-                {% assign post = site.posts | where: "modal-id", modal_id_number | first %}
-                {% if post %}
-                {% assign thumb_file = post.thumbnail | uri_escape %}
-                {% assign thumb_asset = '/img/portfolio/' | append: thumb_file %}
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    {% if post.game_link %}<a href="{{ post.game_link }}" target="_blank" rel="noopener" class="portfolio-link">{% else %}<div class="portfolio-link">{% endif %}
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <p class="hover-title">{{ post.title }}</p>
-                                <div class="hover-meta">
-                                    <div class="hover-row"><span class="hover-label">Developer</span><span class="hover-value">{{ post.client }}</span></div>
-                                    <div class="hover-row"><span class="hover-label">Year</span><span class="hover-value">{{ post.year | default: post.project-date }}</span></div>
-                                    <div class="hover-row"><span class="hover-label">Genre</span><span class="hover-value">{{ post.genre | default: "Puzzle / Match-3" }}</span></div>
-                                    <div class="hover-row"><span class="hover-label">Service</span><span class="hover-value">{{ post.service | default: post.category }}</span></div>
+            <div class="portfolio-collapse-wrap">
+                <div class="row portfolio-collapse-inner" id="portfolioGrid">
+                {% assign ordered_modal_ids = "17,4,3,13,18,2,6,10,5,8,9,7,1,12,16,15,14,11" | split: "," %}
+                {% for modal_id in ordered_modal_ids %}
+                    {% assign modal_id_number = modal_id | plus: 0 %}
+                    {% assign post = site.posts | where: "modal-id", modal_id_number | first %}
+                    {% if post %}
+                    {% assign thumb_file = post.thumbnail | uri_escape %}
+                    {% assign thumb_asset = '/img/portfolio/' | append: thumb_file %}
+                    <div class="col-md-4 col-sm-6 portfolio-item">
+                        {% if post.game_link %}<a href="{{ post.game_link }}" target="_blank" rel="noopener" class="portfolio-link">{% else %}<div class="portfolio-link">{% endif %}
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content">
+                                    <p class="hover-title">{{ post.title }}</p>
+                                    <div class="hover-meta">
+                                        <div class="hover-row"><span class="hover-label">Developer</span><span class="hover-value">{{ post.client }}</span></div>
+                                        <div class="hover-row"><span class="hover-label">Year</span><span class="hover-value">{{ post.year | default: post.project-date }}</span></div>
+                                        <div class="hover-row"><span class="hover-label">Genre</span><span class="hover-value">{{ post.genre | default: "Puzzle / Match-3" }}</span></div>
+                                        <div class="hover-row"><span class="hover-label">Service</span><span class="hover-value">{{ post.service | default: post.category }}</span></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <img src="{{ thumb_asset | relative_url }}" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ thumb_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ thumb_file }}';return;}this.onerror=null;">
-                    {% if post.game_link %}</a>{% else %}</div>{% endif %}
+                            <img src="{{ thumb_asset | relative_url }}" class="img-responsive img-centered" alt="" onerror="if(!this.dataset.try1){this.dataset.try1=1;this.src='img/portfolio/{{ thumb_file }}';return;}if(!this.dataset.try2){this.dataset.try2=1;this.src='/img/portfolio/{{ thumb_file }}';return;}this.onerror=null;">
+                        {% if post.game_link %}</a>{% else %}</div>{% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
                 </div>
-                {% endif %}
-            {% endfor %}
+                <div class="portfolio-fade-overlay" id="portfolioFade"></div>
+            </div>
+            <div class="portfolio-toggle-wrap">
+                <button class="portfolio-toggle-btn" id="portfolioToggle" aria-expanded="false">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
             </div>
         </div>
     </section>

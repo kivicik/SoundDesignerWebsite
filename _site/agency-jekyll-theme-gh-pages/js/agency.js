@@ -975,3 +975,30 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
         }
     });
 });
+
+// Portfolio collapse toggle
+(function() {
+    var portfolioWrap = document.querySelector('.portfolio-collapse-wrap');
+    var portfolioToggle = document.getElementById('portfolioToggle');
+    if (!portfolioWrap || !portfolioToggle) return;
+
+    function setCollapsedHeight() {
+        var items = portfolioWrap.querySelectorAll('.portfolio-item');
+        if (items.length >= 6) {
+            var wrapTop = portfolioWrap.getBoundingClientRect().top + window.scrollY;
+            var sixthBottom = items[5].getBoundingClientRect().bottom + window.scrollY;
+            portfolioWrap.style.setProperty('--portfolio-collapsed-height', (sixthBottom - wrapTop) + 'px');
+        }
+    }
+
+    // Wait for images to settle then measure
+    window.addEventListener('load', setCollapsedHeight);
+    window.addEventListener('resize', setCollapsedHeight);
+    setCollapsedHeight();
+
+    portfolioToggle.addEventListener('click', function() {
+        var expanded = portfolioWrap.classList.toggle('is-expanded');
+        portfolioToggle.classList.toggle('is-expanded', expanded);
+        portfolioToggle.setAttribute('aria-expanded', String(expanded));
+    });
+}());

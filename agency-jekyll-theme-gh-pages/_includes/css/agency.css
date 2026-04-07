@@ -2003,6 +2003,60 @@ html {
 
 
 
+/* ============================
+   Portfolio collapse toggle
+   ============================ */
+.portfolio-collapse-wrap {
+    position: relative;
+    overflow: hidden;
+    max-height: var(--portfolio-collapsed-height, 600px);
+    transition: max-height 0.5s ease;
+}
+
+.portfolio-collapse-wrap.is-expanded {
+    max-height: 9999px;
+}
+
+.portfolio-fade-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(to bottom, transparent, #252525);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-collapse-wrap.is-expanded .portfolio-fade-overlay {
+    opacity: 0;
+}
+
+.portfolio-toggle-wrap {
+    text-align: center;
+    padding: 12px 0 24px;
+}
+
+.portfolio-toggle-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 8px 16px;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.3s;
+}
+
+.portfolio-toggle-btn:hover {
+    opacity: 1;
+}
+
+.portfolio-toggle-btn.is-expanded i {
+    transform: rotate(180deg);
+    display: inline-block;
+}
+
 /* Remove default navbar gap under top bar */
 .navbar {
     margin-bottom: 0;
