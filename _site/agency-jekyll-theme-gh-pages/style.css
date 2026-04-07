@@ -250,8 +250,8 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .navbar-default .navbar-toggle {
-    border-color: var(--clr-accent);
-    background-color: var(--clr-accent);
+    border-color: #252525;
+    background-color: #252525;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -260,7 +260,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: var(--clr-accent);
+    background-color: #252525;
 }
 
 .navbar-default .nav li a {
