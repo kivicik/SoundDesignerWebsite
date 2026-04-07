@@ -634,10 +634,10 @@ section h3.section-subheading {
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover-content .hover-title {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     color: #fff;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -650,9 +650,9 @@ section h3.section-subheading {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 5px 0;
+    padding: 4px 0;
     border-bottom: 1px dashed rgba(255,255,255,.2);
-    font-size: 11px;
+    font-size: 10px;
     gap: 8px;
 }
 
