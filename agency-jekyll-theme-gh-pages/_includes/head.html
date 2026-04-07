@@ -8,7 +8,7 @@
     {% endif %}
     {% assign page_description = page.description | default: site.description | strip_html | strip_newlines | truncate: 160 %}
     {% assign canonical_url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
-    {% assign social_image_url = '/img/team/kivanc.jpg' %}
+    {% assign social_image_url = '/img/selfie.png' %}
     {% if page.img %}
       {% assign social_image_file = page.img | uri_escape %}
       {% assign social_image_url = '/img/portfolio/' | append: social_image_file %}
