@@ -133,6 +133,15 @@
         });
     });
 
+    var brandLink = document.querySelector('.navbar-brand[href="#page-top"]');
+    if (brandLink) {
+        brandLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.replaceState(null, '', window.location.pathname);
+        });
+    }
+
     window.addEventListener('hashchange', clearModalHashIfPresent);
     window.addEventListener('scroll', updateActiveNav, { passive: true });
     window.addEventListener('resize', updateActiveNav);
