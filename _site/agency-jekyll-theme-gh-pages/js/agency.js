@@ -996,73 +996,53 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
     }
 
     var toggleIcon = portfolioToggle.querySelector('i');
+    var DURATION = 800;
 
-    function collapse() {
-        var startH = portfolioWrap.scrollHeight;
-        var endH = getCollapsedHeight();
-        var duration = 800;
+    function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+    function animate(fromH, toH, onProgress, onDone) {
         var startTime = null;
-
-        function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
         function step(ts) {
             if (!startTime) startTime = ts;
-            var progress = Math.min((ts - startTime) / duration, 1);
-            portfolioWrap.style.maxHeight = (startH + (endH - startH) * ease(progress)) + 'px';
-            if (portfolioFade) portfolioFade.style.opacity = progress;
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                portfolioWrap.style.maxHeight = endH + 'px';
-                if (portfolioFade) portfolioFade.style.opacity = '1';
-            }
+            var progress = Math.min((ts - startTime) / DURATION, 1);
+            portfolioWrap.style.maxHeight = (fromH + (toH - fromH) * ease(progress)) + 'px';
+            onProgress(progress);
+            if (progress < 1) { requestAnimationFrame(step); } else { onDone(); }
         }
-
-        portfolioWrap.style.overflow = 'hidden';
-        if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-down'; }
-        expanded = false;
         requestAnimationFrame(step);
+    }
+
+    function collapse() {
+        portfolioWrap.style.overflow = 'hidden';
+        if (toggleIcon) toggleIcon.className = 'fa fa-chevron-down';
+        expanded = false;
+        animate(
+            portfolioWrap.scrollHeight,
+            getCollapsedHeight(),
+            function(p) { if (portfolioFade) portfolioFade.style.opacity = p; },
+            function() { if (portfolioFade) portfolioFade.style.opacity = '1'; }
+        );
     }
 
     function expand() {
-        // Start from current collapsed height, then animate to full height
-        var startH = parseInt(portfolioWrap.style.maxHeight) || getCollapsedHeight();
-        var fullH = portfolioWrap.scrollHeight;
-        var duration = 800;
-        var startTime = null;
-
-        function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-        function step(ts) {
-            if (!startTime) startTime = ts;
-            var progress = Math.min((ts - startTime) / duration, 1);
-            portfolioWrap.style.maxHeight = (startH + (fullH - startH) * ease(progress)) + 'px';
-            if (portfolioFade) portfolioFade.style.opacity = 1 - progress;
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                portfolioWrap.style.maxHeight = fullH + 'px';
-                if (portfolioFade) portfolioFade.style.opacity = '0';
-            }
-        }
-
         if (portfolioFade) portfolioFade.style.opacity = '1';
-        if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-up'; }
+        if (toggleIcon) toggleIcon.className = 'fa fa-chevron-up';
         expanded = true;
-        requestAnimationFrame(step);
+        animate(
+            parseInt(portfolioWrap.style.maxHeight) || getCollapsedHeight(),
+            portfolioWrap.scrollHeight,
+            function(p) { if (portfolioFade) portfolioFade.style.opacity = 1 - p; },
+            function() { if (portfolioFade) portfolioFade.style.opacity = '0'; }
+        );
     }
 
-    // Init collapsed instantly on load (no animation)
     function initCollapse() {
         var h = getCollapsedHeight();
         portfolioWrap.style.transition = 'none';
         portfolioWrap.style.maxHeight = h + 'px';
         portfolioWrap.style.overflow = 'hidden';
         if (portfolioFade) portfolioFade.style.opacity = '1';
-        // Re-enable transition after a frame
-        requestAnimationFrame(function() {
-            portfolioWrap.style.transition = '';
-        });
+        requestAnimationFrame(function() { portfolioWrap.style.transition = ''; });
     }
 
     window.addEventListener('load', initCollapse);
