@@ -1458,6 +1458,17 @@ ul.social-buttons li a:active {
 }
 
 @media(max-width:767px) {
+    .portfolio-collapse-wrap {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    .portfolio-fade-overlay {
+        display: none !important;
+    }
+    .portfolio-toggle-wrap {
+        display: none !important;
+    }
+
     footer ul.social-buttons {
         left: 50%;
     }

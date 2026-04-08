@@ -2386,3 +2386,16 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
 .portfolio-toggle-btn.is-expanded i {
     transform: rotate(180deg);
 }
+
+@media(max-width:767px) {
+    .portfolio-collapse-wrap {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    .portfolio-fade-overlay {
+        display: none !important;
+    }
+    .portfolio-toggle-wrap {
+        display: none !important;
+    }
+}

@@ -978,6 +978,7 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
 
 // Portfolio collapse toggle
 (function() {
+    if (window.innerWidth <= 767) return;
     var portfolioWrap = document.querySelector('.portfolio-collapse-wrap');
     var portfolioToggle = document.getElementById('portfolioToggle');
     var portfolioFade = document.getElementById('portfolioFade');
