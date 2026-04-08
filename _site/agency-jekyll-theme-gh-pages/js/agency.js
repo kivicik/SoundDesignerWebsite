@@ -1021,6 +1021,11 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
         portfolioWrap.style.overflow = 'hidden';
         if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-down'; }
         expanded = false;
+        var portfolioSection = document.getElementById('portfolio');
+        if (portfolioSection) {
+            var targetY = portfolioSection.getBoundingClientRect().top + window.scrollY - 60;
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
         requestAnimationFrame(step);
     }
 
