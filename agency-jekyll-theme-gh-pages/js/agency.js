@@ -1015,17 +1015,17 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
             } else {
                 portfolioWrap.style.maxHeight = endH + 'px';
                 if (portfolioFade) portfolioFade.style.opacity = '1';
+                var portfolioSection = document.getElementById('portfolio');
+                if (portfolioSection) {
+                    var targetY = portfolioSection.getBoundingClientRect().top + window.scrollY - 60;
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                }
             }
         }
 
         portfolioWrap.style.overflow = 'hidden';
         if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-down'; }
         expanded = false;
-        var portfolioSection = document.getElementById('portfolio');
-        if (portfolioSection) {
-            var targetY = portfolioSection.getBoundingClientRect().top + window.scrollY - 60;
-            window.scrollTo({ top: targetY, behavior: 'smooth' });
-        }
         requestAnimationFrame(step);
     }
 
