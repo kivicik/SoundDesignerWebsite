@@ -1019,14 +1019,16 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
             if (!startTime) startTime = ts;
             var progress = Math.min((ts - startTime) / duration, 1);
             portfolioWrap.style.maxHeight = (startH + (fullH - startH) * ease(progress)) + 'px';
+            if (portfolioFade) portfolioFade.style.opacity = 1 - progress;
             if (progress < 1) {
                 requestAnimationFrame(step);
             } else {
                 portfolioWrap.style.maxHeight = fullH + 'px';
+                if (portfolioFade) portfolioFade.style.opacity = '0';
             }
         }
 
-        if (portfolioFade) portfolioFade.style.opacity = '0';
+        if (portfolioFade) portfolioFade.style.opacity = '1';
         if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-up'; }
         expanded = true;
         requestAnimationFrame(step);
