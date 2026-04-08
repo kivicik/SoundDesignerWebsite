@@ -1052,12 +1052,21 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
         requestAnimationFrame(step);
     }
 
-    // Init collapsed after images load for accurate height
-    window.addEventListener('load', function() {
-        collapse();
-    });
-    // Fallback if load already fired
-    if (document.readyState === 'complete') collapse();
+    // Init collapsed instantly on load (no animation)
+    function initCollapse() {
+        var h = getCollapsedHeight();
+        portfolioWrap.style.transition = 'none';
+        portfolioWrap.style.maxHeight = h + 'px';
+        portfolioWrap.style.overflow = 'hidden';
+        if (portfolioFade) portfolioFade.style.opacity = '1';
+        // Re-enable transition after a frame
+        requestAnimationFrame(function() {
+            portfolioWrap.style.transition = '';
+        });
+    }
+
+    window.addEventListener('load', initCollapse);
+    if (document.readyState === 'complete') initCollapse();
 
     window.addEventListener('resize', function() {
         if (!expanded) collapse();
