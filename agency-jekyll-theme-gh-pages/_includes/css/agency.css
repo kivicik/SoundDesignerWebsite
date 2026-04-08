@@ -1880,6 +1880,7 @@ html {
 #portfolio .portfolio-item .portfolio-link img {
     display: block;
     width: 100%;
+    filter: brightness(0.8);
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
