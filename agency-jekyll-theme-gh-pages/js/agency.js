@@ -1007,10 +1007,29 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
     }
 
     function expand() {
-        portfolioWrap.style.maxHeight = portfolioWrap.scrollHeight + 'px';
+        // Start from current collapsed height, then animate to full height
+        var startH = parseInt(portfolioWrap.style.maxHeight) || getCollapsedHeight();
+        var fullH = portfolioWrap.scrollHeight;
+        var duration = 800;
+        var startTime = null;
+
+        function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            var progress = Math.min((ts - startTime) / duration, 1);
+            portfolioWrap.style.maxHeight = (startH + (fullH - startH) * ease(progress)) + 'px';
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                portfolioWrap.style.maxHeight = fullH + 'px';
+            }
+        }
+
         if (portfolioFade) portfolioFade.style.opacity = '0';
         if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-up'; }
         expanded = true;
+        requestAnimationFrame(step);
     }
 
     // Init collapsed after images load for accurate height
