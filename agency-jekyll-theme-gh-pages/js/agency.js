@@ -998,12 +998,30 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
     var toggleIcon = portfolioToggle.querySelector('i');
 
     function collapse() {
-        var h = getCollapsedHeight();
-        portfolioWrap.style.maxHeight = h + 'px';
+        var startH = portfolioWrap.scrollHeight;
+        var endH = getCollapsedHeight();
+        var duration = 800;
+        var startTime = null;
+
+        function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            var progress = Math.min((ts - startTime) / duration, 1);
+            portfolioWrap.style.maxHeight = (startH + (endH - startH) * ease(progress)) + 'px';
+            if (portfolioFade) portfolioFade.style.opacity = progress;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                portfolioWrap.style.maxHeight = endH + 'px';
+                if (portfolioFade) portfolioFade.style.opacity = '1';
+            }
+        }
+
         portfolioWrap.style.overflow = 'hidden';
-        if (portfolioFade) portfolioFade.style.opacity = '1';
         if (toggleIcon) { toggleIcon.className = 'fa fa-chevron-down'; }
         expanded = false;
+        requestAnimationFrame(step);
     }
 
     function expand() {
