@@ -16,7 +16,7 @@
                     {% if post %}
                     {% assign thumb_file = post.thumbnail | uri_escape %}
                     {% assign thumb_asset = '/img/portfolio/' | append: thumb_file %}
-                    <div class="col-md-4 col-sm-6 portfolio-item">
+                    <div class="col-md-4 col-sm-6 col-xs-6 portfolio-item">
                         {% if post.game_link %}<a href="{{ post.game_link }}" target="_blank" rel="noopener" class="portfolio-link">{% else %}<div class="portfolio-link">{% endif %}
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
