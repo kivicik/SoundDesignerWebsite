@@ -575,13 +575,13 @@ section h3.section-subheading {
 }
 
 #portfolio .col-md-4,
-#portfolio .col-sm-6 {
+#portfolio .col-sm-6,
+#portfolio .col-xs-6 {
     padding-left: 0;
     padding-right: 0;
 }
 
 #portfolio .portfolio-item {
-    right: 0;
     margin: 0;
     border: 3px solid #252525;
 }
@@ -615,6 +615,8 @@ section h3.section-subheading {
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
