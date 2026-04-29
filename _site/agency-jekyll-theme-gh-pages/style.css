@@ -569,7 +569,10 @@ section h3.section-subheading {
     margin-bottom: 50px;
 }
 
-#portfolio .container > .row {
+#portfolio .container > .row,
+#portfolio .portfolio-collapse-inner {
+    display: flex;
+    flex-wrap: wrap;
     margin-left: 0;
     margin-right: 0;
 }
@@ -579,21 +582,29 @@ section h3.section-subheading {
 #portfolio .col-xs-6 {
     padding-left: 0;
     padding-right: 0;
+    float: none;
 }
 
-#portfolio .portfolio-item {
+#portfolio .portfolio-collapse-inner .portfolio-item {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+    width: 33.333%;
     margin: 0;
     border: 3px solid #252525;
+    box-sizing: border-box;
+}
+
+@media(max-width: 767px) {
+    #portfolio .portfolio-collapse-inner .portfolio-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 50%;
+    }
 }
 
 #portfolio .portfolio-grid {
     margin-left: 0;
     margin-right: 0;
-}
-
-#portfolio .portfolio-grid .portfolio-item {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 
