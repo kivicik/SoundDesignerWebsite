@@ -2167,17 +2167,6 @@ html {
     caret-color: transparent !important;
 }
 
-/* Scroll reveal — section fade-up */
-.reveal-section {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal-section--visible {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 #contact input,
 #contact textarea,

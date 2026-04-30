@@ -805,34 +805,6 @@ if (window.jQuery) {
     });
 }
 
-// Scroll reveal — fade-up each section as it enters the viewport
-(function() {
-    if (!('IntersectionObserver' in window)) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var sections = Array.prototype.slice.call(
-        document.querySelectorAll('section, header.home-about-section')
-    );
-    if (!sections.length) return;
-
-    sections.forEach(function(section) {
-        section.classList.add('reveal-section');
-    });
-
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('reveal-section--visible');
-            observer.unobserve(entry.target);
-        });
-    }, {
-        threshold: 0.08
-    });
-
-    sections.forEach(function(section) {
-        observer.observe(section);
-    });
-}());
 
 
 
