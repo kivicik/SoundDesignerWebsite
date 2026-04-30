@@ -2234,48 +2234,16 @@ html {
     caret-color: transparent !important;
 }
 
-html.reveal-preload body {
-    opacity: 0 !important;
-}
-
-body.has-reveal {
+/* Scroll reveal — section fade-up */
+.reveal-section {
     opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-body.has-reveal.reveal-ready {
+.reveal-section--visible {
     opacity: 1;
-    transition: opacity 0.18s linear;
-}
-
-/* Scroll reveal animation */
-body.has-reveal .reveal-on-scroll {
-    opacity: 0;
-    transform: none;
-    transition: none;
-    will-change: opacity;
-}
-
-body.has-reveal header.reveal-on-scroll {
-    opacity: 1;
-}
-
-body.has-reveal .reveal-on-scroll.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-body.has-reveal header.reveal-on-scroll.is-visible {
-    opacity: 1;
-}
-
-body.has-reveal.reveal-ready .reveal-on-scroll {
-    transition: opacity 0.9s ease-out !important;
-}
-
-body.has-reveal.reveal-ready .navbar-default.reveal-on-scroll,
-body.has-reveal.reveal-ready .navbar-default .navbar-brand.reveal-on-scroll,
-body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
-    transition: opacity 0.9s ease-out !important;
+    transform: translateY(0);
 }
 
 #contact input,
@@ -2288,15 +2256,6 @@ body.has-reveal.reveal-ready .navbar-default .nav > li > a.reveal-on-scroll {
     cursor: text !important;
     -webkit-appearance: none;
     user-select: text !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body.has-reveal .reveal-on-scroll,
-    body.has-reveal .reveal-on-scroll.is-visible {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
 }
 
 .navbar-default .navbar-brand .brand-wide-so {

@@ -805,165 +805,34 @@ if (window.jQuery) {
     });
 }
 
+// Scroll reveal — fade-up each section as it enters the viewport
 (function() {
-    var homeTargets = Array.prototype.slice.call(
-        document.querySelectorAll(
-            'header#home *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
-        )
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var sections = Array.prototype.slice.call(
+        document.querySelectorAll('section, header.home-about-section')
     );
-    var priorityTargets = Array.prototype.slice.call(
-        document.querySelectorAll(
-            '.navbar-default, .navbar-default .navbar-brand, .navbar-default .nav > li > a'
-        )
-    ).concat(homeTargets);
-    var contentTargets = Array.prototype.slice.call(
-        document.querySelectorAll(
-            'section *:not(script):not(style):not(input):not(textarea):not(select):not(option):not(button)'
-        )
-    );
-    var seenTargets = new Set();
-    var targets = priorityTargets.concat(contentTargets).filter(function(el) {
-        if (seenTargets.has(el)) return false;
-        seenTargets.add(el);
-        return true;
-    });
-    if (!targets.length) return;
+    if (!sections.length) return;
 
-    function reveal(el) {
-        window.requestAnimationFrame(function() {
-            el.classList.add('is-visible');
-        });
-    }
-
-    var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        document.documentElement.classList.remove('reveal-preload');
-        targets.forEach(function(el) { el.classList.add('is-visible'); });
-        return;
-    }
-
-    document.body.classList.add('has-reveal');
-    document.documentElement.classList.remove('reveal-preload');
-
-    targets.forEach(function(el, index) {
-        el.classList.remove('reveal-on-scroll');
-        el.classList.remove('is-visible');
-        el.classList.add('reveal-on-scroll');
-        el.style.transitionDelay = '0ms';
+    sections.forEach(function(section) {
+        section.classList.add('reveal-section');
     });
 
-    var sectionRevealMap = new Map();
-    var sectionTriggerMap = new Map();
-    var revealedSections = new WeakSet();
-    var observedTriggers = new WeakSet();
-
-    window.__revealAllSections = function() {
-        sectionRevealMap.forEach(function(_, section) {
-            if (revealedSections.has(section)) return;
-            revealedSections.add(section);
-            var list = sectionRevealMap.get(section) || [];
-            list.forEach(function(el) {
-                el.style.transitionDelay = '0ms';
-                reveal(el);
-            });
-        });
-    };
-
-    contentTargets.forEach(function(el) {
-        var section = el.closest('section');
-        if (!section) return;
-        var list = sectionRevealMap.get(section) || [];
-        list.push(el);
-        sectionRevealMap.set(section, list);
-    });
-
-    sectionRevealMap.forEach(function(_, section) {
-        var trigger = section.querySelector('.section-heading') || section.querySelector('.section-subheading') || section;
-        sectionTriggerMap.set(section, trigger);
-    });
-
-    function revealSection(section) {
-        if (!section || revealedSections.has(section)) return;
-        revealedSections.add(section);
-        var list = sectionRevealMap.get(section) || [];
-        list.forEach(function(el) {
-            el.style.transitionDelay = '180ms';
-            reveal(el);
-        });
-        var trigger = sectionTriggerMap.get(section);
-        if (trigger && observedTriggers.has(trigger)) {
-            sectionObserver.unobserve(trigger);
-        }
-    }
-
-    var sectionObserver = new IntersectionObserver(function(entries) {
+    var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (!entry.isIntersecting) return;
-            var section = entry.target.closest('section') || entry.target;
-            revealSection(section);
-            sectionObserver.unobserve(entry.target);
+            entry.target.classList.add('reveal-section--visible');
+            observer.unobserve(entry.target);
         });
     }, {
-        threshold: 0,
-        rootMargin: '0px 0px -8% 0px'
+        threshold: 0.08
     });
 
-    function navHeight() {
-        var navEl = document.querySelector('.navbar-default');
-        return navEl ? navEl.getBoundingClientRect().height : 0;
-    }
-
-    function isSectionVisible(section) {
-        var rect = section.getBoundingClientRect();
-        var topOffset = navHeight() + 8;
-        return rect.top < window.innerHeight && rect.bottom > topOffset;
-    }
-
-    function syncVisibleSections() {
-        sectionRevealMap.forEach(function(_, section) {
-            if (isSectionVisible(section)) {
-                revealSection(section);
-            }
-        });
-    }
-
-    function observeHiddenSections() {
-        sectionRevealMap.forEach(function(_, section) {
-            if (revealedSections.has(section)) return;
-            var trigger = sectionTriggerMap.get(section) || section;
-            if (observedTriggers.has(trigger)) return;
-            observedTriggers.add(trigger);
-            sectionObserver.observe(trigger);
-        });
-    }
-
-    function runRevealPass() {
-        syncVisibleSections();
-        observeHiddenSections();
-    }
-
-    window.requestAnimationFrame(function() {
-        // Now enable transitions for animated (scroll-triggered) reveals.
-        document.body.classList.add('reveal-ready');
-
-        window.requestAnimationFrame(function() {
-            priorityTargets.forEach(function(el) {
-                var isHeader = el.matches('header') || !!el.closest('header');
-                el.style.transitionDelay = isHeader ? '420ms' : '180ms';
-                reveal(el);
-            });
-
-            runRevealPass();
-        });
+    sections.forEach(function(section) {
+        observer.observe(section);
     });
-
-    // Handle refresh scroll restoration and late layout shifts without requiring manual scroll.
-    window.setTimeout(runRevealPass, 120);
-    window.setTimeout(runRevealPass, 450);
-    window.addEventListener('load', runRevealPass);
-    window.addEventListener('pageshow', runRevealPass);
-    window.addEventListener('resize', runRevealPass);
-})();
+}());
 
 
 
