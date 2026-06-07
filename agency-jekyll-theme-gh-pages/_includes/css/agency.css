@@ -2399,9 +2399,8 @@ html {
 }
 
 .comp-player-text {
-    flex-shrink: 0;
+    flex: 1;
     min-width: 0;
-    max-width: 160px;
 }
 
 .comp-player-title {
@@ -2544,9 +2543,6 @@ html {
     .comp-tracklist {
         margin: 16px -16px 0;
         padding: 0 16px;
-    }
-    .comp-player-text {
-        max-width: 110px;
     }
 }
 

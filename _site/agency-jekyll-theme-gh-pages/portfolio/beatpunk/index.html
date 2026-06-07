@@ -949,7 +949,7 @@
             active.classList.add('is-playing');
             titleEl.textContent   = trackEl.querySelector('.comp-track-name').textContent;
             metaEl.textContent    = trackEl.dataset.album || '';
-            timeTotal.textContent = '0:00';
+            timeTotal.textContent = '0:00 / —:——';
             audio.src = trackEl.dataset.src;
             audio.play().catch(function () {});
             syncCanvasSize();
@@ -981,10 +981,13 @@
         });
 
         audio.addEventListener('loadedmetadata', function () {
-            timeTotal.textContent = fmt(audio.duration);
+            timeTotal.textContent = '0:00 / ' + fmt(audio.duration);
         });
 
         audio.addEventListener('timeupdate', function () {
+            if (audio.duration && isFinite(audio.duration)) {
+                timeTotal.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+            }
             if (active && waveCache[active.dataset.src]) {
                 drawPeaks(waveCache[active.dataset.src], getProgress());
             }
@@ -1024,7 +1027,7 @@
             var tmpDur = new Audio();
             tmpDur.preload = 'metadata';
             tmpDur.addEventListener('loadedmetadata', function () {
-                if (!audioLoaded) timeTotal.textContent = fmt(tmpDur.duration);
+                if (!audioLoaded) timeTotal.textContent = '0:00 / ' + fmt(tmpDur.duration);
             });
             tmpDur.src = t.dataset.src;
             loadWaveform(t.dataset.src);
