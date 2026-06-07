@@ -1,0 +1,218 @@
+<!-- Composition Portfolio Section -->
+<section id="composition-portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Composition Portfolio</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Player Bar -->
+                <div class="comp-player" id="compPlayer">
+                    <div class="comp-player-art" aria-hidden="true">
+                        <svg viewBox="0 0 40 40" class="comp-waveform-art">
+                            <line x1="5"  y1="22" x2="5"  y2="18"/>
+                            <line x1="9"  y1="28" x2="9"  y2="12"/>
+                            <line x1="13" y1="25" x2="13" y2="15"/>
+                            <line x1="17" y1="32" x2="17" y2="8"/>
+                            <line x1="21" y1="20" x2="21" y2="20"/>
+                            <line x1="25" y1="27" x2="25" y2="13"/>
+                            <line x1="29" y1="31" x2="29" y2="9"/>
+                            <line x1="33" y1="24" x2="33" y2="16"/>
+                            <line x1="37" y1="22" x2="37" y2="18"/>
+                        </svg>
+                    </div>
+                    <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
+                        <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
+                        <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+                    </button>
+                    <div class="comp-player-info">
+                        <div class="comp-player-title" id="compPlayerTitle">—</div>
+                        <div class="comp-player-meta" id="compPlayerMeta"></div>
+                        <div class="comp-scrubber-row">
+                            <span class="comp-time" id="compTimeCur">0:00</span>
+                            <div class="comp-scrubber" id="compScrubber">
+                                <div class="comp-scrubber-fill" id="compScrubberFill">
+                                    <span class="comp-scrubber-thumb"></span>
+                                </div>
+                            </div>
+                            <span class="comp-time comp-time-right" id="compTimeTotal">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track List -->
+                <div class="comp-tracklist">
+
+                    <div class="comp-album-group">
+                        <div class="comp-album-header">Photocula <span class="comp-album-tag">(Game OST)</span></div>
+                        <ul class="comp-tracks">
+                            <li class="comp-track" data-src="/audio/Photocula%20-%20Menu%20Theme.mp3" data-album="Photocula (Game OST)">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Menu Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                            <li class="comp-track" data-src="/audio/Photocula%20-%20Main%20Theme.mp3" data-album="Photocula (Game OST)">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Main Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="comp-album-group">
+                        <div class="comp-album-header">Reincarnation <span class="comp-album-tag">(Game OST)</span></div>
+                        <ul class="comp-tracks">
+                            <li class="comp-track" data-src="/audio/Reincarnation%20-%20Tavern%20Music%20by%20Kivanc%20Nadir.mp3" data-album="Reincarnation (Game OST)">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Tavern Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="comp-album-group">
+                        <div class="comp-album-header">Roll The Pattern <span class="comp-album-tag">(Game OST)</span></div>
+                        <ul class="comp-tracks">
+                            <li class="comp-track" data-src="/audio/Roll%20The%20Pattern_OST.mp3" data-album="Roll The Pattern (Game OST)">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Main Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="comp-album-group">
+                        <div class="comp-album-header">Personal / Practice Works</div>
+                        <ul class="comp-tracks">
+                            <li class="comp-track" data-src="/audio/2.%20Path%20A%20-%20Village%20%28Idle%20Game%20Music%29.mp3" data-album="Personal / Practice Works">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Village Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                            <li class="comp-track" data-src="/audio/3.%20Path%20B%20%28Dungeon%20Music%29.mp3" data-album="Personal / Practice Works">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Dungeon Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                            <li class="comp-track" data-src="/audio/Chiptune%20Dance%20Music%20-%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Chiptune Dance Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                            <li class="comp-track" data-src="/audio/Epic%20Soundtrack%20by%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
+                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                <span class="comp-track-name">Epic Theme</span>
+                                <span class="comp-track-dur">—:——</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="compAudio" preload="none"></audio>
+
+    <script>
+    (function () {
+        var audio      = document.getElementById('compAudio');
+        var allTracks  = Array.from(document.querySelectorAll('#composition-portfolio .comp-track'));
+        var playBtn    = document.getElementById('compPlayBtn');
+        var iconPlay   = playBtn.querySelector('.comp-icon-play');
+        var iconPause  = playBtn.querySelector('.comp-icon-pause');
+        var scrubber   = document.getElementById('compScrubber');
+        var fill       = document.getElementById('compScrubberFill');
+        var timeCur    = document.getElementById('compTimeCur');
+        var timeTotal  = document.getElementById('compTimeTotal');
+        var titleEl    = document.getElementById('compPlayerTitle');
+        var metaEl     = document.getElementById('compPlayerMeta');
+        var active     = null;
+
+        function fmt(s) {
+            if (!isFinite(s) || isNaN(s)) return '0:00';
+            var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+            return m + ':' + (sec < 10 ? '0' : '') + sec;
+        }
+
+        // Pre-load metadata for all tracks to show durations
+        allTracks.forEach(function (t) {
+            var tmp = new Audio();
+            tmp.preload = 'metadata';
+            tmp.addEventListener('loadedmetadata', function () {
+                t.querySelector('.comp-track-dur').textContent = fmt(tmp.duration);
+            });
+            tmp.src = t.dataset.src;
+        });
+
+        function syncBtn() {
+            var playing = !audio.paused && !audio.ended;
+            iconPlay.style.display  = playing ? 'none' : '';
+            iconPause.style.display = playing ? ''     : 'none';
+        }
+
+        function load(trackEl) {
+            if (active) active.classList.remove('is-playing');
+            active = trackEl;
+            active.classList.add('is-playing');
+            titleEl.textContent = trackEl.querySelector('.comp-track-name').textContent;
+            metaEl.textContent  = trackEl.dataset.album || '';
+            fill.style.width    = '0%';
+            timeCur.textContent = '0:00';
+            timeTotal.textContent = '0:00';
+            audio.src = trackEl.dataset.src;
+            audio.play().catch(function () {});
+        }
+
+        allTracks.forEach(function (t) {
+            t.addEventListener('click', function () {
+                if (active === t) {
+                    audio.paused ? audio.play().catch(function(){}) : audio.pause();
+                } else {
+                    load(t);
+                }
+            });
+        });
+
+        playBtn.addEventListener('click', function () {
+            if (!active)            { load(allTracks[0]); }
+            else if (audio.paused)  { audio.play().catch(function(){}); }
+            else                    { audio.pause(); }
+        });
+
+        audio.addEventListener('play',  syncBtn);
+        audio.addEventListener('pause', syncBtn);
+        audio.addEventListener('ended', function () {
+            syncBtn();
+            var i = allTracks.indexOf(active);
+            if (i < allTracks.length - 1) load(allTracks[i + 1]);
+        });
+
+        audio.addEventListener('loadedmetadata', function () {
+            timeTotal.textContent = fmt(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            if (!audio.duration) return;
+            fill.style.width    = ((audio.currentTime / audio.duration) * 100) + '%';
+            timeCur.textContent = fmt(audio.currentTime);
+        });
+
+        // Seek: click + drag on scrubber
+        var seeking = false;
+        function seekTo(clientX) {
+            if (!audio.duration) return;
+            var r = scrubber.getBoundingClientRect();
+            audio.currentTime = audio.duration * Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+        }
+        scrubber.addEventListener('mousedown', function (e) { seeking = true; seekTo(e.clientX); e.preventDefault(); });
+        document.addEventListener('mousemove',  function (e) { if (seeking) seekTo(e.clientX); });
+        document.addEventListener('mouseup',    function ()  { seeking = false; });
+        scrubber.addEventListener('touchstart', function (e) { seekTo(e.touches[0].clientX); }, { passive: true });
+        scrubber.addEventListener('touchmove',  function (e) { seekTo(e.touches[0].clientX); }, { passive: true });
+    })();
+    </script>
+</section>
