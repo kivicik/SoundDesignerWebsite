@@ -2522,6 +2522,14 @@ html {
     color: #fff;
 }
 
+.comp-track-year {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    margin-right: 12px;
+}
+
 .comp-track-dur {
     font-size: 13px;
     color: rgba(255,255,255,0.38);
