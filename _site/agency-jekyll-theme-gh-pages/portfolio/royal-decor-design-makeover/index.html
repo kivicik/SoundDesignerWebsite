@@ -778,9 +778,10 @@
         var metaEl    = document.getElementById('compPlayerMeta');
         var canvas    = document.getElementById('compWaveformCanvas');
         var ctx2d     = canvas ? canvas.getContext('2d') : null;
-        var active    = null;
-        var audioCtx  = null;
-        var waveCache = {};
+        var active      = null;
+        var audioLoaded = false;
+        var audioCtx    = null;
+        var waveCache   = {};
 
         /* ---- helpers ---- */
         function fmt(s) {
@@ -914,6 +915,7 @@
         function load(trackEl) {
             if (active) active.classList.remove('is-playing');
             active = trackEl;
+            audioLoaded = true;
             active.classList.add('is-playing');
             titleEl.textContent   = trackEl.querySelector('.comp-track-name').textContent;
             metaEl.textContent    = trackEl.dataset.album || '';
@@ -935,7 +937,7 @@
         });
 
         playBtn.addEventListener('click', function () {
-            if (!active)           { load(allTracks[0]); }
+            if (!audioLoaded)      { load(active || allTracks[0]); }
             else if (audio.paused) { audio.play().catch(function () {}); }
             else                   { audio.pause(); }
         });
@@ -968,6 +970,22 @@
                 audio.currentTime = frac * audio.duration;
             });
         }
+
+        /* ---- pre-select first track on load ---- */
+        (function () {
+            var t = allTracks[0];
+            active = t;
+            t.classList.add('is-playing');
+            titleEl.textContent = t.querySelector('.comp-track-name').textContent;
+            metaEl.textContent  = t.dataset.album || '';
+            var tmpDur = new Audio();
+            tmpDur.preload = 'metadata';
+            tmpDur.addEventListener('loadedmetadata', function () {
+                if (!audioLoaded) timeTotal.textContent = fmt(tmpDur.duration);
+            });
+            tmpDur.src = t.dataset.src;
+            loadWaveform(t.dataset.src);
+        })();
 
         /* ---- canvas resize ---- */
         window.addEventListener('resize', syncCanvasSize);
