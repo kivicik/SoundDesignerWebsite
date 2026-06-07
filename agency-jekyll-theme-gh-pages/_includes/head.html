@@ -41,6 +41,23 @@
                 root.classList.remove('reveal-preload');
             }, 3000);
         })();
+
+        (function () {
+            function hideLoader() {
+                var el = document.getElementById('page-loader');
+                if (!el || el.dataset.hidden) return;
+                el.dataset.hidden = '1';
+                el.classList.add('loader-fade-out');
+                setTimeout(function () {
+                    if (el.parentNode) el.parentNode.removeChild(el);
+                }, 520);
+            }
+            var safety = setTimeout(hideLoader, 5000);
+            window.addEventListener('load', function () {
+                clearTimeout(safety);
+                hideLoader();
+            });
+        })();
     </script>
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
