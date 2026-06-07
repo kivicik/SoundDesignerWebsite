@@ -838,9 +838,9 @@ document.querySelectorAll('a.portfolio-link[href]').forEach(function(link) {
     }
 
     var toggleIcon = portfolioToggle.querySelector('i');
-    var DURATION = 800;
+    var DURATION = 650;
 
-    function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+    function ease(t) { return t * (2 - t); } // ease-out: immediate start, smooth deceleration
 
     function animate(fromH, toH, onProgress, onDone) {
         var startTime = null;
