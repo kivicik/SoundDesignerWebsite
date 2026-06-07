@@ -691,19 +691,12 @@
                         <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
                         <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
                     </button>
-                    <div class="comp-player-info">
+                    <div class="comp-player-text">
                         <div class="comp-player-title" id="compPlayerTitle">—</div>
                         <div class="comp-player-meta" id="compPlayerMeta"></div>
-                        <div class="comp-scrubber-row">
-                            <span class="comp-time" id="compTimeCur">0:00</span>
-                            <div class="comp-scrubber" id="compScrubber">
-                                <div class="comp-scrubber-fill" id="compScrubberFill">
-                                    <span class="comp-scrubber-thumb"></span>
-                                </div>
-                            </div>
-                            <span class="comp-time comp-time-right" id="compTimeTotal">0:00</span>
-                        </div>
                     </div>
+                    <canvas class="comp-waveform-canvas" id="compWaveformCanvas"></canvas>
+                    <span class="comp-time-dur" id="compTimeTotal">0:00</span>
                 </div>
 
                 <!-- Track List -->
@@ -782,26 +775,125 @@
 
     <script>
     (function () {
-        var audio      = document.getElementById('compAudio');
-        var allTracks  = Array.from(document.querySelectorAll('#composition-portfolio .comp-track'));
-        var playBtn    = document.getElementById('compPlayBtn');
-        var iconPlay   = playBtn.querySelector('.comp-icon-play');
-        var iconPause  = playBtn.querySelector('.comp-icon-pause');
-        var scrubber   = document.getElementById('compScrubber');
-        var fill       = document.getElementById('compScrubberFill');
-        var timeCur    = document.getElementById('compTimeCur');
-        var timeTotal  = document.getElementById('compTimeTotal');
-        var titleEl    = document.getElementById('compPlayerTitle');
-        var metaEl     = document.getElementById('compPlayerMeta');
-        var active     = null;
+        var audio     = document.getElementById('compAudio');
+        var allTracks = Array.from(document.querySelectorAll('#composition-portfolio .comp-track'));
+        var playBtn   = document.getElementById('compPlayBtn');
+        var iconPlay  = playBtn.querySelector('.comp-icon-play');
+        var iconPause = playBtn.querySelector('.comp-icon-pause');
+        var timeTotal = document.getElementById('compTimeTotal');
+        var titleEl   = document.getElementById('compPlayerTitle');
+        var metaEl    = document.getElementById('compPlayerMeta');
+        var canvas    = document.getElementById('compWaveformCanvas');
+        var ctx2d     = canvas ? canvas.getContext('2d') : null;
+        var active    = null;
+        var audioCtx  = null;
+        var waveCache = {};
 
+        /* ---- helpers ---- */
         function fmt(s) {
             if (!isFinite(s) || isNaN(s)) return '0:00';
             var m = Math.floor(s / 60), sec = Math.floor(s % 60);
             return m + ':' + (sec < 10 ? '0' : '') + sec;
         }
 
-        // Pre-load metadata for all tracks to show durations
+        function getAudioCtx() {
+            if (!audioCtx) {
+                try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+            }
+            return audioCtx;
+        }
+
+        /* ---- waveform ---- */
+        function drawPeaks(peaks) {
+            if (!ctx2d || !canvas) return;
+            var dpr = window.devicePixelRatio || 1;
+            var W   = canvas.width;
+            var H   = canvas.height;
+            ctx2d.clearRect(0, 0, W, H);
+
+            var amp    = H / 2;
+            var numBars = peaks.length;
+            var barW   = W / numBars;
+
+            ctx2d.fillStyle = 'rgba(175, 175, 175, 0.72)';
+            for (var i = 0; i < numBars; i++) {
+                var h = Math.max(dpr, peaks[i] * amp * 2);
+                ctx2d.fillRect(
+                    Math.round(i * barW),
+                    Math.round(amp - h / 2),
+                    Math.max(1, Math.round(barW) - 1),
+                    Math.round(h)
+                );
+            }
+        }
+
+        function clearCanvas() {
+            if (ctx2d && canvas) ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function syncCanvasSize() {
+            if (!canvas) return;
+            var dpr = window.devicePixelRatio || 1;
+            var w   = canvas.offsetWidth;
+            var h   = canvas.offsetHeight;
+            if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+                canvas.width  = Math.round(w * dpr);
+                canvas.height = Math.round(h * dpr);
+                if (active && waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src]);
+            }
+        }
+
+        function buildPeaks(channelData, numBars) {
+            var len  = channelData.length;
+            var step = Math.ceil(len / numBars);
+            var peaks = new Float32Array(numBars);
+            for (var i = 0; i < numBars; i++) {
+                var max = 0;
+                var start = i * step;
+                var end   = Math.min(start + step, len);
+                for (var j = start; j < end; j++) {
+                    var v = Math.abs(channelData[j]);
+                    if (v > max) max = v;
+                }
+                peaks[i] = Math.sqrt(max); // sqrt scale for better visual range
+            }
+            return peaks;
+        }
+
+        function loadWaveform(src) {
+            if (!ctx2d) return;
+            clearCanvas();
+            if (waveCache[src]) { drawPeaks(waveCache[src]); return; }
+
+            var ac = getAudioCtx();
+            if (!ac) return;
+
+            fetch(src)
+                .then(function (r) { return r.arrayBuffer(); })
+                .then(function (buf) { return ac.decodeAudioData(buf); })
+                .then(function (decoded) {
+                    var dpr     = window.devicePixelRatio || 1;
+                    var numBars = Math.round((canvas ? canvas.offsetWidth : 600) * dpr);
+                    var ch0     = decoded.getChannelData(0);
+                    var ch1     = decoded.numberOfChannels > 1 ? decoded.getChannelData(1) : null;
+
+                    // merge channels: take max absolute value per sample
+                    var merged = ch1 ? new Float32Array(ch0.length) : ch0;
+                    if (ch1) {
+                        for (var i = 0; i < ch0.length; i++) {
+                            merged[i] = Math.max(Math.abs(ch0[i]), Math.abs(ch1[i]));
+                        }
+                    }
+
+                    var peaks = buildPeaks(merged, numBars);
+                    waveCache[src] = peaks;
+                    // only draw if this track is still active
+                    if (active && active.dataset.src === src) drawPeaks(peaks);
+                })
+                .catch(function () {});
+        }
+
+        /* ---- track list durations ---- */
         allTracks.forEach(function (t) {
             var tmp = new Audio();
             tmp.preload = 'metadata';
@@ -811,6 +903,7 @@
             tmp.src = t.dataset.src;
         });
 
+        /* ---- playback ---- */
         function syncBtn() {
             var playing = !audio.paused && !audio.ended;
             iconPlay.style.display  = playing ? 'none' : '';
@@ -821,19 +914,19 @@
             if (active) active.classList.remove('is-playing');
             active = trackEl;
             active.classList.add('is-playing');
-            titleEl.textContent = trackEl.querySelector('.comp-track-name').textContent;
-            metaEl.textContent  = trackEl.dataset.album || '';
-            fill.style.width    = '0%';
-            timeCur.textContent = '0:00';
+            titleEl.textContent   = trackEl.querySelector('.comp-track-name').textContent;
+            metaEl.textContent    = trackEl.dataset.album || '';
             timeTotal.textContent = '0:00';
             audio.src = trackEl.dataset.src;
             audio.play().catch(function () {});
+            syncCanvasSize();
+            loadWaveform(trackEl.dataset.src);
         }
 
         allTracks.forEach(function (t) {
             t.addEventListener('click', function () {
                 if (active === t) {
-                    audio.paused ? audio.play().catch(function(){}) : audio.pause();
+                    audio.paused ? audio.play().catch(function () {}) : audio.pause();
                 } else {
                     load(t);
                 }
@@ -841,9 +934,9 @@
         });
 
         playBtn.addEventListener('click', function () {
-            if (!active)            { load(allTracks[0]); }
-            else if (audio.paused)  { audio.play().catch(function(){}); }
-            else                    { audio.pause(); }
+            if (!active)           { load(allTracks[0]); }
+            else if (audio.paused) { audio.play().catch(function () {}); }
+            else                   { audio.pause(); }
         });
 
         audio.addEventListener('play',  syncBtn);
@@ -858,24 +951,13 @@
             timeTotal.textContent = fmt(audio.duration);
         });
 
-        audio.addEventListener('timeupdate', function () {
-            if (!audio.duration) return;
-            fill.style.width    = ((audio.currentTime / audio.duration) * 100) + '%';
-            timeCur.textContent = fmt(audio.currentTime);
-        });
-
-        // Seek: click + drag on scrubber
-        var seeking = false;
-        function seekTo(clientX) {
-            if (!audio.duration) return;
-            var r = scrubber.getBoundingClientRect();
-            audio.currentTime = audio.duration * Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+        /* ---- canvas resize ---- */
+        window.addEventListener('resize', syncCanvasSize);
+        if (document.readyState === 'complete') {
+            syncCanvasSize();
+        } else {
+            window.addEventListener('load', syncCanvasSize);
         }
-        scrubber.addEventListener('mousedown', function (e) { seeking = true; seekTo(e.clientX); e.preventDefault(); });
-        document.addEventListener('mousemove',  function (e) { if (seeking) seekTo(e.clientX); });
-        document.addEventListener('mouseup',    function ()  { seeking = false; });
-        scrubber.addEventListener('touchstart', function (e) { seekTo(e.touches[0].clientX); }, { passive: true });
-        scrubber.addEventListener('touchmove',  function (e) { seekTo(e.touches[0].clientX); }, { passive: true });
     })();
     </script>
 </section>

@@ -2394,9 +2394,10 @@ html {
     transform: translateX(1px);
 }
 
-.comp-player-info {
-    flex: 1;
+.comp-player-text {
+    flex-shrink: 0;
     min-width: 0;
+    max-width: 160px;
 }
 
 .comp-player-title {
@@ -2413,69 +2414,26 @@ html {
 .comp-player-meta {
     font-size: 11px;
     color: rgba(255,255,255,0.35);
-    margin-bottom: 7px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.comp-scrubber-row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.comp-waveform-canvas {
+    flex: 1;
+    display: block;
+    min-width: 0;
+    height: 48px;
 }
 
-.comp-time {
+.comp-time-dur {
+    flex-shrink: 0;
     font-size: 11px;
     color: rgba(255,255,255,0.38);
     white-space: nowrap;
-    min-width: 30px;
     font-variant-numeric: tabular-nums;
-}
-
-.comp-time-right {
+    min-width: 30px;
     text-align: right;
-}
-
-.comp-scrubber {
-    flex: 1;
-    height: 3px;
-    background: rgba(255,255,255,0.12);
-    border-radius: 2px;
-    position: relative;
-    cursor: pointer;
-    transition: background .15s;
-}
-
-.comp-scrubber:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.comp-scrubber-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: var(--clr-accent);
-    border-radius: 2px;
-    width: 0%;
-}
-
-.comp-scrubber-thumb {
-    position: absolute;
-    right: -5px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--clr-accent);
-    opacity: 0;
-    transition: opacity .15s;
-}
-
-.comp-scrubber:hover .comp-scrubber-thumb {
-    opacity: 1;
 }
 
 /* --- Track list --- */
@@ -2566,6 +2524,9 @@ html {
 @media (max-width: 767px) {
     .comp-player-art {
         display: none;
+    }
+    .comp-player-text {
+        max-width: 110px;
     }
 }
 
