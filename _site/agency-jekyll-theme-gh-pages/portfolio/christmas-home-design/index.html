@@ -804,20 +804,28 @@
         }
 
         /* ---- waveform ---- */
-        function drawPeaks(peaks) {
+        function getProgress() {
+            if (!audio.duration || !isFinite(audio.duration)) return 0;
+            return audio.currentTime / audio.duration;
+        }
+
+        function drawPeaks(peaks, progress) {
             if (!ctx2d || !canvas) return;
             var dpr = window.devicePixelRatio || 1;
             var W   = canvas.width;
             var H   = canvas.height;
             ctx2d.clearRect(0, 0, W, H);
 
-            var amp    = H / 2;
-            var numBars = peaks.length;
-            var barW   = W / numBars;
+            var amp      = H / 2;
+            var numBars  = peaks.length;
+            var barW     = W / numBars;
+            var splitBar = progress != null ? Math.round(progress * numBars) : 0;
 
-            ctx2d.fillStyle = 'rgba(175, 175, 175, 0.72)';
             for (var i = 0; i < numBars; i++) {
                 var h = Math.max(dpr, peaks[i] * amp * 2);
+                ctx2d.fillStyle = i < splitBar
+                    ? 'rgba(255, 255, 255, 0.88)'
+                    : 'rgba(175, 175, 175, 0.32)';
                 ctx2d.fillRect(
                     Math.round(i * barW),
                     Math.round(amp - h / 2),
@@ -839,7 +847,7 @@
             if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
                 canvas.width  = Math.round(w * dpr);
                 canvas.height = Math.round(h * dpr);
-                if (active && waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src]);
+                if (active && waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], getProgress());
             }
         }
 
@@ -888,7 +896,7 @@
                     var peaks = buildPeaks(merged, numBars);
                     waveCache[src] = peaks;
                     // only draw if this track is still active
-                    if (active && active.dataset.src === src) drawPeaks(peaks);
+                    if (active && active.dataset.src === src) drawPeaks(peaks, getProgress());
                 })
                 .catch(function () {});
         }
@@ -949,6 +957,12 @@
 
         audio.addEventListener('loadedmetadata', function () {
             timeTotal.textContent = fmt(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            if (active && waveCache[active.dataset.src]) {
+                drawPeaks(waveCache[active.dataset.src], getProgress());
+            }
         });
 
         /* ---- canvas resize ---- */
