@@ -9,88 +9,93 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <!-- Player Bar -->
-                <div class="comp-player" id="compPlayer">
+                <!-- Unified player + tracklist card -->
+                <div class="comp-container">
 
-                    <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
-                        <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
-                        <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
-                    </button>
-                    <div class="comp-player-text">
-                        <div class="comp-player-title" id="compPlayerTitle">—</div>
-                        <div class="comp-player-meta" id="compPlayerMeta"></div>
+                    <!-- Controls row -->
+                    <div class="comp-controls-row">
+                        <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
+                            <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
+                            <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+                        </button>
+                        <div class="comp-player-text">
+                            <div class="comp-player-title" id="compPlayerTitle">—</div>
+                            <div class="comp-player-meta" id="compPlayerMeta"></div>
+                        </div>
+                        <span class="comp-time-dur" id="compTimeTotal">0:00</span>
                     </div>
+
+                    <!-- Waveform: full width -->
                     <canvas class="comp-waveform-canvas" id="compWaveformCanvas"></canvas>
-                    <span class="comp-time-dur" id="compTimeTotal">0:00</span>
-                </div>
 
-                <!-- Track List -->
-                <div class="comp-tracklist">
+                    <!-- Track list -->
+                    <div class="comp-tracklist">
 
-                    <div class="comp-album-group">
-                        <div class="comp-album-header">Photocula <span class="comp-album-tag">(Game OST)</span></div>
-                        <ul class="comp-tracks">
-                            <li class="comp-track" data-src="/audio/Photocula%20-%20Menu%20Theme.mp3" data-album="Photocula (Game OST)">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Menu Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                            <li class="comp-track" data-src="/audio/Photocula%20-%20Main%20Theme.mp3" data-album="Photocula (Game OST)">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Main Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                        </ul>
+                        <div class="comp-album-group">
+                            <div class="comp-album-header">Photocula <span class="comp-album-tag">(Game OST)</span></div>
+                            <ul class="comp-tracks">
+                                <li class="comp-track" data-src="/audio/Photocula%20-%20Menu%20Theme.mp3" data-album="Photocula (Game OST)">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Menu Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                                <li class="comp-track" data-src="/audio/Photocula%20-%20Main%20Theme.mp3" data-album="Photocula (Game OST)">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Main Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="comp-album-group">
+                            <div class="comp-album-header">Reincarnation <span class="comp-album-tag">(Game OST)</span></div>
+                            <ul class="comp-tracks">
+                                <li class="comp-track" data-src="/audio/Reincarnation%20-%20Tavern%20Music%20by%20Kivanc%20Nadir.mp3" data-album="Reincarnation (Game OST)">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Tavern Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="comp-album-group">
+                            <div class="comp-album-header">Roll The Pattern <span class="comp-album-tag">(Game OST)</span></div>
+                            <ul class="comp-tracks">
+                                <li class="comp-track" data-src="/audio/Roll%20The%20Pattern_OST.mp3" data-album="Roll The Pattern (Game OST)">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Main Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="comp-album-group">
+                            <div class="comp-album-header">Personal / Practice Works</div>
+                            <ul class="comp-tracks">
+                                <li class="comp-track" data-src="/audio/2.%20Path%20A%20-%20Village%20%28Idle%20Game%20Music%29.mp3" data-album="Personal / Practice Works">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Village Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                                <li class="comp-track" data-src="/audio/3.%20Path%20B%20%28Dungeon%20Music%29.mp3" data-album="Personal / Practice Works">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Dungeon Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                                <li class="comp-track" data-src="/audio/Chiptune%20Dance%20Music%20-%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Chiptune Dance Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                                <li class="comp-track" data-src="/audio/Epic%20Soundtrack%20by%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
+                                    <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
+                                    <span class="comp-track-name">Epic Theme</span>
+                                    <span class="comp-track-dur">—:——</span>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-
-                    <div class="comp-album-group">
-                        <div class="comp-album-header">Reincarnation <span class="comp-album-tag">(Game OST)</span></div>
-                        <ul class="comp-tracks">
-                            <li class="comp-track" data-src="/audio/Reincarnation%20-%20Tavern%20Music%20by%20Kivanc%20Nadir.mp3" data-album="Reincarnation (Game OST)">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Tavern Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="comp-album-group">
-                        <div class="comp-album-header">Roll The Pattern <span class="comp-album-tag">(Game OST)</span></div>
-                        <ul class="comp-tracks">
-                            <li class="comp-track" data-src="/audio/Roll%20The%20Pattern_OST.mp3" data-album="Roll The Pattern (Game OST)">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Main Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="comp-album-group">
-                        <div class="comp-album-header">Personal / Practice Works</div>
-                        <ul class="comp-tracks">
-                            <li class="comp-track" data-src="/audio/2.%20Path%20A%20-%20Village%20%28Idle%20Game%20Music%29.mp3" data-album="Personal / Practice Works">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Village Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                            <li class="comp-track" data-src="/audio/3.%20Path%20B%20%28Dungeon%20Music%29.mp3" data-album="Personal / Practice Works">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Dungeon Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                            <li class="comp-track" data-src="/audio/Chiptune%20Dance%20Music%20-%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Chiptune Dance Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                            <li class="comp-track" data-src="/audio/Epic%20Soundtrack%20by%20Kivanc%20Nadir.mp3" data-album="Personal / Practice Works">
-                                <span class="comp-track-indicator" aria-hidden="true"><i class="fa fa-play"></i></span>
-                                <span class="comp-track-name">Epic Theme</span>
-                                <span class="comp-track-dur">—:——</span>
-                            </li>
-                        </ul>
-                    </div>
-
                 </div>
             </div>
         </div>
