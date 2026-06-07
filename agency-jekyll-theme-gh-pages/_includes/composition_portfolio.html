@@ -128,6 +128,7 @@
         var ctx2d     = canvas ? canvas.getContext('2d') : null;
         var active      = null;
         var audioLoaded = false;
+        var hoverFrac   = null;
         var audioCtx    = null;
         var waveCache   = {};
 
@@ -162,12 +163,16 @@
             var numBars  = peaks.length;
             var barW     = W / numBars;
             var splitBar = progress != null ? Math.round(progress * numBars) : 0;
+            var hoverBar = (hoverFrac != null && hoverFrac * numBars > splitBar)
+                           ? Math.round(hoverFrac * numBars) : -1;
 
             for (var i = 0; i < numBars; i++) {
                 var h = Math.max(dpr, peaks[i] * amp * 2);
-                ctx2d.fillStyle = i < splitBar
-                    ? 'rgba(255, 255, 255, 0.88)'
-                    : 'rgba(175, 175, 175, 0.32)';
+                var color;
+                if (i < splitBar)            color = 'rgba(255,255,255,0.88)'; // played
+                else if (i <= hoverBar)      color = 'rgba(255,255,255,0.50)'; // hover preview
+                else                         color = 'rgba(175,175,175,0.32)'; // unplayed
+                ctx2d.fillStyle = color;
                 ctx2d.fillRect(
                     Math.round(i * barW),
                     Math.round(amp - h / 2),
@@ -308,7 +313,7 @@
             }
         });
 
-        /* ---- waveform seek ---- */
+        /* ---- waveform seek + hover ---- */
         if (canvas) {
             canvas.style.cursor = 'pointer';
             canvas.addEventListener('click', function (e) {
@@ -316,6 +321,19 @@
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
                 audio.currentTime = frac * audio.duration;
+            });
+            canvas.addEventListener('mousemove', function (e) {
+                var rect = canvas.getBoundingClientRect();
+                hoverFrac = (e.clientX - rect.left) / rect.width;
+                if (active && waveCache[active.dataset.src]) {
+                    drawPeaks(waveCache[active.dataset.src], getProgress());
+                }
+            });
+            canvas.addEventListener('mouseleave', function () {
+                hoverFrac = null;
+                if (active && waveCache[active.dataset.src]) {
+                    drawPeaks(waveCache[active.dataset.src], getProgress());
+                }
             });
         }
 
