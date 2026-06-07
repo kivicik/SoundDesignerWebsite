@@ -963,6 +963,17 @@
             }
         });
 
+        /* ---- waveform seek ---- */
+        if (canvas) {
+            canvas.style.cursor = 'pointer';
+            canvas.addEventListener('click', function (e) {
+                if (!active || !audio.duration || !isFinite(audio.duration)) return;
+                var rect = canvas.getBoundingClientRect();
+                var frac = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = frac * audio.duration;
+            });
+        }
+
         /* ---- canvas resize ---- */
         window.addEventListener('resize', syncCanvasSize);
         if (document.readyState === 'complete') {
