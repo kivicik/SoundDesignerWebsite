@@ -535,7 +535,7 @@ section h3.section-subheading {
 }
 
 #services {
-    background-color: #141414;
+    background-color: #252525;
 }
 
 #services .section-heading {
@@ -1058,7 +1058,7 @@ aside.clients img {
 }
 
 section#contact {
-    background: #252525;
+    background: #141414;
     color: var(--clr-text-on-dark);
 }
 
