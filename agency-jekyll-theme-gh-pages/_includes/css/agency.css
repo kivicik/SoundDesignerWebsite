@@ -2404,7 +2404,7 @@ html {
 }
 
 .comp-player-title {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #fff;
     letter-spacing: 0.25px;
@@ -2415,7 +2415,7 @@ html {
 }
 
 .comp-player-meta {
-    font-size: 11px;
+    font-size: 13px;
     color: rgba(255,255,255,0.35);
     overflow: hidden;
     text-overflow: ellipsis;
