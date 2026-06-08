@@ -2344,7 +2344,7 @@ html {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 16px;
+    padding-bottom: 16px;
 }
 
 .comp-player-art {
@@ -2399,8 +2399,16 @@ html {
 }
 
 .comp-player-text {
-    flex: 1;
+    flex-shrink: 0;
+    width: 160px;
     min-width: 0;
+}
+
+.comp-waveform-wrap {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+    height: 60px;
 }
 
 .comp-player-title {
@@ -2425,22 +2433,26 @@ html {
 .comp-waveform-canvas {
     display: block;
     width: 100%;
-    height: 60px;
+    height: 100%;
 }
 
 .comp-time-dur {
-    flex-shrink: 0;
+    position: absolute;
+    top: 5px;
+    right: 6px;
     font-size: 11px;
-    color: rgba(255,255,255,0.38);
+    color: rgba(255,255,255,0.75);
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-    min-width: 30px;
-    text-align: right;
+    background: rgba(0,0,0,0.45);
+    padding: 1px 5px;
+    border-radius: 3px;
+    pointer-events: none;
 }
 
 /* --- Track list --- */
 .comp-tracklist {
-    margin: 20px -24px 0;
+    margin: 0 -24px 0;
     border-top: 1px solid rgba(255,255,255,0.08);
     padding: 0 24px;
 }

@@ -12,7 +12,7 @@
                 <!-- Unified player + tracklist card -->
                 <div class="comp-container">
 
-                    <!-- Controls row -->
+                    <!-- Controls row with inline waveform -->
                     <div class="comp-controls-row">
                         <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
                             <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
@@ -22,11 +22,11 @@
                             <div class="comp-player-title" id="compPlayerTitle">—</div>
                             <div class="comp-player-meta" id="compPlayerMeta"></div>
                         </div>
-                        <span class="comp-time-dur" id="compTimeTotal">0:00</span>
+                        <div class="comp-waveform-wrap">
+                            <canvas class="comp-waveform-canvas" id="compWaveformCanvas"></canvas>
+                            <span class="comp-time-dur" id="compTimeTotal">0:00 / —:——</span>
+                        </div>
                     </div>
-
-                    <!-- Waveform: full width -->
-                    <canvas class="comp-waveform-canvas" id="compWaveformCanvas"></canvas>
 
                     <!-- Track list -->
                     <div class="comp-tracklist">
