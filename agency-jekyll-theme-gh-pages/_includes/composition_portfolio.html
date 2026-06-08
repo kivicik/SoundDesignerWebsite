@@ -143,6 +143,8 @@
         var hoverFrac   = null;
         var audioCtx    = null;
         var waveCache   = {};
+        var blobCache   = {};   // src → blob: URL stored in memory
+        var blobWaiters = {};   // src → [callback, ...] while fetch is in flight
 
         /* ---- helpers ---- */
         function fmt(s) {
@@ -195,18 +197,6 @@
             if (ctx2d && canvas) ctx2d.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-        function syncCanvasSize() {
-            if (!canvas) return;
-            var dpr = window.devicePixelRatio || 1;
-            var w   = canvas.offsetWidth;
-            var h   = canvas.offsetHeight;
-            if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
-                canvas.width  = Math.round(w * dpr);
-                canvas.height = Math.round(h * dpr);
-                if (active) { delete waveCache[active.dataset.src]; loadWaveform(active.dataset.src); }
-            }
-        }
-
         function buildPeaks(channelData, numBars) {
             var len   = channelData.length;
             var step  = Math.ceil(len / numBars);
@@ -221,7 +211,6 @@
                 }
                 peaks[i] = max;
             }
-            // Normalize by 95th-percentile so rare transients don't compress the whole waveform
             var sorted  = peaks.slice().sort();
             var refPeak = sorted[Math.floor(sorted.length * 0.95)] || sorted[sorted.length - 1];
             if (refPeak > 0) {
@@ -232,37 +221,71 @@
             return peaks;
         }
 
-        function loadWaveform(src) {
-            if (!ctx2d) return;
-            clearCanvas();
-            if (waveCache[src]) { drawPeaks(waveCache[src]); return; }
+        function storeDecodedWave(src, decoded) {
+            var numBars = canvas ? canvas.width : 0;
+            if (!numBars) return;
+            var ch0    = decoded.getChannelData(0);
+            var ch1    = decoded.numberOfChannels > 1 ? decoded.getChannelData(1) : null;
+            var merged = ch1 ? new Float32Array(ch0.length) : ch0;
+            if (ch1) {
+                for (var i = 0; i < ch0.length; i++) {
+                    merged[i] = Math.max(Math.abs(ch0[i]), Math.abs(ch1[i]));
+                }
+            }
+            var peaks = buildPeaks(merged, numBars);
+            waveCache[src] = peaks;
+            if (active && active.dataset.src === src) drawPeaks(peaks, getProgress());
+        }
 
-            var ac = getAudioCtx();
-            if (!ac) return;
+        // Fetch src once, store as in-memory blob URL, decode waveform as a side effect.
+        // Calls cb(blobUrl) immediately if already cached; queues it if fetch is in flight.
+        function withBlob(src, cb) {
+            if (blobCache[src]) { cb(blobCache[src]); return; }
+            if (blobWaiters[src]) { blobWaiters[src].push(cb); return; }
 
+            blobWaiters[src] = [cb];
             fetch(src)
                 .then(function (r) { return r.arrayBuffer(); })
-                .then(function (buf) { return ac.decodeAudioData(buf); })
-                .then(function (decoded) {
-                    var numBars = canvas ? canvas.width : 0;
-                    if (!numBars) return;
-                    var ch0     = decoded.getChannelData(0);
-                    var ch1     = decoded.numberOfChannels > 1 ? decoded.getChannelData(1) : null;
-
-                    // merge channels: take max absolute value per sample
-                    var merged = ch1 ? new Float32Array(ch0.length) : ch0;
-                    if (ch1) {
-                        for (var i = 0; i < ch0.length; i++) {
-                            merged[i] = Math.max(Math.abs(ch0[i]), Math.abs(ch1[i]));
-                        }
+                .then(function (buf) {
+                    blobCache[src] = URL.createObjectURL(new Blob([buf.slice(0)], { type: 'audio/mpeg' }));
+                    var waiters = blobWaiters[src];
+                    delete blobWaiters[src];
+                    waiters.forEach(function (fn) { fn(blobCache[src]); });
+                    var ac = getAudioCtx();
+                    if (ac && ctx2d && !waveCache[src]) {
+                        ac.decodeAudioData(buf)
+                            .then(function (decoded) { storeDecodedWave(src, decoded); })
+                            .catch(function () {});
                     }
-
-                    var peaks = buildPeaks(merged, numBars);
-                    waveCache[src] = peaks;
-                    // only draw if this track is still active
-                    if (active && active.dataset.src === src) drawPeaks(peaks, getProgress());
                 })
+                .catch(function () { delete blobWaiters[src]; });
+        }
+
+        // Re-decode waveform for the current canvas size (called after resize).
+        // Fetches from the cached blob URL to avoid a redundant network request.
+        function reloadWaveform(src) {
+            if (!ctx2d) return;
+            clearCanvas();
+            if (waveCache[src]) { drawPeaks(waveCache[src], getProgress()); return; }
+            var ac = getAudioCtx();
+            if (!ac) return;
+            fetch(blobCache[src] || src)
+                .then(function (r) { return r.arrayBuffer(); })
+                .then(function (buf) { return ac.decodeAudioData(buf); })
+                .then(function (decoded) { storeDecodedWave(src, decoded); })
                 .catch(function () {});
+        }
+
+        function syncCanvasSize() {
+            if (!canvas) return;
+            var dpr = window.devicePixelRatio || 1;
+            var w   = canvas.offsetWidth;
+            var h   = canvas.offsetHeight;
+            if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+                canvas.width  = Math.round(w * dpr);
+                canvas.height = Math.round(h * dpr);
+                if (active) { delete waveCache[active.dataset.src]; reloadWaveform(active.dataset.src); }
+            }
         }
 
         /* ---- track list durations ---- */
@@ -303,10 +326,16 @@
             titleEl.textContent   = trackEl.querySelector('.comp-track-name').textContent;
             metaEl.textContent    = trackEl.dataset.album || '';
             timeTotal.textContent = '0:00 / —:——';
-            audio.src = trackEl.dataset.src;
-            audio.play().catch(function () {});
             syncCanvasSize();
-            loadWaveform(trackEl.dataset.src);
+            clearCanvas();
+            setBuffering(true);
+            var src = trackEl.dataset.src;
+            withBlob(src, function (blobUrl) {
+                if (!active || active.dataset.src !== src) return;
+                audio.src = blobUrl;
+                setBuffering(false);
+                audio.play().catch(function () {});
+            });
         }
 
         allTracks.forEach(function (t) {
@@ -362,27 +391,10 @@
                 if (!active || !audio.duration || !isFinite(audio.duration)) return;
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
-                var targetTime = frac * audio.duration;
                 var wasPlaying = !audio.paused && !audio.ended;
-                audio.pause();
-                audio.currentTime = targetTime;
+                audio.currentTime = frac * audio.duration;
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
-                if (wasPlaying) {
-                    setBuffering(true);
-                    audio.addEventListener('seeked', function onSeeked() {
-                        audio.removeEventListener('seeked', onSeeked);
-                        function tryPlay() {
-                            audio.removeEventListener('canplay', tryPlay);
-                            setBuffering(false);
-                            audio.play().catch(function () {});
-                        }
-                        if (audio.readyState >= 3) {
-                            tryPlay();
-                        } else {
-                            audio.addEventListener('canplay', tryPlay);
-                        }
-                    });
-                }
+                if (wasPlaying) audio.play().catch(function () {});
             });
             canvas.addEventListener('mousemove', function (e) {
                 var rect = canvas.getBoundingClientRect();
@@ -413,7 +425,7 @@
             });
             tmpDur.src = t.dataset.src;
             syncCanvasSize();
-            loadWaveform(t.dataset.src);
+            withBlob(t.dataset.src, function () {});
         })();
 
         /* ---- canvas resize ---- */
