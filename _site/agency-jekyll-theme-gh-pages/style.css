@@ -2505,7 +2505,6 @@ html {
     transition: opacity .12s;
 }
 
-.comp-track:hover .comp-track-indicator,
 .comp-track.is-playing .comp-track-indicator {
     opacity: 1;
 }
