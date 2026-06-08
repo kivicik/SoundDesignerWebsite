@@ -2478,7 +2478,7 @@ html {
 
 .comp-track {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 12px;
     padding: 12px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.07);
