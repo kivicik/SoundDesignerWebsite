@@ -785,11 +785,8 @@
         </div>
     </div>
 
-    <audio id="compAudio" preload="none"></audio>
-
     <script>
     (function () {
-        var audio     = document.getElementById('compAudio');
         var allTracks = Array.from(document.querySelectorAll('#composition-portfolio .comp-track'));
         var playBtn   = document.getElementById('compPlayBtn');
         var iconPlay  = playBtn.querySelector('.comp-icon-play');
@@ -799,13 +796,18 @@
         var metaEl    = document.getElementById('compPlayerMeta');
         var canvas    = document.getElementById('compWaveformCanvas');
         var ctx2d     = canvas ? canvas.getContext('2d') : null;
-        var active      = null;
-        var audioLoaded = false;
-        var hoverFrac   = null;
-        var audioCtx    = null;
-        var waveCache   = {};
-        var blobCache   = {};   // src → blob: URL stored in memory
-        var blobWaiters = {};   // src → [callback, ...] while fetch is in flight
+        var active        = null;
+        var audioLoaded   = false;
+        var hoverFrac     = null;
+        var audioCtx      = null;
+        var waveCache     = {};   // src → Float32Array peaks
+        var bufferCache   = {};   // src → AudioBuffer (full decoded PCM)
+        var bufferWaiters = {};   // src → [callback, ...] while fetch+decode is in flight
+        var currentSource    = null;  // AudioBufferSourceNode currently playing
+        var playStartCtxTime = 0;     // audioCtx.currentTime when doPlay() was called
+        var playStartOffset  = 0;     // track position (seconds) when doPlay() was called
+        var isPlaying        = false;
+        var currentDuration  = 0;
 
         /* ---- helpers ---- */
         function fmt(s) {
@@ -821,32 +823,30 @@
             return audioCtx;
         }
 
-        /* ---- waveform ---- */
-        function getProgress() {
-            if (!audio.duration || !isFinite(audio.duration)) return 0;
-            return audio.currentTime / audio.duration;
+        function getElapsed() {
+            if (!isPlaying || !audioCtx) return playStartOffset;
+            return playStartOffset + (audioCtx.currentTime - playStartCtxTime);
         }
 
+        /* ---- waveform ---- */
         function drawPeaks(peaks, progress) {
             if (!ctx2d || !canvas) return;
             var dpr = window.devicePixelRatio || 1;
             var W   = canvas.width;
             var H   = canvas.height;
             ctx2d.clearRect(0, 0, W, H);
-
             var amp      = H / 2;
             var numBars  = peaks.length;
             var barW     = W / numBars;
             var splitBar = progress != null ? Math.round(progress * numBars) : 0;
             var hoverBar = (hoverFrac != null && hoverFrac * numBars > splitBar)
                            ? Math.round(hoverFrac * numBars) : -1;
-
             for (var i = 0; i < numBars; i++) {
                 var h = Math.max(dpr, peaks[i] * amp * 2);
                 var color;
-                if (i < splitBar)            color = '#808080';
-                else if (i <= hoverBar)      color = '#555555';
-                else                         color = '#333333';
+                if (i < splitBar)        color = '#808080';
+                else if (i <= hoverBar)  color = '#555555';
+                else                     color = '#333333';
                 var xL = Math.round(i * barW);
                 var xR = Math.round((i + 1) * barW);
                 ctx2d.fillStyle = color;
@@ -863,9 +863,7 @@
             var step  = Math.ceil(len / numBars);
             var peaks = new Float32Array(numBars);
             for (var i = 0; i < numBars; i++) {
-                var max   = 0;
-                var start = i * step;
-                var end   = Math.min(start + step, len);
+                var max = 0, start = i * step, end = Math.min(start + step, len);
                 for (var j = start; j < end; j++) {
                     var v = Math.abs(channelData[j]);
                     if (v > max) max = v;
@@ -875,77 +873,56 @@
             var sorted  = peaks.slice().sort();
             var refPeak = sorted[Math.floor(sorted.length * 0.95)] || sorted[sorted.length - 1];
             if (refPeak > 0) {
-                for (var i = 0; i < numBars; i++) {
-                    peaks[i] = Math.min(1, Math.sqrt(peaks[i] / refPeak));
-                }
+                for (var i = 0; i < numBars; i++) peaks[i] = Math.min(1, Math.sqrt(peaks[i] / refPeak));
             }
             return peaks;
         }
 
-        function storeDecodedWave(src, decoded) {
+        function buildWavePeaks(src, decoded) {
             var numBars = canvas ? canvas.width : 0;
             if (!numBars) return;
             var ch0    = decoded.getChannelData(0);
             var ch1    = decoded.numberOfChannels > 1 ? decoded.getChannelData(1) : null;
             var merged = ch1 ? new Float32Array(ch0.length) : ch0;
             if (ch1) {
-                for (var i = 0; i < ch0.length; i++) {
-                    merged[i] = Math.max(Math.abs(ch0[i]), Math.abs(ch1[i]));
-                }
+                for (var i = 0; i < ch0.length; i++) merged[i] = Math.max(Math.abs(ch0[i]), Math.abs(ch1[i]));
             }
-            var peaks = buildPeaks(merged, numBars);
-            waveCache[src] = peaks;
-            if (active && active.dataset.src === src) drawPeaks(peaks, getProgress());
+            waveCache[src] = buildPeaks(merged, numBars);
+            if (active && active.dataset.src === src && currentDuration > 0) {
+                drawPeaks(waveCache[src], getElapsed() / currentDuration);
+            }
         }
 
-        // Fetch src once, store as in-memory blob URL, decode waveform as a side effect.
-        // Calls cb(blobUrl) immediately if already cached; queues it if fetch is in flight.
-        function withBlob(src, cb) {
-            if (blobCache[src]) { cb(blobCache[src]); return; }
-            if (blobWaiters[src]) { blobWaiters[src].push(cb); return; }
-
-            blobWaiters[src] = [cb];
+        // Fetch, decode to AudioBuffer, cache. Calls cb(buf) when ready; queues if in flight.
+        function ensureBuffer(src, cb) {
+            if (bufferCache[src]) { cb(bufferCache[src]); return; }
+            if (bufferWaiters[src]) { bufferWaiters[src].push(cb); return; }
+            bufferWaiters[src] = [cb];
+            var ac = getAudioCtx();
+            if (!ac) { delete bufferWaiters[src]; return; }
             fetch(src)
                 .then(function (r) { return r.arrayBuffer(); })
-                .then(function (buf) {
-                    blobCache[src] = URL.createObjectURL(new Blob([buf.slice(0)], { type: 'audio/mpeg' }));
-                    var waiters = blobWaiters[src];
-                    delete blobWaiters[src];
-                    waiters.forEach(function (fn) { fn(blobCache[src]); });
-                    var ac = getAudioCtx();
-                    if (ac && ctx2d && !waveCache[src]) {
-                        ac.decodeAudioData(buf)
-                            .then(function (decoded) { storeDecodedWave(src, decoded); })
-                            .catch(function () {});
-                    }
-                })
-                .catch(function () { delete blobWaiters[src]; });
-        }
-
-        // Re-decode waveform for the current canvas size (called after resize).
-        // Fetches from the cached blob URL to avoid a redundant network request.
-        function reloadWaveform(src) {
-            if (!ctx2d) return;
-            clearCanvas();
-            if (waveCache[src]) { drawPeaks(waveCache[src], getProgress()); return; }
-            var ac = getAudioCtx();
-            if (!ac) return;
-            fetch(blobCache[src] || src)
-                .then(function (r) { return r.arrayBuffer(); })
                 .then(function (buf) { return ac.decodeAudioData(buf); })
-                .then(function (decoded) { storeDecodedWave(src, decoded); })
-                .catch(function () {});
+                .then(function (decoded) {
+                    bufferCache[src] = decoded;
+                    if (!waveCache[src]) buildWavePeaks(src, decoded);
+                    var w = bufferWaiters[src]; delete bufferWaiters[src];
+                    w.forEach(function (fn) { fn(decoded); });
+                })
+                .catch(function () { delete bufferWaiters[src]; });
         }
 
         function syncCanvasSize() {
             if (!canvas) return;
             var dpr = window.devicePixelRatio || 1;
-            var w   = canvas.offsetWidth;
-            var h   = canvas.offsetHeight;
+            var w = canvas.offsetWidth, h = canvas.offsetHeight;
             if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
                 canvas.width  = Math.round(w * dpr);
                 canvas.height = Math.round(h * dpr);
-                if (active) { delete waveCache[active.dataset.src]; reloadWaveform(active.dataset.src); }
+                if (active && bufferCache[active.dataset.src]) {
+                    delete waveCache[active.dataset.src];
+                    buildWavePeaks(active.dataset.src, bufferCache[active.dataset.src]);
+                }
             }
         }
 
@@ -959,50 +936,86 @@
             tmp.src = t.dataset.src;
         });
 
-        /* ---- playback ---- */
+        /* ---- playback (Web Audio API) ---- */
         function syncBtn() {
             if (playBtn.classList.contains('is-buffering')) return;
-            var playing = !audio.paused && !audio.ended;
-            iconPlay.style.display  = playing ? 'none' : '';
-            iconPause.style.display = playing ? ''     : 'none';
+            iconPlay.style.display  = isPlaying ? 'none' : '';
+            iconPause.style.display = isPlaying ? ''     : 'none';
         }
 
         function setBuffering(on) {
             playBtn.classList.toggle('is-buffering', on);
-            if (!on) {
-                var playing = !audio.paused && !audio.ended;
-                iconPlay.style.display  = playing ? 'none' : '';
-                iconPause.style.display = playing ? ''     : 'none';
-            } else {
-                iconPlay.style.display  = 'none';
-                iconPause.style.display = 'none';
+            iconPlay.style.display  = on ? 'none' : (isPlaying ? 'none' : '');
+            iconPause.style.display = on ? 'none' : (isPlaying ? ''     : 'none');
+        }
+
+        function stopSource() {
+            if (currentSource) {
+                currentSource.onended = null;
+                try { currentSource.stop(); } catch (e) {}
+                currentSource = null;
             }
         }
 
+        function doPlay(offset) {
+            var ac  = getAudioCtx();
+            var buf = active && bufferCache[active.dataset.src];
+            if (!buf || !ac) return;
+            stopSource();
+            var node = ac.createBufferSource();
+            node.buffer = buf;
+            node.connect(ac.destination);
+            node.onended = function () {
+                if (currentSource === node) {
+                    isPlaying = false; currentSource = null;
+                    syncBtn();
+                    var i = allTracks.indexOf(active);
+                    if (i >= 0 && i < allTracks.length - 1) load(allTracks[i + 1]);
+                }
+            };
+            if (ac.state === 'suspended') ac.resume().catch(function () {});
+            playStartOffset  = Math.max(0, Math.min(offset, buf.duration - 0.001));
+            playStartCtxTime = ac.currentTime;
+            node.start(0, playStartOffset);
+            currentSource = node;
+            isPlaying     = true;
+            setBuffering(false);
+            syncBtn();
+        }
+
+        function doPause() {
+            if (!isPlaying) return;
+            playStartOffset = getElapsed();
+            stopSource();
+            isPlaying = false;
+            syncBtn();
+        }
+
         function load(trackEl) {
+            stopSource();
+            isPlaying = false;
             if (active) active.classList.remove('is-playing');
             active = trackEl;
             audioLoaded = true;
             active.classList.add('is-playing');
             titleEl.textContent   = trackEl.querySelector('.comp-track-name').textContent;
             metaEl.textContent    = trackEl.dataset.album || '';
+            playStartOffset = 0; currentDuration = 0;
             timeTotal.textContent = '0:00 / —:——';
-            syncCanvasSize();
-            clearCanvas();
-            setBuffering(true);
+            syncCanvasSize(); clearCanvas(); setBuffering(true);
             var src = trackEl.dataset.src;
-            withBlob(src, function (blobUrl) {
+            ensureBuffer(src, function (buf) {
                 if (!active || active.dataset.src !== src) return;
-                audio.src = blobUrl;
-                setBuffering(false);
-                audio.play().catch(function () {});
+                currentDuration = buf.duration;
+                timeTotal.textContent = '0:00 / ' + fmt(buf.duration);
+                doPlay(0);
             });
         }
 
         allTracks.forEach(function (t) {
             t.addEventListener('click', function () {
                 if (active === t) {
-                    audio.paused ? audio.play().catch(function () {}) : audio.pause();
+                    isPlaying ? doPause() : doPlay(playStartOffset);
                 } else {
                     load(t);
                 }
@@ -1010,69 +1023,51 @@
         });
 
         playBtn.addEventListener('click', function () {
-            if (!audioLoaded)      { load(active || allTracks[0]); }
-            else if (audio.paused) { audio.play().catch(function () {}); }
-            else                   { audio.pause(); }
+            if (!audioLoaded)   { load(active || allTracks[0]); }
+            else if (isPlaying) { doPause(); }
+            else                { doPlay(playStartOffset); }
         });
 
-        audio.addEventListener('waiting', function () { setBuffering(true); });
-        audio.addEventListener('playing', function () { setBuffering(false); });
-        audio.addEventListener('canplay', function () { setBuffering(false); });
-        audio.addEventListener('play',  syncBtn);
-        audio.addEventListener('pause', syncBtn);
-        audio.addEventListener('ended', function () {
-            syncBtn();
-            var i = allTracks.indexOf(active);
-            if (i < allTracks.length - 1) load(allTracks[i + 1]);
-        });
-
-        audio.addEventListener('loadedmetadata', function () {
-            timeTotal.textContent = '0:00 / ' + fmt(audio.duration);
-        });
-
-        audio.addEventListener('timeupdate', function () {
-            if (audio.duration && isFinite(audio.duration)) {
-                timeTotal.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+        /* ---- animation loop: timecode + waveform ---- */
+        (function tick() {
+            if (active && currentDuration > 0) {
+                var elapsed = Math.min(getElapsed(), currentDuration);
+                timeTotal.textContent = fmt(elapsed) + ' / ' + fmt(currentDuration);
+                if (waveCache[active.dataset.src]) {
+                    drawPeaks(waveCache[active.dataset.src], elapsed / currentDuration);
+                }
             }
-            if (!audio.seeking && active && waveCache[active.dataset.src]) {
-                drawPeaks(waveCache[active.dataset.src], getProgress());
-            }
-        });
-
-        audio.addEventListener('seeked', function () {
-            if (active && waveCache[active.dataset.src]) {
-                drawPeaks(waveCache[active.dataset.src], getProgress());
-            }
-        });
+            requestAnimationFrame(tick);
+        })();
 
         /* ---- waveform seek + hover ---- */
         if (canvas) {
             canvas.style.cursor = 'pointer';
             canvas.addEventListener('click', function (e) {
-                if (!active || !audio.duration || !isFinite(audio.duration)) return;
+                if (!active || !currentDuration) return;
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
-                var wasPlaying = !audio.paused && !audio.ended;
-                audio.currentTime = frac * audio.duration;
+                var target = frac * currentDuration;
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
-                if (wasPlaying) audio.play().catch(function () {});
+                if (isPlaying) { doPlay(target); }
+                else           { playStartOffset = target; }
             });
             canvas.addEventListener('mousemove', function (e) {
                 var rect = canvas.getBoundingClientRect();
                 hoverFrac = (e.clientX - rect.left) / rect.width;
-                if (active && waveCache[active.dataset.src]) {
-                    drawPeaks(waveCache[active.dataset.src], getProgress());
+                if (active && waveCache[active.dataset.src] && currentDuration > 0) {
+                    drawPeaks(waveCache[active.dataset.src], getElapsed() / currentDuration);
                 }
             });
             canvas.addEventListener('mouseleave', function () {
                 hoverFrac = null;
-                if (active && waveCache[active.dataset.src]) {
-                    drawPeaks(waveCache[active.dataset.src], getProgress());
+                if (active && waveCache[active.dataset.src] && currentDuration > 0) {
+                    drawPeaks(waveCache[active.dataset.src], getElapsed() / currentDuration);
                 }
             });
         }
 
-        /* ---- pre-select first track on load ---- */
+        /* ---- pre-select first track, pre-decode waveform ---- */
         (function () {
             var t = allTracks[0];
             active = t;
@@ -1086,7 +1081,7 @@
             });
             tmpDur.src = t.dataset.src;
             syncCanvasSize();
-            withBlob(t.dataset.src, function () {});
+            ensureBuffer(t.dataset.src, function () {});
         })();
 
         /* ---- canvas resize ---- */
