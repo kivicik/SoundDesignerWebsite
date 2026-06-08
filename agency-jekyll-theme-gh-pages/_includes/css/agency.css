@@ -2452,7 +2452,7 @@ html {
 }
 
 .comp-track-project {
-    font-size: 12px;
+    font-size: 13px;
     color: rgba(255,255,255,0.28);
     white-space: nowrap;
     flex-shrink: 0;
@@ -2503,7 +2503,7 @@ html {
 
 .comp-track-name {
     flex-shrink: 0;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--clr-text-on-dark);
     transition: color .12s;
     line-height: 1.4;
