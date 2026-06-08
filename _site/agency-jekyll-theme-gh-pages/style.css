@@ -2396,6 +2396,25 @@ html {
     background: rgba(255,255,255,0.06);
 }
 
+.comp-play-btn.is-buffering {
+    cursor: default;
+}
+
+.comp-play-btn.is-buffering::after {
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: comp-spin 0.75s linear infinite;
+}
+
+@keyframes comp-spin {
+    to { transform: rotate(360deg); }
+}
+
 .comp-play-btn svg {
     width: 15px;
     height: 15px;

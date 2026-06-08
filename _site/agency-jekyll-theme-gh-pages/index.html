@@ -938,9 +938,22 @@
 
         /* ---- playback ---- */
         function syncBtn() {
+            if (playBtn.classList.contains('is-buffering')) return;
             var playing = !audio.paused && !audio.ended;
             iconPlay.style.display  = playing ? 'none' : '';
             iconPause.style.display = playing ? ''     : 'none';
+        }
+
+        function setBuffering(on) {
+            playBtn.classList.toggle('is-buffering', on);
+            if (!on) {
+                var playing = !audio.paused && !audio.ended;
+                iconPlay.style.display  = playing ? 'none' : '';
+                iconPause.style.display = playing ? ''     : 'none';
+            } else {
+                iconPlay.style.display  = 'none';
+                iconPause.style.display = 'none';
+            }
         }
 
         function load(trackEl) {
@@ -973,6 +986,9 @@
             else                   { audio.pause(); }
         });
 
+        audio.addEventListener('waiting', function () { setBuffering(true); });
+        audio.addEventListener('playing', function () { setBuffering(false); });
+        audio.addEventListener('canplay', function () { setBuffering(false); });
         audio.addEventListener('play',  syncBtn);
         audio.addEventListener('pause', syncBtn);
         audio.addEventListener('ended', function () {
