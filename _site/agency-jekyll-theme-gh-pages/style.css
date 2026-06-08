@@ -543,21 +543,16 @@ section h3.section-subheading {
     color: var(--clr-text-on-dark);
 }
 
-/* Keep service icon colors stable on hover/focus. */
-#services .fa-stack .text-primary,
-#services .col-md-4:hover .fa-stack .text-primary,
-#services .col-md-4:focus-within .fa-stack .text-primary,
-#services a:hover .fa-stack .text-primary,
-#services a:focus .fa-stack .text-primary {
-    color: #141414;
+.service-icon-wrap {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
 }
 
-#services .fa-stack .fa-inverse,
-#services .col-md-4:hover .fa-stack .fa-inverse,
-#services .col-md-4:focus-within .fa-stack .fa-inverse,
-#services a:hover .fa-stack .fa-inverse,
-#services a:focus .fa-stack .fa-inverse {
-    color: #fff;
+.service-icon {
+    color: var(--clr-text-on-dark);
 }
 
 #portfolio {
@@ -1990,14 +1985,12 @@ html {
 }
 
 .waveform-icon {
-    stroke: #fff;
+    stroke: var(--clr-text-on-dark);
     stroke-width: 3;
     fill: none;
     stroke-linecap: round;
-    width: 38%;
-    height: 70%;
-    left: 31%;
-    top: 15%;
+    width: 80px;
+    height: 40px;
 }
 
 
