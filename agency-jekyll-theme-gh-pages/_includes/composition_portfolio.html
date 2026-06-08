@@ -369,25 +369,21 @@
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
                 if (wasPlaying) {
                     setBuffering(true);
-                    function isReadyAt(t) {
-                        try {
-                            for (var i = 0; i < audio.buffered.length; i++) {
-                                if (audio.buffered.start(i) <= t && audio.buffered.end(i) >= t + 0.5) return true;
-                            }
-                        } catch (ex) {}
-                        return false;
-                    }
                     function tryPlay() {
-                        if (isReadyAt(audio.currentTime)) {
+                        if (audio.readyState >= 3) {
+                            audio.removeEventListener('canplay',  tryPlay);
                             audio.removeEventListener('progress', tryPlay);
-                            audio.removeEventListener('seeked',   tryPlay);
                             setBuffering(false);
                             audio.play().catch(function () {});
                         }
                     }
-                    audio.addEventListener('progress', tryPlay);
-                    audio.addEventListener('seeked',   tryPlay);
-                    tryPlay();
+                    if (audio.readyState >= 3) {
+                        setBuffering(false);
+                        audio.play().catch(function () {});
+                    } else {
+                        audio.addEventListener('canplay',  tryPlay);
+                        audio.addEventListener('progress', tryPlay);
+                    }
                 }
             });
             canvas.addEventListener('mousemove', function (e) {
