@@ -876,18 +876,26 @@
         }
 
         function buildPeaks(channelData, numBars) {
-            var len  = channelData.length;
-            var step = Math.ceil(len / numBars);
+            var len   = channelData.length;
+            var step  = Math.ceil(len / numBars);
             var peaks = new Float32Array(numBars);
+            var maxPeak = 0;
             for (var i = 0; i < numBars; i++) {
-                var max = 0;
+                var max   = 0;
                 var start = i * step;
                 var end   = Math.min(start + step, len);
                 for (var j = start; j < end; j++) {
                     var v = Math.abs(channelData[j]);
                     if (v > max) max = v;
                 }
-                peaks[i] = Math.sqrt(max); // sqrt scale for better visual range
+                peaks[i] = max;
+                if (max > maxPeak) maxPeak = max;
+            }
+            // Normalize so the tallest bar fills the canvas, then apply sqrt for visual range
+            if (maxPeak > 0) {
+                for (var i = 0; i < numBars; i++) {
+                    peaks[i] = Math.sqrt(peaks[i] / maxPeak);
+                }
             }
             return peaks;
         }
