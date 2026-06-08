@@ -29,9 +29,9 @@ body {
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DEDEDE;
-    --clr-text-muted-dark: rgba(210,210,210,0.55);
+    --clr-text-muted-dark: rgba(210,210,210,0.72);
     --clr-text-on-light: #DEDEDE;
-    --clr-text-muted-light: rgba(210,210,210,0.55);
+    --clr-text-muted-light: rgba(210,210,210,0.72);
     --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
@@ -42,9 +42,9 @@ body {
     --clr-accent: #E8A030;
     --clr-accent-hover: #C4871F;
     --clr-text-on-dark: #DEDEDE;
-    --clr-text-muted-dark: rgba(210,210,210,0.55);
+    --clr-text-muted-dark: rgba(210,210,210,0.72);
     --clr-text-on-light: #DEDEDE;
-    --clr-text-muted-light: rgba(210,210,210,0.55);
+    --clr-text-muted-light: rgba(210,210,210,0.72);
     --clr-focus-ring: rgba(232,160,48,0.35);
 }
 
@@ -1907,7 +1907,7 @@ html {
 #portfolio .portfolio-item .portfolio-link img {
     display: block;
     width: 100%;
-    filter: brightness(0.9);
+    filter: brightness(1);
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
