@@ -362,18 +362,32 @@
                 if (!active || !audio.duration || !isFinite(audio.duration)) return;
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
+                var targetTime = frac * audio.duration;
                 var wasPlaying = !audio.paused && !audio.ended;
                 audio.pause();
-                audio.currentTime = frac * audio.duration;
+                audio.currentTime = targetTime;
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
                 if (wasPlaying) {
                     setBuffering(true);
-                    function onCanPlay() {
-                        audio.removeEventListener('canplay', onCanPlay);
-                        setBuffering(false);
-                        audio.play().catch(function () {});
+                    function isReadyAt(t) {
+                        try {
+                            for (var i = 0; i < audio.buffered.length; i++) {
+                                if (audio.buffered.start(i) <= t && audio.buffered.end(i) >= t + 0.5) return true;
+                            }
+                        } catch (ex) {}
+                        return false;
                     }
-                    audio.addEventListener('canplay', onCanPlay);
+                    function tryPlay() {
+                        if (isReadyAt(audio.currentTime)) {
+                            audio.removeEventListener('progress', tryPlay);
+                            audio.removeEventListener('seeked',   tryPlay);
+                            setBuffering(false);
+                            audio.play().catch(function () {});
+                        }
+                    }
+                    audio.addEventListener('progress', tryPlay);
+                    audio.addEventListener('seeked',   tryPlay);
+                    tryPlay();
                 }
             });
             canvas.addEventListener('mousemove', function (e) {
