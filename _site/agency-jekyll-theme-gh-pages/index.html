@@ -1023,8 +1023,19 @@
                 if (!active || !audio.duration || !isFinite(audio.duration)) return;
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
+                var wasPlaying = !audio.paused && !audio.ended;
+                audio.pause();
                 audio.currentTime = frac * audio.duration;
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
+                if (wasPlaying) {
+                    setBuffering(true);
+                    function onCanPlay() {
+                        audio.removeEventListener('canplay', onCanPlay);
+                        setBuffering(false);
+                        audio.play().catch(function () {});
+                    }
+                    audio.addEventListener('canplay', onCanPlay);
+                }
             });
             canvas.addEventListener('mousemove', function (e) {
                 var rect = canvas.getBoundingClientRect();
