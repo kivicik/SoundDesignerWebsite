@@ -2455,7 +2455,7 @@ html {
 .comp-tracklist {
     margin: 0 -24px 0;
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 0 24px;
+    padding: 0;
 }
 
 .comp-track-project {
@@ -2479,7 +2479,7 @@ html {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 2px;
+    padding: 10px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.055);
     cursor: pointer;
     transition: background .12s;
@@ -2509,7 +2509,7 @@ html {
 }
 
 .comp-track-name {
-    flex: 1;
+    flex-shrink: 0;
     font-size: 14px;
     color: var(--clr-text-on-dark);
     transition: color .12s;
@@ -2525,7 +2525,7 @@ html {
     color: rgba(255,255,255,0.25);
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
-    margin-right: 12px;
+    margin-left: auto;
 }
 
 .comp-track-dur {
@@ -2540,8 +2540,11 @@ html {
         padding: 16px 16px 0;
     }
     .comp-tracklist {
-        margin: 16px -16px 0;
-        padding: 0 16px;
+        margin: 0 -16px 0;
+        padding: 0;
+    }
+    .comp-track {
+        padding: 10px 16px;
     }
 }
 
