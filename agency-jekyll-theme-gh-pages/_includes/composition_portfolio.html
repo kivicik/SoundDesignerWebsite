@@ -242,8 +242,8 @@
                 .then(function (r) { return r.arrayBuffer(); })
                 .then(function (buf) { return ac.decodeAudioData(buf); })
                 .then(function (decoded) {
-                    var dpr     = window.devicePixelRatio || 1;
-                    var numBars = Math.round((canvas ? canvas.offsetWidth : 600) * dpr);
+                    var numBars = canvas ? canvas.width : 0;
+                    if (!numBars) return;
                     var ch0     = decoded.getChannelData(0);
                     var ch1     = decoded.numberOfChannels > 1 ? decoded.getChannelData(1) : null;
 
@@ -368,6 +368,7 @@
                 if (!audioLoaded) timeTotal.textContent = '0:00 / ' + fmt(tmpDur.duration);
             });
             tmpDur.src = t.dataset.src;
+            syncCanvasSize();
             loadWaveform(t.dataset.src);
         })();
 
