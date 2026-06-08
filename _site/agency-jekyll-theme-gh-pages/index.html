@@ -675,13 +675,15 @@
 
                     <!-- Controls row with inline waveform -->
                     <div class="comp-controls-row">
-                        <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
-                            <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
-                            <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
-                        </button>
-                        <div class="comp-player-text">
-                            <div class="comp-player-title" id="compPlayerTitle">—</div>
-                            <div class="comp-player-meta" id="compPlayerMeta"></div>
+                        <div class="comp-controls-left">
+                            <button class="comp-play-btn" id="compPlayBtn" aria-label="Play or pause">
+                                <svg class="comp-icon-play" viewBox="0 0 20 20"><polygon points="4,2 16,10 4,18"/></svg>
+                                <svg class="comp-icon-pause" viewBox="0 0 20 20" style="display:none"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+                            </button>
+                            <div class="comp-player-text">
+                                <div class="comp-player-title" id="compPlayerTitle">—</div>
+                                <div class="comp-player-meta" id="compPlayerMeta"></div>
+                            </div>
                         </div>
                         <div class="comp-waveform-wrap">
                             <canvas class="comp-waveform-canvas" id="compWaveformCanvas"></canvas>

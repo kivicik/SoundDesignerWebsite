@@ -2348,6 +2348,13 @@ html {
     padding-bottom: 22px;
 }
 
+.comp-controls-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
 .comp-player-art {
     flex-shrink: 0;
     width: 54px;
