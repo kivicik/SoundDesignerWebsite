@@ -369,21 +369,19 @@
                 if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
                 if (wasPlaying) {
                     setBuffering(true);
-                    function tryPlay() {
-                        if (audio.readyState >= 3) {
-                            audio.removeEventListener('canplay',  tryPlay);
-                            audio.removeEventListener('progress', tryPlay);
+                    audio.addEventListener('seeked', function onSeeked() {
+                        audio.removeEventListener('seeked', onSeeked);
+                        function tryPlay() {
+                            audio.removeEventListener('canplay', tryPlay);
                             setBuffering(false);
                             audio.play().catch(function () {});
                         }
-                    }
-                    if (audio.readyState >= 3) {
-                        setBuffering(false);
-                        audio.play().catch(function () {});
-                    } else {
-                        audio.addEventListener('canplay',  tryPlay);
-                        audio.addEventListener('progress', tryPlay);
-                    }
+                        if (audio.readyState >= 3) {
+                            tryPlay();
+                        } else {
+                            audio.addEventListener('canplay', tryPlay);
+                        }
+                    });
                 }
             });
             canvas.addEventListener('mousemove', function (e) {
