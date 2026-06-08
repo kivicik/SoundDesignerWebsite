@@ -2461,7 +2461,7 @@ html {
 
 .comp-track-project {
     font-size: 13px;
-    color: rgba(255,255,255,0.28);
+    color: rgba(255,255,255,0.50);
     white-space: nowrap;
     flex-shrink: 0;
 }
