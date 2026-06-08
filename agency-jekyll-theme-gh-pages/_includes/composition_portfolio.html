@@ -326,6 +326,12 @@
             if (audio.duration && isFinite(audio.duration)) {
                 timeTotal.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
             }
+            if (!audio.seeking && active && waveCache[active.dataset.src]) {
+                drawPeaks(waveCache[active.dataset.src], getProgress());
+            }
+        });
+
+        audio.addEventListener('seeked', function () {
             if (active && waveCache[active.dataset.src]) {
                 drawPeaks(waveCache[active.dataset.src], getProgress());
             }
@@ -339,6 +345,7 @@
                 var rect = canvas.getBoundingClientRect();
                 var frac = (e.clientX - rect.left) / rect.width;
                 audio.currentTime = frac * audio.duration;
+                if (waveCache[active.dataset.src]) drawPeaks(waveCache[active.dataset.src], frac);
             });
             canvas.addEventListener('mousemove', function (e) {
                 var rect = canvas.getBoundingClientRect();
