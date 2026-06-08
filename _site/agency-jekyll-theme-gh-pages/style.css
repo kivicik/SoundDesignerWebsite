@@ -2458,29 +2458,15 @@ html {
     padding: 0 24px;
 }
 
-.comp-album-group {
-    margin-bottom: 20px;
+.comp-track-project {
+    font-size: 12px;
+    color: rgba(255,255,255,0.28);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.comp-album-group:first-child {
-    margin-top: 20px;
-}
-
-.comp-album-header {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fff;
-    padding-bottom: 8px;
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.18);
-}
-
-.comp-album-tag {
-    font-weight: 400;
-    opacity: 0.6;
-    letter-spacing: 1px;
+.comp-tracks-flat {
+    padding-top: 4px;
 }
 
 .comp-tracks {
